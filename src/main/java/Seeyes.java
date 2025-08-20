@@ -9,23 +9,29 @@ public class Seeyes {
     }
 
     public static void handleUserInput(String input) {
-        // print the list of tasks
-        if (input.equals("list")) {
+        String command = input.split(" ")[0].toLowerCase();
+
+        if (command.equals("list")) {
+            // print the list of tasks
             printList();
-        // mark or unmark tasks
-        } else if (input.startsWith("mark") || input.startsWith("unmark")) {
+        } else if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
+            // mark or unmark tasks
             int index = Integer.parseInt(input.split(" ")[1]) - 1;
             if (index >= 0 && index < list.size()) {
-                if (input.startsWith("mark")) {
+                if (command.equals("mark")) {
                     list.get(index).markAsDone();
                     System.out.println("Poggers. Let's check this off:\n" + list.get(index) + "\nKeep it up!");
-                } else {
+                } else if (command.equals("unmark")) {
                     list.get(index).markAsNotDone();
                     System.out.println("Shag. Ok, I've unmarked this task:\n " + list.get(index) + "\nKeep your head up king.");
+                } else if (command.equals("delete")) {
+                    Task toBeRemovedTask = list.get(index);
+                    list.remove(index);
+                    System.out.println("Ok bro let's get rid of it. REMOVED: " + toBeRemovedTask);
                 }
             }
-        // add task to list of tasks
         } else {
+            // add task to list of tasks
             addToList(input);
         }
     }
