@@ -9,10 +9,22 @@ public class Seeyes {
     }
 
     public static void handleUserInput(String input) {
+        // print the list of tasks
         if (input.equals("list")) {
             printList();
-        } else if (input.startsWith("mark")) {
-            
+        // mark or unmark tasks
+        } else if (input.startsWith("mark") || input.startsWith("unmark")) {
+            int index = Integer.parseInt(input.split(" ")[1]) - 1;
+            if (index >= 0 && index < list.size()) {
+                if (input.startsWith("mark")) {
+                    list.get(index).markAsDone();
+                    System.out.println("Poggers. Let's check this off:\n" + list.get(index) + "\nKeep it up!");
+                } else {
+                    list.get(index).markAsNotDone();
+                    System.out.println("Shag. Ok, I've unmarked this task:\n " + list.get(index) + "\nKeep your head up king.");
+                }
+            }
+        // add task to list of tasks
         } else {
             addToList(input);
         }
@@ -37,18 +49,18 @@ public class Seeyes {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         printDivider();
-        System.out.println("Hello, I'm Seeyes!\n" + "What can I do for you?");
+        System.out.println("Yo, I'm Seeyes!\n" + "How can I help?");
         printDivider();
         while (true) {
             String userInput = scanner.nextLine();
-            handleUserInput(userInput);
             if (userInput.equals("bye")) {
                 break;
             }
+            handleUserInput(userInput);
             printDivider();
         }
         printDivider();
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("See you around bro!");
         printDivider();
 
         // Terminate

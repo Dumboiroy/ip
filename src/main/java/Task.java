@@ -8,19 +8,23 @@ public class Task {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public boolean isDone() {
-        return isDone;
+        return this.isDone;
     }
 
     public void markAsDone() {
-        isDone = true;
+        this.isDone = true;
+    }
+
+    public void markAsNotDone() {
+        this.isDone = false;
     }
 
     @Override
     public String toString() {
-        return name;
+        return "[" + (this.isDone ? "X" : " ") + "] " + this.name;
     }
 }
