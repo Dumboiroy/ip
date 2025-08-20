@@ -82,7 +82,6 @@ public class Seeyes {
     }
 
     public static void printList() {
-        printDivider();
         if (list.size() == 0) {
             say("list is empty! add your first item with 'todo [item]'.");
         }
@@ -114,7 +113,6 @@ public class Seeyes {
             handleUserInput(userInput);
             printDivider();
         }
-        printDivider();
         say("See you around bro!");
         printDivider();
 

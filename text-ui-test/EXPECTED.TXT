@@ -1,0 +1,70 @@
+============================================================
+> Yo, I'm Seeyes!
+> How can I help?
+============================================================
+> Invalid command/task type: 'hello!!'
+============================================================
+> Added: [T][ ] hello!!
+> You now have 1 items in your list.
+============================================================
+> Added: [T][ ] borrow book
+> You now have 2 items in your list.
+============================================================
+> Here are the items in your list:
+> 1. [T][ ] hello!!
+> 2. [T][ ] borrow book
+============================================================
+return book
+> new deadline not added. needs at least a name and a due date.
+============================================================
+return book /by Sunday
+> Added: [D][ ] return book (by: [Sunday])
+> You now have 3 items in your list.
+============================================================
+> new event not added. specify a start and end date for this event.
+============================================================
+> new event not added. specify a start and end date for this event.
+============================================================
+> new event not added. specify a start and end date for this event.
+============================================================
+> new event not added. specify a start and end date for this event.
+============================================================
+> Added: [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+> You now have 4 items in your list.
+============================================================
+> Here are the items in your list:
+> 1. [T][ ] hello!!
+> 2. [T][ ] borrow book
+> 3. [D][ ] return book (by: [Sunday])
+> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+============================================================
+> Poggers. Let's check this off:
+[T][X] hello!!
+Keep it up!
+============================================================
+> Poggers. Let's check this off:
+[T][X] borrow book
+Keep it up!
+============================================================
+> invalid task number. type 'list' to see list of tasks.
+============================================================
+> Here are the items in your list:
+> 1. [T][X] hello!!
+> 2. [T][X] borrow book
+> 3. [D][ ] return book (by: [Sunday])
+> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+============================================================
+> Shag. Ok, I've unmarked this task:
+ [T][ ] hello!!
+Keep your head up king.
+============================================================
+> invalid task number. type 'list' to see list of tasks.
+============================================================
+> Here are the items in your list:
+> 1. [T][ ] hello!!
+> 2. [T][X] borrow book
+> 3. [D][ ] return book (by: [Sunday])
+> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+============================================================
+> See you around bro!
+============================================================
