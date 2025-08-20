@@ -44,6 +44,7 @@ public class Seeyes {
         Task item = new Task(name);
         list.add(item);
         System.out.println("Added: " + item);
+        System.out.println("You now have " + list.size() + " items in your list.");
     }
 
     public static void main(String[] args) {
