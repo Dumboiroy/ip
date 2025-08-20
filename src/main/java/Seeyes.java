@@ -12,19 +12,25 @@ public class Seeyes {
         System.out.println("> " + str);
     }
 
-    public static void handleUserInput(String input) {
+    public static void printCommands() {
+        System.out.println("list: list all events");
+        System.out.println("todo [taskname]");
+        System.out.println("deadline [taskname] /by [duedate]");
+        System.out.println("event [taskname] /from [startdate] /to [enddate]");
+        System.out.println("mark [task number]: mark an item");
+        System.out.println("unmark [task number]: unmark an item");
+        System.out.println("bye: closes the program");
+
+    }
+
+    public static void handleUserInput(String input) throws InvalidCommandException, InvalidTaskNumberException {
         String[] split = input.split(" ", 2);
-        if (split.length < 2) {
-            if (split[0].equals("list")) {
-                // print the list of tasks
-                printList();
-                return;
-            }
-            say("Invalid command/task type: '" + input + "'");
-            return;
-        }
+        
         String command = split[0].trim();
         if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
+            if (split[1].trim() == "") {
+                throw new InvalidTaskNumberException(split[1] + " is not a number.");
+            }
             // mark, unmark or delete tasks
             int index = Integer.parseInt(input.split(" ")[1]) - 1;
             if (index >= 0 && index < list.size()) {
@@ -40,44 +46,58 @@ public class Seeyes {
                     say("Ok bro let's get rid of it. REMOVED: " + toBeRemovedTask);
                 }
             } else {
-                say("invalid task number. type 'list' to see list of tasks.");
+                throw new InvalidTaskNumberException("invalid task number: [" + index + "]");
             }
+        } else if (command.equals("todo")|| command.equals("deadline") || command.equals("event")) {
+            try {
+                String paramsString = split[1].trim();
+                // add task to list of tasks
+                String taskType = command;
+                switch(taskType) {
+                    case "todo":
+                        addToList(new ToDoTask(paramsString.trim()));
+                        break;
+                    case "deadline":
+                        System.out.println(paramsString);
+                        String[] params = paramsString.split("/by");
+                        if (params.length < 2) {
+                            say("new deadline not added. needs at least a name and a due date.");
+                            return;
+                        }
+                        String name = params[0].trim();
+                        String by = params[1].trim();
+                        addToList(new DeadlineTask(name, by));
+                        break;
+                    case "event":
+                        String[] extracted_name = paramsString.split("/from");
+                        if (extracted_name.length < 2) {
+                            say("new event not added. specify a start and end date for this event.");
+                            return;
+                        }
+                        String[] extracted_from = extracted_name[1].split("/to");
+                        if (extracted_from.length < 2) {
+                            say("new event not added. specify a start and end date for this event.");
+                            return;
+                        }
+                        addToList(new EventTask(extracted_name[0].trim(), extracted_from[0].trim(), extracted_from[1].trim()));
+                        break;
+                    default:
+                        say("");
+                        return;
+                };
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String errorMsg = switch (command) {
+                    case "todo" -> "Please enter a name for your todo task. Usage: 'todo [name]'";
+                    case "deadline" -> "Usage: 'deadline [name] /by [due date]'";
+                    case "event" -> "Usage: 'event [name] /from [start date] /to [end date]'";
+                    default -> "";
+                };
+                throw new InvalidCommandException(errorMsg);
+            }
+        } else if (command == "/help") {
+            printCommands();
         } else {
-            String paramsString = split[1].trim();
-            // add task to list of tasks
-            String taskType = command;
-            switch(taskType) {
-                case "todo":
-                    addToList(new ToDoTask(paramsString.trim()));
-                    break;
-                case "deadline":
-                    System.out.println(paramsString);
-                    String[] params = paramsString.split("/by");
-                    if (params.length < 2) {
-                        say("new deadline not added. needs at least a name and a due date.");
-                        return;
-                    }
-                    String name = params[0].trim();
-                    String by = params[1].trim();
-                    addToList(new DeadlineTask(name, by));
-                    break;
-                case "event":
-                    String[] extracted_name = paramsString.split("/from");
-                    if (extracted_name.length < 2) {
-                        say("new event not added. specify a start and end date for this event.");
-                        return;
-                    }
-                    String[] extracted_from = extracted_name[1].split("/to");
-                    if (extracted_from.length < 2) {
-                        say("new event not added. specify a start and end date for this event.");
-                        return;
-                    }
-                    addToList(new EventTask(extracted_name[0].trim(), extracted_from[0].trim(), extracted_from[1].trim()));
-                    break;
-                default:
-                    say("> Invalid command/task type: '" + input + "'");
-                    return;
-            };
+            throw new InvalidCommandException("Sorry, I don't understand '" + input + "'. Type /help for a list of commands.");
         }
     }
 
@@ -110,7 +130,14 @@ public class Seeyes {
             if (userInput.equals("bye")) {
                 break;
             }
-            handleUserInput(userInput);
+            try {
+                handleUserInput(userInput);
+            } catch (InvalidCommandException e) {
+                say(e.getMessage());
+            } catch (InvalidTaskNumberException e) {
+                say(e.getMessage());
+                printList();
+            }
             printDivider();
         }
         say("See you around bro!");
