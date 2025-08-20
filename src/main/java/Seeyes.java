@@ -12,6 +12,10 @@ public class Seeyes {
         System.out.println("> " + str);
     }
 
+    public static void printListSize() {
+        say("Number of tasks in list: [" + list.size() + "]");
+    }
+
     public static void printCommands() {
         System.out.println("list: list all events");
         System.out.println("todo [taskname]");
@@ -44,6 +48,7 @@ public class Seeyes {
                     Task toBeRemovedTask = list.get(index);
                     list.remove(index);
                     say("Ok bro let's get rid of it. REMOVED: " + toBeRemovedTask);
+                    printListSize();
                 }
             } else {
                 throw new InvalidTaskNumberException("invalid task number: [" + index + "]");
@@ -105,7 +110,7 @@ public class Seeyes {
         if (list.size() == 0) {
             say("list is empty! add your first item with 'todo [item]'.");
         }
-        say("Here are the items in your list:");
+        say("Here are the tasks in your list:");
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) != null) {
                 say((i + 1) + ". " + list.get(i));
@@ -116,7 +121,7 @@ public class Seeyes {
     public static void addToList(Task task) {
         list.add(task);
         say("Added: " + task);
-        say("You now have " + list.size() + " items in your list.");
+        printListSize();
     }
 
     public static void main(String[] args) {
