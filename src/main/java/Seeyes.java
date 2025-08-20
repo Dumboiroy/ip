@@ -3,6 +3,32 @@ import java.util.ArrayList;
 public class Seeyes {
     public static final String divider = "============================================================";
     public static ArrayList<Task> list = new ArrayList<>();
+    private enum Command {
+        LIST("list"),
+        TODO("todo"),
+        DEADLINE("deadline"),
+        EVENT("event"),
+        MARK("mark"),
+        UNMARK("unmark"),
+        DELETE("delete"),
+        HELP("/help"),
+        BYE("bye");
+
+        private final String keyword;
+
+        Command(String keyword) {
+            this.keyword = keyword;
+        }
+
+        public static Command fromString(String commandString) throws InvalidCommandException {
+            for (Command c : Command.values()) {
+                if (c.keyword.equalsIgnoreCase(commandString)) {
+                    return c;
+                }
+            }
+            throw new InvalidCommandException("Sorry, I don't understand '" + commandString + "'. Type /help for a list of commands.");
+        }
+    }
 
     public static void printDivider() {
         System.out.println(divider);
@@ -29,80 +55,110 @@ public class Seeyes {
 
     public static void handleUserInput(String input) throws InvalidCommandException, InvalidTaskNumberException {
         String[] split = input.split(" ", 2);
-        
-        String command = split[0].trim();
-        if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
-            if (split[1].trim() == "") {
-                throw new InvalidTaskNumberException(split[1] + " is not a number.");
-            }
-            // mark, unmark or delete tasks
-            int index = Integer.parseInt(input.split(" ")[1]) - 1;
-            if (index >= 0 && index < list.size()) {
-                if (command.equals("mark")) {
-                    list.get(index).markAsDone();
-                    say("Poggers. Let's check this off:\n" + list.get(index) + "\nKeep it up!");
-                } else if (command.equals("unmark")) {
-                    list.get(index).markAsNotDone();
-                    say("Shag. Ok, I've unmarked this task:\n " + list.get(index) + "\nKeep your head up king.");
-                } else if (command.equals("delete")) {
-                    Task toBeRemovedTask = list.get(index);
-                    list.remove(index);
-                    say("Ok bro let's get rid of it. REMOVED: " + toBeRemovedTask);
-                    printListSize();
+        Command command = Command.fromString(split[0].trim());
+        if (split.length < 2) {
+            switch (command) {
+                case MARK:
+                case UNMARK:
+                case DELETE:
+                    throw new InvalidTaskNumberException("USAGE: mark/unmark/delete [task number]");
+                case TODO:
+                case DEADLINE:
+                case EVENT:
+                    String errorMsg = switch (command) {
+                        case TODO -> "Please enter a name for your todo task. Usage: 'todo [name]'";
+                        case DEADLINE -> "Usage: 'deadline [name] /by [due date]'";
+                        case EVENT -> "Usage: 'event [name] /from [start date] /to [end date]'";
+                        default -> "";
+                    };
+                    throw new InvalidCommandException(errorMsg);
+                default:
+                    break;
+                
+            };
+        }
+        switch (command) {
+            case MARK:
+            case UNMARK:
+            case DELETE:
+                try {
+                    Integer.parseInt(split[1]);
+                } catch (NumberFormatException e) {
+                    String indexString = split[1];
+                    throw new InvalidTaskNumberException("'" + indexString + "' is not a number");
                 }
-            } else {
-                throw new InvalidTaskNumberException("invalid task number: [" + index + "]");
-            }
-        } else if (command.equals("todo")|| command.equals("deadline") || command.equals("event")) {
-            try {
-                String paramsString = split[1].trim();
-                // add task to list of tasks
-                String taskType = command;
-                switch(taskType) {
-                    case "todo":
-                        addToList(new ToDoTask(paramsString.trim()));
-                        break;
-                    case "deadline":
-                        System.out.println(paramsString);
-                        String[] params = paramsString.split("/by");
-                        if (params.length < 2) {
-                            say("new deadline not added. needs at least a name and a due date.");
+                // mark, unmark or delete tasks
+                String indexString = split[1];
+                int index = Integer.parseInt(indexString) - 1;
+                if (index >= 0 && index < list.size()) {
+                    switch (command) {
+                        case MARK:
+                            list.get(index).markAsDone();
+                            say("Poggers. Let's check this off:\n" + list.get(index) + "\nKeep it up!");
+                            break;
+                        case UNMARK:
+                            list.get(index).markAsNotDone();
+                            say("Shag. Ok, I've unmarked this task:\n " + list.get(index) + "\nKeep your head up king.");
+                        case DELETE:
+                            Task toBeRemovedTask = list.get(index);
+                            list.remove(index);
+                            say("Ok bro let's get rid of it. REMOVED: " + toBeRemovedTask);
+                            printListSize();
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    throw new InvalidTaskNumberException("invalid task number: [" + index + "]");
+                }
+                break;
+            case TODO:
+            case DEADLINE:
+            case EVENT:
+                // try {
+                    String paramsString = split[1].trim();
+                    // add task to list of tasks
+                    switch(command) {
+                        case TODO:
+                            addToList(new ToDoTask(paramsString.trim()));
+                            break;
+                        case DEADLINE:
+                            String[] params = paramsString.split("/by");
+                            if (params.length < 2) {
+                                say("new deadline not added. needs at least a name and a due date.");
+                                return;
+                            }
+                            String name = params[0].trim();
+                            String by = params[1].trim();
+                            addToList(new DeadlineTask(name, by));
+                            break;
+                        case EVENT:
+                            String[] extracted_name = paramsString.split("/from");
+                            if (extracted_name.length < 2) {
+                                say("new event not added. specify a start and end date for this event.");
+                                return;
+                            }
+                            String[] extracted_from = extracted_name[1].split("/to");
+                            if (extracted_from.length < 2) {
+                                say("new event not added. specify a start and end date for this event.");
+                                return;
+                            }
+                            addToList(new EventTask(extracted_name[0].trim(), extracted_from[0].trim(), extracted_from[1].trim()));
+                            break;
+                        default:
                             return;
-                        }
-                        String name = params[0].trim();
-                        String by = params[1].trim();
-                        addToList(new DeadlineTask(name, by));
-                        break;
-                    case "event":
-                        String[] extracted_name = paramsString.split("/from");
-                        if (extracted_name.length < 2) {
-                            say("new event not added. specify a start and end date for this event.");
-                            return;
-                        }
-                        String[] extracted_from = extracted_name[1].split("/to");
-                        if (extracted_from.length < 2) {
-                            say("new event not added. specify a start and end date for this event.");
-                            return;
-                        }
-                        addToList(new EventTask(extracted_name[0].trim(), extracted_from[0].trim(), extracted_from[1].trim()));
-                        break;
-                    default:
-                        say("");
-                        return;
-                };
-            } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMsg = switch (command) {
-                    case "todo" -> "Please enter a name for your todo task. Usage: 'todo [name]'";
-                    case "deadline" -> "Usage: 'deadline [name] /by [due date]'";
-                    case "event" -> "Usage: 'event [name] /from [start date] /to [end date]'";
-                    default -> "";
-                };
-                throw new InvalidCommandException(errorMsg);
-            }
-        } else if (command == "/help") {
-            printCommands();
-        } else {
-            throw new InvalidCommandException("Sorry, I don't understand '" + input + "'. Type /help for a list of commands.");
+                    };
+                // }
+                break;
+            case HELP:
+                printCommands();
+                break;
+            case LIST:
+                printList();
+            case BYE:
+                break;
+            default:
+                say("unhandled command: " + command);
         }
     }
 
