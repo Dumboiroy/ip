@@ -2,24 +2,31 @@
 > Yo, I'm Seeyes!
 > How can I help?
 ============================================================
-> Invalid command/task type: 'hello!!'
+> Sorry, I don't understand 'hello!!'. Type /help for a list of commands.
+============================================================
+list: list all events
+todo [taskname]
+deadline [taskname] /by [duedate]
+event [taskname] /from [startdate] /to [enddate]
+mark [task number]: mark a task
+unmark [task number]: unmark a task
+delete [task number]: delete a task
+bye: closes the program
 ============================================================
 > Added: [T][ ] hello!!
-> You now have 1 items in your list.
+> Number of tasks in list: [1]
 ============================================================
 > Added: [T][ ] borrow book
-> You now have 2 items in your list.
+> Number of tasks in list: [2]
 ============================================================
-> Here are the items in your list:
+> Here are the tasks in your list:
 > 1. [T][ ] hello!!
 > 2. [T][ ] borrow book
 ============================================================
-return book
 > new deadline not added. needs at least a name and a due date.
 ============================================================
-return book /by Sunday
 > Added: [D][ ] return book (by: [Sunday])
-> You now have 3 items in your list.
+> Number of tasks in list: [3]
 ============================================================
 > new event not added. specify a start and end date for this event.
 ============================================================
@@ -30,9 +37,9 @@ return book /by Sunday
 > new event not added. specify a start and end date for this event.
 ============================================================
 > Added: [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
-> You now have 4 items in your list.
+> Number of tasks in list: [4]
 ============================================================
-> Here are the items in your list:
+> Here are the tasks in your list:
 > 1. [T][ ] hello!!
 > 2. [T][ ] borrow book
 > 3. [D][ ] return book (by: [Sunday])
@@ -46,9 +53,28 @@ Keep it up!
 [T][X] borrow book
 Keep it up!
 ============================================================
-> invalid task number. type 'list' to see list of tasks.
+> invalid task number: [12]
+> Here are the tasks in your list:
+> 1. [T][X] hello!!
+> 2. [T][X] borrow book
+> 3. [D][ ] return book (by: [Sunday])
+> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
 ============================================================
-> Here are the items in your list:
+> 'asd' is not a number
+> Here are the tasks in your list:
+> 1. [T][X] hello!!
+> 2. [T][X] borrow book
+> 3. [D][ ] return book (by: [Sunday])
+> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+============================================================
+> '      ' is not a number
+> Here are the tasks in your list:
+> 1. [T][X] hello!!
+> 2. [T][X] borrow book
+> 3. [D][ ] return book (by: [Sunday])
+> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+============================================================
+> Here are the tasks in your list:
 > 1. [T][X] hello!!
 > 2. [T][X] borrow book
 > 3. [D][ ] return book (by: [Sunday])
@@ -57,14 +83,31 @@ Keep it up!
 > Shag. Ok, I've unmarked this task:
  [T][ ] hello!!
 Keep your head up king.
+> Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
+> Number of tasks in list: [3]
 ============================================================
-> invalid task number. type 'list' to see list of tasks.
+> invalid task number: [12]
+> Here are the tasks in your list:
+> 1. [T][X] borrow book
+> 2. [D][ ] return book (by: [Sunday])
+> 3. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
 ============================================================
-> Here are the items in your list:
-> 1. [T][ ] hello!!
-> 2. [T][X] borrow book
-> 3. [D][ ] return book (by: [Sunday])
-> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+> 'asd' is not a number
+> Here are the tasks in your list:
+> 1. [T][X] borrow book
+> 2. [D][ ] return book (by: [Sunday])
+> 3. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+============================================================
+> '    ' is not a number
+> Here are the tasks in your list:
+> 1. [T][X] borrow book
+> 2. [D][ ] return book (by: [Sunday])
+> 3. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+============================================================
+> Here are the tasks in your list:
+> 1. [T][X] borrow book
+> 2. [D][ ] return book (by: [Sunday])
+> 3. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
 ============================================================
 > See you around bro!
 ============================================================

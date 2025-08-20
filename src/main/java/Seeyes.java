@@ -47,8 +47,9 @@ public class Seeyes {
         System.out.println("todo [taskname]");
         System.out.println("deadline [taskname] /by [duedate]");
         System.out.println("event [taskname] /from [startdate] /to [enddate]");
-        System.out.println("mark [task number]: mark an item");
-        System.out.println("unmark [task number]: unmark an item");
+        System.out.println("mark [task number]: mark a task");
+        System.out.println("unmark [task number]: unmark a task");
+        System.out.println("delete [task number]: delete a task");
         System.out.println("bye: closes the program");
 
     }
@@ -109,7 +110,7 @@ public class Seeyes {
                             break;
                     }
                 } else {
-                    throw new InvalidTaskNumberException("invalid task number: [" + index + "]");
+                    throw new InvalidTaskNumberException("invalid task number: [" + (index + 1) + "]");
                 }
                 break;
             case TODO:
