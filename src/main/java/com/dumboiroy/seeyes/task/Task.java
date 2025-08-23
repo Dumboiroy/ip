@@ -6,27 +6,27 @@ public class Task {
 
     public Task(String name) {
         this.name = name;
-        this.isDone = false;
+        isDone = false;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public boolean isDone() {
-        return this.isDone;
+        return isDone;
     }
 
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     public void markAsNotDone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     @Override
     public String toString() {
-        return "[" + (this.isDone ? "X" : " ") + "] " + this.name;
+        return "[" + (isDone ? "X" : " ") + "] " + name;
     }
 }
