@@ -1,4 +1,6 @@
-class InvalidCommandException extends RuntimeException {
+package com.dumboiroy.seeyes.exception;
+
+public class InvalidCommandException extends RuntimeException {
     public InvalidCommandException() {
     }
 

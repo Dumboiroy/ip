@@ -1,5 +1,14 @@
-import java.util.Scanner;
+package com.dumboiroy.seeyes;
+
+import com.dumboiroy.seeyes.exception.InvalidCommandException;
+import com.dumboiroy.seeyes.exception.InvalidTaskNumberException;
+import com.dumboiroy.seeyes.task.DeadlineTask;
+import com.dumboiroy.seeyes.task.EventTask;
+import com.dumboiroy.seeyes.task.Task;
+import com.dumboiroy.seeyes.task.ToDoTask;
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Seeyes {
     public static final String divider = "============================================================";

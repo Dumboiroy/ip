@@ -1,4 +1,6 @@
-class InvalidTaskNumberException extends RuntimeException {
+package com.dumboiroy.seeyes.exception;
+
+public class InvalidTaskNumberException extends RuntimeException {
     public InvalidTaskNumberException() {
     }
 

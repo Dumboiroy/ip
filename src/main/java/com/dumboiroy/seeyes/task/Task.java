@@ -1,3 +1,5 @@
+package com.dumboiroy.seeyes.task;
+
 public class Task {
     private String name;
     private boolean isDone;

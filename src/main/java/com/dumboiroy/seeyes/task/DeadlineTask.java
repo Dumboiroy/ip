@@ -1,3 +1,5 @@
+package com.dumboiroy.seeyes.task;
+
 public class DeadlineTask extends Task {
     private String dateDue;
 
