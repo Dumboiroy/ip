@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Seeyes {
     public static final String divider = "============================================================";
     public static ArrayList<Task> taskList = new ArrayList<>();
-    public static StorageManager storage = new StorageManager("data.txt");
+    public static StorageManager storage = new StorageManager("./data/data.txt");
 
     private enum Command {
         LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"), DELETE(
