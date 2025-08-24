@@ -18,3 +18,6 @@ text-ui-test/EXPECTED-UNIX.TXT
 
 # Java Class files
 *.class
+
+# Data files
+data.txt
