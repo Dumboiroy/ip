@@ -10,7 +10,7 @@ public class DeadlineTask extends Task {
 
     @Override
     public String getSaveString() {
-        return "D|" + super.getSaveString() + dateDue + "|";
+        return "DL|" + super.getSaveString() + dateDue + "|";
     }
 
     @Override

@@ -7,7 +7,7 @@ public class ToDoTask extends Task {
 
     @Override
     public String getSaveString() {
-        return "D|" + super.getSaveString();
+        return "TD|" + super.getSaveString();
     }
 
     @Override

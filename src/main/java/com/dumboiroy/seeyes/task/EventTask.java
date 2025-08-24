@@ -12,7 +12,7 @@ public class EventTask extends Task {
 
     @Override
     public String getSaveString() {
-        return "E|" + super.getSaveString() + start + "|" + end + "|";
+        return "EV|" + super.getSaveString() + start + "|" + end + "|";
     }
 
     @Override
