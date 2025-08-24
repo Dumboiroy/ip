@@ -20,6 +20,7 @@ list
 unmark 1
 unmark 12
 unmark asd
-unmark     
+unmark
 list
+save
 bye

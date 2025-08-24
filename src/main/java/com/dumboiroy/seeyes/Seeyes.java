@@ -2,21 +2,20 @@ package com.dumboiroy.seeyes;
 
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
 import com.dumboiroy.seeyes.exception.InvalidTaskNumberException;
-import com.dumboiroy.seeyes.task.DeadlineTask;
-import com.dumboiroy.seeyes.task.EventTask;
+import com.dumboiroy.seeyes.storage.StorageManager;
 import com.dumboiroy.seeyes.task.Task;
-import com.dumboiroy.seeyes.task.ToDoTask;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Seeyes {
     public static final String divider = "============================================================";
-    public static ArrayList<Task> list = new ArrayList<>();
+    public static ArrayList<Task> taskList = new ArrayList<>();
+    public static StorageManager storage = new StorageManager("data.txt");
 
     private enum Command {
         LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"), DELETE(
-                "delete"), HELP("/help"), BYE("bye");
+                "delete"), SAVE("save"), HELP("/help"), BYE("bye");
 
         private final String keyword;
 
@@ -44,7 +43,7 @@ public class Seeyes {
     }
 
     public static void printListSize() {
-        say("Number of tasks in list: [" + list.size() + "]");
+        say("Number of tasks in list: [" + taskList.size() + "]");
     }
 
     public static void printCommands() {
@@ -55,6 +54,7 @@ public class Seeyes {
         System.out.println("mark [task number]: mark a task");
         System.out.println("unmark [task number]: unmark a task");
         System.out.println("delete [task number]: delete a task");
+        System.out.println("save: save list to disk");
         System.out.println("bye: closes the program");
 
     }
@@ -80,9 +80,7 @@ public class Seeyes {
                 throw new InvalidCommandException(errorMsg);
             default:
                 break;
-
             }
-            ;
         }
         switch (command) {
         case MARK:
@@ -97,19 +95,19 @@ public class Seeyes {
             // mark, unmark or delete tasks
             String indexString = split[1];
             int index = Integer.parseInt(indexString) - 1;
-            if (index >= 0 && index < list.size()) {
+            if (index >= 0 && index < taskList.size()) {
                 switch (command) {
                 case MARK:
-                    list.get(index).markAsDone();
-                    say("Poggers. Let's check this off:\n" + list.get(index) + "\nKeep it up!");
+                    taskList.get(index).markAsDone();
+                    say("Poggers. Let's check this off:\n" + taskList.get(index) + "\nKeep it up!");
                     break;
                 case UNMARK:
-                    list.get(index).markAsNotDone();
-                    say("Shag. Ok, I've unmarked this task:\n " + list.get(index)
+                    taskList.get(index).markAsNotDone();
+                    say("Shag. Ok, I've unmarked this task:\n " + taskList.get(index)
                             + "\nKeep your head up king.");
                 case DELETE:
-                    Task toBeRemovedTask = list.get(index);
-                    list.remove(index);
+                    Task toBeRemovedTask = taskList.get(index);
+                    taskList.remove(index);
                     say("Ok bro let's get rid of it. REMOVED: " + toBeRemovedTask);
                     printListSize();
                     break;
@@ -160,6 +158,9 @@ public class Seeyes {
             ;
             // }
             break;
+        case SAVE:
+            storage.save(taskList);
+            break;
         case HELP:
             printCommands();
             break;
@@ -173,19 +174,19 @@ public class Seeyes {
     }
 
     public static void printList() {
-        if (list.size() == 0) {
+        if (taskList.size() == 0) {
             say("list is empty! add your first item with 'todo [item]'.");
         }
         say("Here are the tasks in your list:");
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) != null) {
-                say((i + 1) + ". " + list.get(i));
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i) != null) {
+                say((i + 1) + ". " + taskList.get(i));
             }
         }
     }
 
     public static void addToList(Task task) {
-        list.add(task);
+        taskList.add(task);
         say("Added: " + task);
         printListSize();
     }
