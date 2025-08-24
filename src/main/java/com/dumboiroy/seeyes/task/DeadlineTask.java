@@ -3,7 +3,7 @@ package com.dumboiroy.seeyes.task;
 public class DeadlineTask extends Task {
     private String dateDue;
 
-    public DeadlineTask(String name, String dateDue) {
+    protected DeadlineTask(String name, String dateDue) {
         super(name);
         this.dateDue = dateDue;
     }

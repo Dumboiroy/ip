@@ -128,7 +128,7 @@ public class Seeyes {
             // add task to list of tasks
             switch (command) {
             case TODO:
-                addToList(new ToDoTask(paramsString.trim()));
+                addToList(Task.of(paramsString.trim()));
                 break;
             case DEADLINE:
                 String[] params = paramsString.split("/by");
@@ -138,7 +138,7 @@ public class Seeyes {
                 }
                 String name = params[0].trim();
                 String by = params[1].trim();
-                addToList(new DeadlineTask(name, by));
+                addToList(Task.of(name, by));
                 break;
             case EVENT:
                 String[] extracted_name = paramsString.split("/from");
@@ -151,7 +151,7 @@ public class Seeyes {
                     say("new event not added. specify a start and end date for this event.");
                     return;
                 }
-                addToList(new EventTask(extracted_name[0].trim(), extracted_from[0].trim(),
+                addToList(Task.of(extracted_name[0].trim(), extracted_from[0].trim(),
                         extracted_from[1].trim()));
                 break;
             default:
