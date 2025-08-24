@@ -9,10 +9,6 @@ public abstract class Task {
         isDone = false;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public boolean isDone() {
         return isDone;
     }
