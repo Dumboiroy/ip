@@ -1,8 +1,13 @@
 package com.dumboiroy.seeyes.task;
 
 public class ToDoTask extends Task {
-    public ToDoTask(String name) {
-        super(name);
+    protected ToDoTask(boolean isDone, String name) {
+        super(isDone, name);
+    }
+
+    @Override
+    public String getSaveString() {
+        return "TD|" + super.getSaveString();
     }
 
     @Override

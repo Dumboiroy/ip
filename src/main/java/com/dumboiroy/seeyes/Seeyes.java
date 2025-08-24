@@ -2,21 +2,20 @@ package com.dumboiroy.seeyes;
 
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
 import com.dumboiroy.seeyes.exception.InvalidTaskNumberException;
-import com.dumboiroy.seeyes.task.DeadlineTask;
-import com.dumboiroy.seeyes.task.EventTask;
+import com.dumboiroy.seeyes.storage.StorageManager;
 import com.dumboiroy.seeyes.task.Task;
-import com.dumboiroy.seeyes.task.ToDoTask;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Seeyes {
     public static final String divider = "============================================================";
-    public static ArrayList<Task> list = new ArrayList<>();
+    public static ArrayList<Task> taskList = new ArrayList<>();
+    public static StorageManager storage = new StorageManager("./data/data.txt");
 
     private enum Command {
         LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"), DELETE(
-                "delete"), HELP("/help"), BYE("bye");
+                "delete"), SAVE("save"), LOAD("load"), HELP("/help"), BYE("bye");
 
         private final String keyword;
 
@@ -40,22 +39,28 @@ public class Seeyes {
     }
 
     public static void say(String str) {
-        System.out.println("> " + str);
+        System.out.println("Sy: " + str);
+    }
+
+    public static void print(String str) {
+        System.out.println(">> " + str);
     }
 
     public static void printListSize() {
-        say("Number of tasks in list: [" + list.size() + "]");
+        print("Number of tasks in list: " + taskList.size());
     }
 
     public static void printCommands() {
-        System.out.println("list: list all events");
-        System.out.println("todo [taskname]");
-        System.out.println("deadline [taskname] /by [duedate]");
-        System.out.println("event [taskname] /from [startdate] /to [enddate]");
-        System.out.println("mark [task number]: mark a task");
-        System.out.println("unmark [task number]: unmark a task");
-        System.out.println("delete [task number]: delete a task");
-        System.out.println("bye: closes the program");
+        print("list: list all events");
+        print("todo [taskname]");
+        print("deadline [taskname] /by [duedate]");
+        print("event [taskname] /from [startdate] /to [enddate]");
+        print("mark [task number]: mark a task");
+        print("unmark [task number]: unmark a task");
+        print("delete [task number]: delete a task");
+        print("save: save list");
+        print("load: loads the list from existing save");
+        print("bye: closes the program");
 
     }
 
@@ -80,9 +85,7 @@ public class Seeyes {
                 throw new InvalidCommandException(errorMsg);
             default:
                 break;
-
             }
-            ;
         }
         switch (command) {
         case MARK:
@@ -97,19 +100,19 @@ public class Seeyes {
             // mark, unmark or delete tasks
             String indexString = split[1];
             int index = Integer.parseInt(indexString) - 1;
-            if (index >= 0 && index < list.size()) {
+            if (index >= 0 && index < taskList.size()) {
                 switch (command) {
                 case MARK:
-                    list.get(index).markAsDone();
-                    say("Poggers. Let's check this off:\n" + list.get(index) + "\nKeep it up!");
+                    taskList.get(index).markAsDone();
+                    say("Poggers. Let's check this off:\n" + taskList.get(index) + "\nKeep it up!");
                     break;
                 case UNMARK:
-                    list.get(index).markAsNotDone();
-                    say("Shag. Ok, I've unmarked this task:\n " + list.get(index)
+                    taskList.get(index).markAsNotDone();
+                    say("Shag. Ok, I've unmarked this task:\n " + taskList.get(index)
                             + "\nKeep your head up king.");
                 case DELETE:
-                    Task toBeRemovedTask = list.get(index);
-                    list.remove(index);
+                    Task toBeRemovedTask = taskList.get(index);
+                    taskList.remove(index);
                     say("Ok bro let's get rid of it. REMOVED: " + toBeRemovedTask);
                     printListSize();
                     break;
@@ -117,7 +120,7 @@ public class Seeyes {
                     break;
                 }
             } else {
-                throw new InvalidTaskNumberException("invalid task number: [" + (index + 1) + "]");
+                throw new InvalidTaskNumberException("invalid task number: " + (index + 1));
             }
             break;
         case TODO:
@@ -128,7 +131,7 @@ public class Seeyes {
             // add task to list of tasks
             switch (command) {
             case TODO:
-                addToList(new ToDoTask(paramsString.trim()));
+                addToList(Task.of(paramsString.trim()));
                 break;
             case DEADLINE:
                 String[] params = paramsString.split("/by");
@@ -138,7 +141,7 @@ public class Seeyes {
                 }
                 String name = params[0].trim();
                 String by = params[1].trim();
-                addToList(new DeadlineTask(name, by));
+                addToList(Task.of(name, by));
                 break;
             case EVENT:
                 String[] extracted_name = paramsString.split("/from");
@@ -151,7 +154,7 @@ public class Seeyes {
                     say("new event not added. specify a start and end date for this event.");
                     return;
                 }
-                addToList(new EventTask(extracted_name[0].trim(), extracted_from[0].trim(),
+                addToList(Task.of(extracted_name[0].trim(), extracted_from[0].trim(),
                         extracted_from[1].trim()));
                 break;
             default:
@@ -160,11 +163,18 @@ public class Seeyes {
             ;
             // }
             break;
+        case SAVE:
+            storage.save(taskList);
+            break;
+        case LOAD:
+            taskList = storage.load();
+            break;
         case HELP:
             printCommands();
             break;
         case LIST:
             printList();
+            break;
         case BYE:
             break;
         default:
@@ -173,19 +183,20 @@ public class Seeyes {
     }
 
     public static void printList() {
-        if (list.size() == 0) {
+        if (taskList.size() == 0) {
             say("list is empty! add your first item with 'todo [item]'.");
+            return;
         }
         say("Here are the tasks in your list:");
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) != null) {
-                say((i + 1) + ". " + list.get(i));
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i) != null) {
+                print((i + 1) + ". " + taskList.get(i));
             }
         }
     }
 
     public static void addToList(Task task) {
-        list.add(task);
+        taskList.add(task);
         say("Added: " + task);
         printListSize();
     }

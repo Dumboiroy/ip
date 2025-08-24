@@ -1,113 +1,135 @@
 ============================================================
-> Yo, I'm Seeyes!
-> How can I help?
+Sy: Yo, I'm Seeyes!
+Sy: How can I help?
 ============================================================
-> Sorry, I don't understand 'hello!!'. Type /help for a list of commands.
+Sy: Sorry, I don't understand 'hello!!'. Type /help for a list of commands.
 ============================================================
-list: list all events
-todo [taskname]
-deadline [taskname] /by [duedate]
-event [taskname] /from [startdate] /to [enddate]
-mark [task number]: mark a task
-unmark [task number]: unmark a task
-delete [task number]: delete a task
-bye: closes the program
+>> list: list all events
+>> todo [taskname]
+>> deadline [taskname] /by [duedate]
+>> event [taskname] /from [startdate] /to [enddate]
+>> mark [task number]: mark a task
+>> unmark [task number]: unmark a task
+>> delete [task number]: delete a task
+>> save: save list
+>> load: loads the list from existing save
+>> bye: closes the program
 ============================================================
-> Added: [T][ ] hello!!
-> Number of tasks in list: [1]
+Sy: Added: [T][ ] hello!!
+>> Number of tasks in list: 1
 ============================================================
-> Added: [T][ ] borrow book
-> Number of tasks in list: [2]
+Sy: Added: [T][ ] borrow book
+>> Number of tasks in list: 2
 ============================================================
-> Here are the tasks in your list:
-> 1. [T][ ] hello!!
-> 2. [T][ ] borrow book
+Sy: Here are the tasks in your list:
+>> 1. [T][ ] hello!!
+>> 2. [T][ ] borrow book
 ============================================================
-> new deadline not added. needs at least a name and a due date.
+Sy: new deadline not added. needs at least a name and a due date.
 ============================================================
-> Added: [D][ ] return book (by: [Sunday])
-> Number of tasks in list: [3]
+Sy: Added: [D][ ] return book (by: Sunday)
+>> Number of tasks in list: 3
 ============================================================
-> new event not added. specify a start and end date for this event.
+Sy: new event not added. specify a start and end date for this event.
 ============================================================
-> new event not added. specify a start and end date for this event.
+Sy: new event not added. specify a start and end date for this event.
 ============================================================
-> new event not added. specify a start and end date for this event.
+Sy: new event not added. specify a start and end date for this event.
 ============================================================
-> new event not added. specify a start and end date for this event.
+Sy: new event not added. specify a start and end date for this event.
 ============================================================
-> Added: [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
-> Number of tasks in list: [4]
+Sy: Added: [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> Number of tasks in list: 4
 ============================================================
-> Here are the tasks in your list:
-> 1. [T][ ] hello!!
-> 2. [T][ ] borrow book
-> 3. [D][ ] return book (by: [Sunday])
-> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+Sy: Here are the tasks in your list:
+>> 1. [T][ ] hello!!
+>> 2. [T][ ] borrow book
+>> 3. [D][ ] return book (by: Sunday)
+>> 4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ============================================================
-> Poggers. Let's check this off:
+Sy: Poggers. Let's check this off:
 [T][X] hello!!
 Keep it up!
 ============================================================
-> Poggers. Let's check this off:
+Sy: Poggers. Let's check this off:
 [T][X] borrow book
 Keep it up!
 ============================================================
-> invalid task number: [12]
-> Here are the tasks in your list:
-> 1. [T][X] hello!!
-> 2. [T][X] borrow book
-> 3. [D][ ] return book (by: [Sunday])
-> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+Sy: invalid task number: 12
+Sy: Here are the tasks in your list:
+>> 1. [T][X] hello!!
+>> 2. [T][X] borrow book
+>> 3. [D][ ] return book (by: Sunday)
+>> 4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ============================================================
-> 'asd' is not a number
-> Here are the tasks in your list:
-> 1. [T][X] hello!!
-> 2. [T][X] borrow book
-> 3. [D][ ] return book (by: [Sunday])
-> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+Sy: 'asd' is not a number
+Sy: Here are the tasks in your list:
+>> 1. [T][X] hello!!
+>> 2. [T][X] borrow book
+>> 3. [D][ ] return book (by: Sunday)
+>> 4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ============================================================
-> '      ' is not a number
-> Here are the tasks in your list:
-> 1. [T][X] hello!!
-> 2. [T][X] borrow book
-> 3. [D][ ] return book (by: [Sunday])
-> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+Sy: '      ' is not a number
+Sy: Here are the tasks in your list:
+>> 1. [T][X] hello!!
+>> 2. [T][X] borrow book
+>> 3. [D][ ] return book (by: Sunday)
+>> 4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ============================================================
-> Here are the tasks in your list:
-> 1. [T][X] hello!!
-> 2. [T][X] borrow book
-> 3. [D][ ] return book (by: [Sunday])
-> 4. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+Sy: Here are the tasks in your list:
+>> 1. [T][X] hello!!
+>> 2. [T][X] borrow book
+>> 3. [D][ ] return book (by: Sunday)
+>> 4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ============================================================
-> Shag. Ok, I've unmarked this task:
+Sy: Shag. Ok, I've unmarked this task:
  [T][ ] hello!!
 Keep your head up king.
-> Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
-> Number of tasks in list: [3]
+Sy: Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
+>> Number of tasks in list: 3
 ============================================================
-> invalid task number: [12]
-> Here are the tasks in your list:
-> 1. [T][X] borrow book
-> 2. [D][ ] return book (by: [Sunday])
-> 3. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+Sy: invalid task number: 12
+Sy: Here are the tasks in your list:
+>> 1. [T][X] borrow book
+>> 2. [D][ ] return book (by: Sunday)
+>> 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ============================================================
-> 'asd' is not a number
-> Here are the tasks in your list:
-> 1. [T][X] borrow book
-> 2. [D][ ] return book (by: [Sunday])
-> 3. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+Sy: 'asd' is not a number
+Sy: Here are the tasks in your list:
+>> 1. [T][X] borrow book
+>> 2. [D][ ] return book (by: Sunday)
+>> 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ============================================================
-> '    ' is not a number
-> Here are the tasks in your list:
-> 1. [T][X] borrow book
-> 2. [D][ ] return book (by: [Sunday])
-> 3. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+Sy: USAGE: mark/unmark/delete [task number]
+Sy: Here are the tasks in your list:
+>> 1. [T][X] borrow book
+>> 2. [D][ ] return book (by: Sunday)
+>> 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ============================================================
-> Here are the tasks in your list:
-> 1. [T][X] borrow book
-> 2. [D][ ] return book (by: [Sunday])
-> 3. [E][ ] project meeting (from: [Mon 2pm] to: [4pm])
+Sy: Here are the tasks in your list:
+>> 1. [T][X] borrow book
+>> 2. [D][ ] return book (by: Sunday)
+>> 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ============================================================
-> See you around bro!
+List at  ./data/data.txt has been loaded.
+============================================================
+Sy: Ok bro let's get rid of it. REMOVED: [T][X] borrow book
+>> Number of tasks in list: 2
+============================================================
+Sy: Ok bro let's get rid of it. REMOVED: [D][ ] return book (by: Sunday)
+>> Number of tasks in list: 1
+============================================================
+Sy: Ok bro let's get rid of it. REMOVED: [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> Number of tasks in list: 0
+============================================================
+Sy: list is empty! add your first item with 'todo [item]'.
+============================================================
+List from: ./data/data.txt loaded.
+============================================================
+Sy: Here are the tasks in your list:
+>> 1. [T][X] borrow book
+>> 2. [D][ ] return book (by: Sunday)
+>> 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+============================================================
+Sy: See you around bro!
 ============================================================
