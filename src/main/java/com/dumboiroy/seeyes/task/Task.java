@@ -9,10 +9,6 @@ public abstract class Task {
         isDone = false;
     }
 
-    public boolean isDone() {
-        return isDone;
-    }
-
     public void markAsDone() {
         isDone = true;
     }
