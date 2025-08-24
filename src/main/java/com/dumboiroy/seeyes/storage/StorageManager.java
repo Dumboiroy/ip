@@ -1,6 +1,7 @@
 package com.dumboiroy.seeyes.storage;
 
 import java.util.ArrayList;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,13 +31,16 @@ public class StorageManager {
     }
 
     public void save(ArrayList<Task> taskList) {
-        try (FileWriter writer = new FileWriter(filePath)) {
+        File file = new File(filePath);
+        file.getParentFile().mkdirs();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Task task : taskList) {
-                System.out.println(task);
+                writer.write(task.getSaveString());
+                writer.newLine();
             }
+            System.out.println("list saved to: " + filePath);
         } catch (IOException e) {
             System.out.println("Failed to save file at " + filePath);
         }
     }
-
 }

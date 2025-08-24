@@ -30,6 +30,10 @@ public abstract class Task {
         isDone = false;
     }
 
+    public String getSaveString() {
+        return String.valueOf(isDone ? 1 : 0) + "|" + name + "|";
+    }
+
     public void markAsDone() {
         isDone = true;
     }

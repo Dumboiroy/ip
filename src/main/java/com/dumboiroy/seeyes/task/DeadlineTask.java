@@ -9,6 +9,11 @@ public class DeadlineTask extends Task {
     }
 
     @Override
+    public String getSaveString() {
+        return "D|" + super.getSaveString() + dateDue + "|";
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: [" + dateDue + "])";
     }
