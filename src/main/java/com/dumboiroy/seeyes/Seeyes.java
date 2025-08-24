@@ -15,7 +15,7 @@ public class Seeyes {
 
     private enum Command {
         LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"), DELETE(
-                "delete"), SAVE("save"), HELP("/help"), BYE("bye");
+                "delete"), SAVE("save"), LOAD("load"), HELP("/help"), BYE("bye");
 
         private final String keyword;
 
@@ -39,23 +39,28 @@ public class Seeyes {
     }
 
     public static void say(String str) {
-        System.out.println("> " + str);
+        System.out.println("Sy: " + str);
+    }
+
+    public static void print(String str) {
+        System.out.println(">> " + str);
     }
 
     public static void printListSize() {
-        say("Number of tasks in list: [" + taskList.size() + "]");
+        print("Number of tasks in list: " + taskList.size());
     }
 
     public static void printCommands() {
-        System.out.println("list: list all events");
-        System.out.println("todo [taskname]");
-        System.out.println("deadline [taskname] /by [duedate]");
-        System.out.println("event [taskname] /from [startdate] /to [enddate]");
-        System.out.println("mark [task number]: mark a task");
-        System.out.println("unmark [task number]: unmark a task");
-        System.out.println("delete [task number]: delete a task");
-        System.out.println("save: save list to disk");
-        System.out.println("bye: closes the program");
+        print("list: list all events");
+        print("todo [taskname]");
+        print("deadline [taskname] /by [duedate]");
+        print("event [taskname] /from [startdate] /to [enddate]");
+        print("mark [task number]: mark a task");
+        print("unmark [task number]: unmark a task");
+        print("delete [task number]: delete a task");
+        print("save: save list");
+        print("load: loads the list from existing save");
+        print("bye: closes the program");
 
     }
 
@@ -115,7 +120,7 @@ public class Seeyes {
                     break;
                 }
             } else {
-                throw new InvalidTaskNumberException("invalid task number: [" + (index + 1) + "]");
+                throw new InvalidTaskNumberException("invalid task number: " + (index + 1));
             }
             break;
         case TODO:
@@ -161,11 +166,15 @@ public class Seeyes {
         case SAVE:
             storage.save(taskList);
             break;
+        case LOAD:
+            taskList = storage.load();
+            break;
         case HELP:
             printCommands();
             break;
         case LIST:
             printList();
+            break;
         case BYE:
             break;
         default:
@@ -176,11 +185,12 @@ public class Seeyes {
     public static void printList() {
         if (taskList.size() == 0) {
             say("list is empty! add your first item with 'todo [item]'.");
+            return;
         }
         say("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.get(i) != null) {
-                say((i + 1) + ". " + taskList.get(i));
+                print((i + 1) + ". " + taskList.get(i));
             }
         }
     }

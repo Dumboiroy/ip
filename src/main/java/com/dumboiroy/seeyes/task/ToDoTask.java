@@ -1,8 +1,8 @@
 package com.dumboiroy.seeyes.task;
 
 public class ToDoTask extends Task {
-    protected ToDoTask(String name) {
-        super(name);
+    protected ToDoTask(boolean isDone, String name) {
+        super(isDone, name);
     }
 
     @Override

@@ -30,6 +30,11 @@ public abstract class Task {
         isDone = false;
     }
 
+    protected Task(boolean isDone, String name) {
+        this.name = name;
+        this.isDone = isDone;
+    }
+
     public String getSaveString() {
         return String.valueOf(isDone ? 1 : 0) + "|" + name + "|";
     }
@@ -48,27 +53,27 @@ public abstract class Task {
     }
 
     public static Task of(String name) {
-        return new ToDoTask(name);
+        return new ToDoTask(false, name);
     }
 
     public static Task of(String name, String dateDue) {
-        return new DeadlineTask(name, dateDue);
+        return new DeadlineTask(false, name, dateDue);
     }
 
     public static Task of(String name, String start, String end) {
-        return new EventTask(name, start, end);
+        return new EventTask(false, name, start, end);
     }
 
     public static Task fromString(String taskString) {
         TaskType type = TaskType.fromString(taskString);
-        String[] params = taskString.split("|");
+        String[] params = taskString.split("\\|");
         switch (type) {
         case TODO:
-            return of(params[1]);
+            return new ToDoTask(params[1].equals("1"), params[2]);
         case DEADLINE:
-            return of(params[1], params[2]);
+            return new DeadlineTask(params[1].equals("1"), params[2], params[3]);
         case EVENT:
-            return of(params[1], params[2], params[3]);
+            return new EventTask(params[1].equals("1"), params[2], params[3], params[4]);
         default:
             throw new InvalidTaskTypeException("Invalid task type " + taskString.substring(0, 2) + ".");
         }

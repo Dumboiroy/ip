@@ -1,8 +1,10 @@
 package com.dumboiroy.seeyes.storage;
 
 import java.util.ArrayList;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -15,19 +17,28 @@ public class StorageManager {
         this.filePath = path;
     }
 
-    public ArrayList<Task> load(String filepath) {
+    public ArrayList<Task> load() {
         // load file
         File file = new File(filePath);
 
         // parse the file and add tasks
         ArrayList<Task> taskList = new ArrayList<>();
-
         if (!file.exists()) {
+            System.out.println("File does not exist.");
             return taskList;
+        }
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                taskList.add(Task.fromString(line));
+            }
+            System.out.println("List from: " + filePath + " loaded.");
+        } catch (IOException e) {
+            System.out.println("Error while loading file: " + filePath);
         }
 
         // return arraylist of tasks
-        return null;
+        return taskList;
     }
 
     public void save(ArrayList<Task> taskList) {
@@ -38,7 +49,7 @@ public class StorageManager {
                 writer.write(task.getSaveString());
                 writer.newLine();
             }
-            System.out.println("list saved to: " + filePath);
+            System.out.println("List at  " + filePath + " has been loaded.");
         } catch (IOException e) {
             System.out.println("Failed to save file at " + filePath);
         }

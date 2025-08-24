@@ -4,8 +4,8 @@ public class EventTask extends Task {
     private String start;
     private String end;
 
-    protected EventTask(String name, String start, String end) {
-        super(name);
+    protected EventTask(boolean isDone, String name, String start, String end) {
+        super(isDone, name);
         this.start = start;
         this.end = end;
     }
@@ -17,6 +17,6 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: [" + start + "] to: [" + end + "])";
+        return "[E]" + super.toString() + " (from: " + start + " to: " + end + ")";
     }
 }

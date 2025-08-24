@@ -3,8 +3,8 @@ package com.dumboiroy.seeyes.task;
 public class DeadlineTask extends Task {
     private String dateDue;
 
-    protected DeadlineTask(String name, String dateDue) {
-        super(name);
+    protected DeadlineTask(boolean isDone, String name, String dateDue) {
+        super(isDone, name);
         this.dateDue = dateDue;
     }
 
@@ -15,6 +15,6 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: [" + dateDue + "])";
+        return "[D]" + super.toString() + " (by: " + dateDue + ")";
     }
 }
