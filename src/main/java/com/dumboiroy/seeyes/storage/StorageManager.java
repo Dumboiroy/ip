@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.dumboiroy.seeyes.exception.InvalidTaskTypeException;
 import com.dumboiroy.seeyes.task.Task;
 
 public class StorageManager {
@@ -27,14 +28,16 @@ public class StorageManager {
             System.out.println("File does not exist.");
             return taskList;
         }
+        String line = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
             while ((line = reader.readLine()) != null) {
                 taskList.add(Task.fromString(line));
             }
             System.out.println("List from: " + filePath + " loaded.");
         } catch (IOException e) {
             System.out.println("Error while loading file: " + filePath);
+        } catch (InvalidTaskTypeException e) {
+            System.out.println("Error while parsing line: " + line + "\n" + e.getMessage());
         }
 
         // return arraylist of tasks

@@ -17,11 +17,11 @@ public abstract class Task {
 
         public static TaskType fromString(String taskString) throws InvalidTaskTypeException {
             for (TaskType t : TaskType.values()) {
-                if (t.key.equalsIgnoreCase(taskString.substring(0, 2))) {
+                if (t.key.equalsIgnoreCase(taskString.split("\\|", 2)[0])) {
                     return t;
                 }
             }
-            throw new InvalidTaskTypeException("The task type " + taskString.substring(0, 2) + " does not exist.");
+            throw new InvalidTaskTypeException("The task type " + taskString.split("\\|", 2)[0] + " does not exist.");
         }
     }
 
