@@ -1,6 +1,9 @@
 package com.dumboiroy.seeyes.task;
 
+import java.time.LocalDateTime;
+
 import com.dumboiroy.seeyes.exception.InvalidTaskTypeException;
+import com.dumboiroy.seeyes.util.DateTimeUtils;
 
 public abstract class Task {
     private String name;
@@ -56,11 +59,11 @@ public abstract class Task {
         return new ToDoTask(false, name);
     }
 
-    public static Task of(String name, String dateDue) {
+    public static Task of(String name, LocalDateTime dateDue) {
         return new DeadlineTask(false, name, dateDue);
     }
 
-    public static Task of(String name, String start, String end) {
+    public static Task of(String name, LocalDateTime start, LocalDateTime end) {
         return new EventTask(false, name, start, end);
     }
 
@@ -71,9 +74,10 @@ public abstract class Task {
         case TODO:
             return new ToDoTask(params[1].equals("1"), params[2]);
         case DEADLINE:
-            return new DeadlineTask(params[1].equals("1"), params[2], params[3]);
+            return new DeadlineTask(params[1].equals("1"), params[2], DateTimeUtils.parse(params[3]));
         case EVENT:
-            return new EventTask(params[1].equals("1"), params[2], params[3], params[4]);
+            return new EventTask(params[1].equals("1"), params[2], DateTimeUtils.parse(params[3]),
+                    DateTimeUtils.parse(params[4]));
         default:
             throw new InvalidTaskTypeException("Invalid task type " + taskString.substring(0, 2) + ".");
         }
