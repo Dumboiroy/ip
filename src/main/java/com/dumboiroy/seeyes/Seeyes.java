@@ -2,17 +2,18 @@ package com.dumboiroy.seeyes;
 
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
 import com.dumboiroy.seeyes.exception.InvalidTaskNumberException;
+import com.dumboiroy.seeyes.exception.SeeyesException;
 import com.dumboiroy.seeyes.storage.Storage;
 import com.dumboiroy.seeyes.task.Task;
+import com.dumboiroy.seeyes.task.TaskList;
 import com.dumboiroy.seeyes.util.DateTimeUtils;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Seeyes {
     private static final String divider = "============================================================";
-    public ArrayList<Task> taskList = new ArrayList<>();
+    public TaskList taskList;
     public Storage storage;
     private Scanner scanner;
 
@@ -106,17 +107,17 @@ public class Seeyes {
             if (index >= 0 && index < taskList.size()) {
                 switch (command) {
                 case MARK:
-                    taskList.get(index).markAsDone();
-                    say("Poggers. Let's check this off:\n" + taskList.get(index) + "\nKeep it up!");
+                    taskList.getTaskByIndex(index).markAsDone();
+                    say("Poggers. Let's check this off:\n" + taskList.getTaskByIndex(index) + "\nKeep it up!");
                     break;
                 case UNMARK:
-                    taskList.get(index).markAsNotDone();
-                    say("Shag. Ok, I've unmarked this task:\n " + taskList.get(index)
+                    taskList.getTaskByIndex(index).markAsNotDone();
+                    say("Shag. Ok, I've unmarked this task:\n " + taskList.getTaskByIndex(index)
                             + "\nKeep your head up king.");
                     break;
                 case DELETE:
-                    Task toBeRemovedTask = taskList.get(index);
-                    taskList.remove(index);
+                    Task toBeRemovedTask = taskList.getTaskByIndex(index);
+                    taskList.removeTaskByIndex(index);
                     say("Ok bro let's get rid of it. REMOVED: " + toBeRemovedTask);
                     printListSize();
                     break;
@@ -195,22 +196,27 @@ public class Seeyes {
         }
         say("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
-            if (taskList.get(i) != null) {
-                print((i + 1) + ". " + taskList.get(i));
+            if (taskList.getTaskByIndex(i) != null) {
+                print((i + 1) + ". " + taskList.getTaskByIndex(i));
             }
         }
     }
 
     public void addToList(Task task) {
-        taskList.add(task);
+        taskList.addTask(task);
         say("Added: " + task);
         printListSize();
     }
 
     public Seeyes(String filePath) {
-        this.scanner = new Scanner(System.in);
-        this.taskList = new ArrayList<>();
-        this.storage = new Storage(filePath);
+        scanner = new Scanner(System.in);
+        storage = new Storage(filePath);
+        try {
+            taskList = storage.load();
+        } catch (SeeyesException e) {
+            // ui.showLoadingError();
+            // taskList = new TaskList();
+        }
     }
 
     public void run() {
