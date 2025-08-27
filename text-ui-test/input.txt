@@ -4,7 +4,7 @@ todo hello!!
 todo borrow book
 list
 deadline return book
-deadline return book /by Sunday
+deadline return book /by 31/12/2001 1200
 event project meeting
 event project meeting /from
 event project meeting /from 2pm
