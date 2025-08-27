@@ -11,10 +11,10 @@ import java.io.IOException;
 import com.dumboiroy.seeyes.exception.InvalidTaskTypeException;
 import com.dumboiroy.seeyes.task.Task;
 
-public class StorageManager {
+public class Storage {
     private final String filePath;
 
-    public StorageManager(String path) {
+    public Storage(String path) {
         this.filePath = path;
     }
 

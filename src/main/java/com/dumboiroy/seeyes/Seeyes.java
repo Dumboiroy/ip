@@ -2,7 +2,7 @@ package com.dumboiroy.seeyes;
 
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
 import com.dumboiroy.seeyes.exception.InvalidTaskNumberException;
-import com.dumboiroy.seeyes.storage.StorageManager;
+import com.dumboiroy.seeyes.storage.Storage;
 import com.dumboiroy.seeyes.task.Task;
 import com.dumboiroy.seeyes.util.DateTimeUtils;
 
@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Seeyes {
     public static final String divider = "============================================================";
     public static ArrayList<Task> taskList = new ArrayList<>();
-    public static StorageManager storage = new StorageManager("./data/data.txt");
+    public static Storage storage = new Storage("./data/data.txt");
 
     private enum Command {
         LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"), DELETE(
