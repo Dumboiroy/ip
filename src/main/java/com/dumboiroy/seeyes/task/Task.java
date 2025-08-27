@@ -63,7 +63,7 @@ public abstract class Task {
         return new DeadlineTask(false, name, dateDue);
     }
 
-    public static Task of(String name, String start, String end) {
+    public static Task of(String name, LocalDateTime start, LocalDateTime end) {
         return new EventTask(false, name, start, end);
     }
 
@@ -76,7 +76,8 @@ public abstract class Task {
         case DEADLINE:
             return new DeadlineTask(params[1].equals("1"), params[2], DateTimeUtils.parse(params[3]));
         case EVENT:
-            return new EventTask(params[1].equals("1"), params[2], params[3], params[4]);
+            return new EventTask(params[1].equals("1"), params[2], DateTimeUtils.parse(params[3]),
+                    DateTimeUtils.parse(params[4]));
         default:
             throw new InvalidTaskTypeException("Invalid task type " + taskString.substring(0, 2) + ".");
         }

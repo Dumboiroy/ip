@@ -148,18 +148,18 @@ public class Seeyes {
                 addToList(Task.of(name, by));
                 break;
             case EVENT:
-                String[] extracted_name = paramsString.split("/from");
-                if (extracted_name.length < 2) {
+                String[] event_params = paramsString.split("/from");
+                if (event_params.length < 2) {
                     say("new event not added. specify a start and end date for this event.");
                     return;
                 }
-                String[] extracted_from = extracted_name[1].split("/to");
-                if (extracted_from.length < 2) {
+                String[] event_dates_arr = event_params[1].split("/to");
+                if (event_dates_arr.length < 2) {
                     say("new event not added. specify a start and end date for this event.");
                     return;
                 }
-                addToList(Task.of(extracted_name[0].trim(), extracted_from[0].trim(),
-                        extracted_from[1].trim()));
+                addToList(Task.of(event_params[0].trim(), DateTimeUtils.parse(event_dates_arr[0].trim()),
+                        DateTimeUtils.parse(event_dates_arr[1].trim())));
                 break;
             default:
                 return;

@@ -7,9 +7,9 @@ deadline return book
 deadline return book /by 31/12/2001 1200
 event project meeting
 event project meeting /from
-event project meeting /from 2pm
-event project meeting /from 2pm /to
-event project meeting /from Mon 2pm /to 4pm
+event project meeting /from 31/12/2001 1200
+event project meeting /from 31/12/2001 1200 /to
+event project meeting /from 31/12/2001 1200 /to 31/12/2001 1600
 list
 mark 1
 mark 2

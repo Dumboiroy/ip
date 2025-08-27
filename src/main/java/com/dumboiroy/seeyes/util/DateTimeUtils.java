@@ -9,7 +9,7 @@ public class DateTimeUtils {
     }
 
     public static String dateTimeToString(LocalDateTime dateTime) {
-        return dateTime.format(DateTimeFormatter.ofPattern("dd, MMM, yyyy, ha"));
+        return dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy, ha"));
     }
 
     public static String dateTimeToSaveString(LocalDateTime dateTime) {

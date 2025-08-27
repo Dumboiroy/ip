@@ -1,10 +1,14 @@
 package com.dumboiroy.seeyes.task;
 
-public class EventTask extends Task {
-    private String start;
-    private String end;
+import java.time.LocalDateTime;
 
-    protected EventTask(boolean isDone, String name, String start, String end) {
+import com.dumboiroy.seeyes.util.DateTimeUtils;
+
+public class EventTask extends Task {
+    private LocalDateTime start;
+    private LocalDateTime end;
+
+    protected EventTask(boolean isDone, String name, LocalDateTime start, LocalDateTime end) {
         super(isDone, name);
         this.start = start;
         this.end = end;
@@ -12,11 +16,13 @@ public class EventTask extends Task {
 
     @Override
     public String getSaveString() {
-        return "EV|" + super.getSaveString() + start + "|" + end + "|";
+        return "EV|" + super.getSaveString() + DateTimeUtils.dateTimeToSaveString(start) + "|"
+                + DateTimeUtils.dateTimeToSaveString(end) + "|";
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + start + " to: " + end + ")";
+        return "[E]" + super.toString() + " (from: " + DateTimeUtils.dateTimeToString(start) + " to: "
+                + DateTimeUtils.dateTimeToString(end) + ")";
     }
 }
