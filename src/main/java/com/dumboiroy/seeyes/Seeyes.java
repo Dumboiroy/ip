@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Seeyes {
-    public static final String divider = "============================================================";
+    private static final String divider = "============================================================";
     public static ArrayList<Task> taskList = new ArrayList<>();
     public static Storage storage = new Storage("./data/data.txt");
+    private Scanner scanner;
 
     private enum Command {
         LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"), DELETE(
@@ -205,8 +206,12 @@ public class Seeyes {
         printListSize();
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public Seeyes(String filePath) {
+        this.scanner = new Scanner(System.in);
+    }
+
+    public void run() {
+        // run
         printDivider();
         say("Yo, I'm Seeyes!");
         say("How can I help?");
@@ -231,5 +236,10 @@ public class Seeyes {
 
         // Terminate
         scanner.close();
+    }
+
+    public static void main(String[] args) {
+        new Seeyes("data/data.txt").run();
+
     }
 }
