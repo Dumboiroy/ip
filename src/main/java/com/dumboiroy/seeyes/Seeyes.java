@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class Seeyes {
     private static final String divider = "============================================================";
-    public static ArrayList<Task> taskList = new ArrayList<>();
+    public ArrayList<Task> taskList = new ArrayList<>();
     public static Storage storage = new Storage("./data/data.txt");
     private Scanner scanner;
 
@@ -49,7 +49,7 @@ public class Seeyes {
         System.out.println(">> " + str);
     }
 
-    public static void printListSize() {
+    public void printListSize() {
         print("Number of tasks in list: " + taskList.size());
     }
 
@@ -67,7 +67,7 @@ public class Seeyes {
 
     }
 
-    public static void handleUserInput(String input) throws InvalidCommandException, InvalidTaskNumberException {
+    public void handleUserInput(String input) throws InvalidCommandException, InvalidTaskNumberException {
         String[] split = input.split(" ", 2);
         Command command = Command.fromString(split[0].trim());
         if (split.length < 2) {
@@ -188,7 +188,7 @@ public class Seeyes {
         }
     }
 
-    public static void printList() {
+    public void printList() {
         if (taskList.size() == 0) {
             say("list is empty! add your first item with 'todo [item]'.");
             return;
@@ -201,7 +201,7 @@ public class Seeyes {
         }
     }
 
-    public static void addToList(Task task) {
+    public void addToList(Task task) {
         taskList.add(task);
         say("Added: " + task);
         printListSize();
@@ -209,10 +209,10 @@ public class Seeyes {
 
     public Seeyes(String filePath) {
         this.scanner = new Scanner(System.in);
+        this.taskList = new ArrayList<>();
     }
 
     public void run() {
-        // run
         printDivider();
         say("Yo, I'm Seeyes!");
         say("How can I help?");

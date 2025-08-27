@@ -27,7 +27,7 @@ Sy: Here are the tasks in your list:
 ============================================================
 Sy: new deadline not added. needs at least a name and a due date.
 ============================================================
-Sy: Added: [D][ ] return book (by: Sunday)
+Sy: Added: [D][ ] return book (by: 31 Dec 2001, 12pm)
 >> Number of tasks in list: 3
 ============================================================
 Sy: new event not added. specify a start and end date for this event.
@@ -38,14 +38,14 @@ Sy: new event not added. specify a start and end date for this event.
 ============================================================
 Sy: new event not added. specify a start and end date for this event.
 ============================================================
-Sy: Added: [E][ ] project meeting (from: Mon 2pm to: 4pm)
+Sy: Added: [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 >> Number of tasks in list: 4
 ============================================================
 Sy: Here are the tasks in your list:
 >> 1. [T][ ] hello!!
 >> 2. [T][ ] borrow book
->> 3. [D][ ] return book (by: Sunday)
->> 4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 Sy: Poggers. Let's check this off:
 [T][X] hello!!
@@ -59,77 +59,81 @@ Sy: invalid task number: 12
 Sy: Here are the tasks in your list:
 >> 1. [T][X] hello!!
 >> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: Sunday)
->> 4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 Sy: 'asd' is not a number
 Sy: Here are the tasks in your list:
 >> 1. [T][X] hello!!
 >> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: Sunday)
->> 4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 Sy: '      ' is not a number
 Sy: Here are the tasks in your list:
 >> 1. [T][X] hello!!
 >> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: Sunday)
->> 4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 Sy: Here are the tasks in your list:
 >> 1. [T][X] hello!!
 >> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: Sunday)
->> 4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 Sy: Shag. Ok, I've unmarked this task:
  [T][ ] hello!!
 Keep your head up king.
-Sy: Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
->> Number of tasks in list: 3
 ============================================================
 Sy: invalid task number: 12
 Sy: Here are the tasks in your list:
->> 1. [T][X] borrow book
->> 2. [D][ ] return book (by: Sunday)
->> 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> 1. [T][ ] hello!!
+>> 2. [T][X] borrow book
+>> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 Sy: 'asd' is not a number
 Sy: Here are the tasks in your list:
->> 1. [T][X] borrow book
->> 2. [D][ ] return book (by: Sunday)
->> 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> 1. [T][ ] hello!!
+>> 2. [T][X] borrow book
+>> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 Sy: USAGE: mark/unmark/delete [task number]
 Sy: Here are the tasks in your list:
->> 1. [T][X] borrow book
->> 2. [D][ ] return book (by: Sunday)
->> 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> 1. [T][ ] hello!!
+>> 2. [T][X] borrow book
+>> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 Sy: Here are the tasks in your list:
->> 1. [T][X] borrow book
->> 2. [D][ ] return book (by: Sunday)
->> 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> 1. [T][ ] hello!!
+>> 2. [T][X] borrow book
+>> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 List at  ./data/data.txt has been saved.
+============================================================
+Sy: Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
+>> Number of tasks in list: 3
 ============================================================
 Sy: Ok bro let's get rid of it. REMOVED: [T][X] borrow book
 >> Number of tasks in list: 2
 ============================================================
-Sy: Ok bro let's get rid of it. REMOVED: [D][ ] return book (by: Sunday)
+Sy: Ok bro let's get rid of it. REMOVED: [D][ ] return book (by: 31 Dec 2001, 12pm)
 >> Number of tasks in list: 1
 ============================================================
-Sy: Ok bro let's get rid of it. REMOVED: [E][ ] project meeting (from: Mon 2pm to: 4pm)
->> Number of tasks in list: 0
-============================================================
-Sy: list is empty! add your first item with 'todo [item]'.
+Sy: Here are the tasks in your list:
+>> 1. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 List from: ./data/data.txt loaded.
 ============================================================
 Sy: Here are the tasks in your list:
->> 1. [T][X] borrow book
->> 2. [D][ ] return book (by: Sunday)
->> 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>> 1. [T][ ] hello!!
+>> 2. [T][X] borrow book
+>> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
 Sy: See you around bro!
 ============================================================
