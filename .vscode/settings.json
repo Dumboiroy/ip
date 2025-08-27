@@ -2,5 +2,6 @@
   "java.format.settings.url": "    https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml",
   "[java]": {
     "editor.insertSpaces": true
-  }
+  },
+  "search.useIgnoreFiles": false
 }

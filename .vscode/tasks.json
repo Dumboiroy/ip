@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Project Tests",
+      "type": "shell",
+      "command": "./runtest.sh",
+      "options": {
+        "cwd": "${workspaceFolder}/text-ui-test"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
