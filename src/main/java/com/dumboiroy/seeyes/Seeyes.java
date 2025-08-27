@@ -4,7 +4,9 @@ import com.dumboiroy.seeyes.exception.InvalidCommandException;
 import com.dumboiroy.seeyes.exception.InvalidTaskNumberException;
 import com.dumboiroy.seeyes.storage.StorageManager;
 import com.dumboiroy.seeyes.task.Task;
+import com.dumboiroy.seeyes.util.DateTimeUtils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -140,7 +142,9 @@ public class Seeyes {
                     return;
                 }
                 String name = params[0].trim();
-                String by = params[1].trim();
+                String byString = params[1].trim();
+                LocalDateTime by = DateTimeUtils.parse(byString);
+
                 addToList(Task.of(name, by));
                 break;
             case EVENT:
