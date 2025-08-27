@@ -113,6 +113,7 @@ public class Seeyes {
                     taskList.get(index).markAsNotDone();
                     say("Shag. Ok, I've unmarked this task:\n " + taskList.get(index)
                             + "\nKeep your head up king.");
+                    break;
                 case DELETE:
                     Task toBeRemovedTask = taskList.get(index);
                     taskList.remove(index);
