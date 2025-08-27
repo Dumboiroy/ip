@@ -52,7 +52,7 @@ public class Storage {
                 writer.write(task.getSaveString());
                 writer.newLine();
             }
-            System.out.println("List at  " + filePath + " has been saved.");
+            System.out.println("List at " + filePath + " has been saved.");
         } catch (IOException e) {
             System.out.println("Failed to save file at " + filePath);
         }

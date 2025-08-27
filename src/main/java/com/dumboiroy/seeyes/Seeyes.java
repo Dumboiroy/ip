@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Seeyes {
     private static final String divider = "============================================================";
     public ArrayList<Task> taskList = new ArrayList<>();
-    public static Storage storage = new Storage("./data/data.txt");
+    public Storage storage;
     private Scanner scanner;
 
     private enum Command {
@@ -210,6 +210,7 @@ public class Seeyes {
     public Seeyes(String filePath) {
         this.scanner = new Scanner(System.in);
         this.taskList = new ArrayList<>();
+        this.storage = new Storage(filePath);
     }
 
     public void run() {
@@ -240,7 +241,7 @@ public class Seeyes {
     }
 
     public static void main(String[] args) {
-        new Seeyes("data/data.txt").run();
+        new Seeyes("./data/data.txt").run();
 
     }
 }

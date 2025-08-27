@@ -113,7 +113,7 @@ Sy: Here are the tasks in your list:
 >> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 >> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ============================================================
-List at  ./data/data.txt has been saved.
+List at ./data/data.txt has been saved.
 ============================================================
 Sy: Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
 >> Number of tasks in list: 3
