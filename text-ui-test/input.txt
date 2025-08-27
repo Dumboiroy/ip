@@ -1,16 +1,29 @@
+TEST:invalid_command
 hello!!
+TEST:load
+load
+list
+delete 1
+delete 1
+delete 1
+delete 1
+TEST:/help
 /help
+TEST:todo
 todo hello!!
 todo borrow book
 list
+TEST:deadline
 deadline return book
 deadline return book /by 31/12/2001 1200
+TEST:event
 event project meeting
 event project meeting /from
 event project meeting /from 31/12/2001 1200
 event project meeting /from 31/12/2001 1200 /to
 event project meeting /from 31/12/2001 1200 /to 31/12/2001 1600
 list
+TEST:mark_unmark
 mark 1
 mark 2
 mark 12
@@ -22,7 +35,11 @@ unmark 12
 unmark asd
 unmark
 list
+TEST:save_load
 save
+delete 12
+delete 1
+delete 1
 delete 1
 delete 1
 delete 1
