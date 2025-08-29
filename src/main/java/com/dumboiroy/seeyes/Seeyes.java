@@ -234,10 +234,15 @@ public class Seeyes {
             }
 
         }
-        ui.showFarewellMessage();
 
         // Terminate
         scanner.close();
+        exit();
+    }
+
+    private void exit() {
+        ui.showFarewellMessage();
+        System.exit(0);
     }
 
     public static void main(String[] args) {
