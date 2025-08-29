@@ -10,7 +10,7 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() throws InvalidCommandException {
         try {
             taskList.getTaskByIndex(indexToMark).markAsNotDone();
             return new CommandResult(
