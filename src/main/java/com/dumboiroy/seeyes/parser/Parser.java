@@ -7,6 +7,7 @@ import com.dumboiroy.seeyes.command.Command;
 import com.dumboiroy.seeyes.command.DeleteCommand;
 import com.dumboiroy.seeyes.command.HelpCommand;
 import com.dumboiroy.seeyes.command.IncorrectCommand;
+import com.dumboiroy.seeyes.command.ListCommand;
 import com.dumboiroy.seeyes.command.LoadCommand;
 import com.dumboiroy.seeyes.command.MarkCommand;
 import com.dumboiroy.seeyes.command.SaveCommand;
@@ -75,7 +76,7 @@ public class Parser {
             case HELP:
                 return new HelpCommand();
             case LIST:
-                throw new InvalidCommandException("unimplemented list");
+                return new ListCommand();
             case BYE:
                 throw new InvalidCommandException("unimplemented bye");
             default:
