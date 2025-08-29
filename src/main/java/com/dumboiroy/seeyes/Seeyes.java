@@ -1,19 +1,20 @@
 package com.dumboiroy.seeyes;
 
+import java.time.LocalDateTime;
+import java.util.Scanner;
+
+import com.dumboiroy.seeyes.command.CommandResult;
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
 import com.dumboiroy.seeyes.exception.InvalidTaskNumberException;
 import com.dumboiroy.seeyes.exception.SeeyesException;
 import com.dumboiroy.seeyes.storage.Storage;
 import com.dumboiroy.seeyes.task.Task;
 import com.dumboiroy.seeyes.task.TaskList;
+import com.dumboiroy.seeyes.ui.Ui;
 import com.dumboiroy.seeyes.util.DateTimeUtils;
-import com.dumboiroy.ui.Ui;
-
-import java.time.LocalDateTime;
-import java.util.Scanner;
 
 public class Seeyes {
-    private static final String divider = "============================================================";
+
     private TaskList taskList;
     private Storage storage;
     private Scanner scanner;
@@ -43,41 +44,33 @@ public class Seeyes {
     public Seeyes(String filePath) {
         scanner = new Scanner(System.in);
         storage = new Storage(filePath);
+        ui = Ui.getUi();
+
         try {
             taskList = storage.load();
         } catch (SeeyesException e) {
-            // ui.showLoadingError();
-            // taskList = new TaskList();
+            ui.showError(e.getMessage());
+            taskList = new TaskList();
         }
     }
 
-    public static void printDivider() {
-        System.out.println(divider);
-    }
+    // public static void say(String str) {
+    // System.out.println("Sy: " + str);
+    // }
 
-    public static void say(String str) {
-        System.out.println("Sy: " + str);
-    }
-
-    public static void print(String str) {
-        System.out.println(">> " + str);
-    }
+    // public static void print(String str) {
+    // System.out.println(">> " + str);
+    // }
 
     public void printListSize() {
-        print("Number of tasks in list: " + taskList.size());
+        ui.say("Number of tasks in list: " + taskList.size());
     }
 
-    public static void printCommands() {
-        print("list: list all events");
-        print("todo [taskname]");
-        print("deadline [taskname] /by [duedate]");
-        print("event [taskname] /from [startdate] /to [enddate]");
-        print("mark [task number]: mark a task");
-        print("unmark [task number]: unmark a task");
-        print("delete [task number]: delete a task");
-        print("save: save list");
-        print("load: loads the list from existing save");
-        print("bye: closes the program");
+    public void printCommands() {
+        ui.print("list: list all events", "todo [taskname]", "deadline [taskname] /by [duedate]",
+                "event [taskname] /from [startdate] /to [enddate]", "mark [task number]: mark a task",
+                "unmark [task number]: unmark a task", "delete [task number]: delete a task", "save: save list",
+                "load: loads the list from existing save", "bye: closes the program");
     }
 
     public void handleUserInput(String input) throws InvalidCommandException, InvalidTaskNumberException {
@@ -120,17 +113,17 @@ public class Seeyes {
                 switch (command) {
                 case MARK:
                     taskList.getTaskByIndex(index).markAsDone();
-                    say("Poggers. Let's check this off:\n" + taskList.getTaskByIndex(index) + "\nKeep it up!");
+                    ui.say("Poggers. Let's check this off:\n" + taskList.getTaskByIndex(index), "Keep it up!");
                     break;
                 case UNMARK:
                     taskList.getTaskByIndex(index).markAsNotDone();
-                    say("Shag. Ok, I've unmarked this task:\n " + taskList.getTaskByIndex(index)
-                            + "\nKeep your head up king.");
+                    ui.say("Shag. Ok, I've unmarked this task:", taskList.getTaskByIndex(index).toString(),
+                            "Keep your head up king.");
                     break;
                 case DELETE:
                     Task toBeRemovedTask = taskList.getTaskByIndex(index);
                     taskList.removeTaskByIndex(index);
-                    say("Ok bro let's get rid of it. REMOVED: " + toBeRemovedTask);
+                    ui.say("Ok bro let's get rid of it. REMOVED: " + toBeRemovedTask);
                     printListSize();
                     break;
                 default:
@@ -153,7 +146,7 @@ public class Seeyes {
             case DEADLINE:
                 String[] params = paramsString.split("/by");
                 if (params.length < 2) {
-                    say("new deadline not added. needs at least a name and a due date.");
+                    ui.say("new deadline not added. needs at least a name and a due date.");
                     return;
                 }
                 String name = params[0].trim();
@@ -165,12 +158,12 @@ public class Seeyes {
             case EVENT:
                 String[] event_params = paramsString.split("/from");
                 if (event_params.length < 2) {
-                    say("new event not added. specify a start and end date for this event.");
+                    ui.say("new event not added. specify a start and end date for this event.");
                     return;
                 }
                 String[] event_dates_arr = event_params[1].split("/to");
                 if (event_dates_arr.length < 2) {
-                    say("new event not added. specify a start and end date for this event.");
+                    ui.say("new event not added. specify a start and end date for this event.");
                     return;
                 }
                 addToList(Task.of(event_params[0].trim(), DateTimeUtils.parse(event_dates_arr[0].trim()),
@@ -197,52 +190,51 @@ public class Seeyes {
         case BYE:
             break;
         default:
-            say("unhandled command: " + command);
+            ui.say("unhandled command: " + command);
         }
     }
 
     public void printList() {
+        CommandResult result;
         if (taskList.size() == 0) {
-            say("list is empty! add your first item with 'todo [item]'.");
+            result = new CommandResult("list is empty! add your first item with 'todo [item]'.");
             return;
+        } else {
+            result = new CommandResult("Here are the tasks in your list:", taskList.getTaskList());
         }
-        say("Here are the tasks in your list:");
-        for (int i = 0; i < taskList.size(); i++) {
-            if (taskList.getTaskByIndex(i) != null) {
-                print((i + 1) + ". " + taskList.getTaskByIndex(i));
-            }
-        }
+        ui.showResult(result);
     }
 
     public void addToList(Task task) {
-        taskList.addTask(task);
-        say("Added: " + task);
+        CommandResult result;
+        if (taskList.addTask(task)) {
+            result = new CommandResult("Added: " + task.toString());
+        } else {
+            result = new CommandResult("Failed to add: " + task.toString());
+        }
+        ui.showResult(result);
         printListSize();
     }
 
     public void run() {
-        printDivider();
-        say("Yo, I'm Seeyes!");
-        say("How can I help?");
-        printDivider();
+        ui.showWelcomeMessage();
         // ui up to here
         while (true) {
-            String userInput = scanner.nextLine();
+            String userInput = ui.getNextUserCommand();
             if (userInput.equals("bye")) {
                 break;
             }
             try {
                 handleUserInput(userInput);
             } catch (InvalidCommandException e) {
-                say(e.getMessage());
+                ui.say(e.getMessage());
             } catch (InvalidTaskNumberException e) {
-                say(e.getMessage());
+                ui.say(e.getMessage());
                 printList();
             }
-            printDivider();
+
         }
-        say("See you around bro!");
-        printDivider();
+        ui.showFarewellMessage();
 
         // Terminate
         scanner.close();
@@ -250,6 +242,5 @@ public class Seeyes {
 
     public static void main(String[] args) {
         new Seeyes("./data/data.txt").run();
-
     }
 }
