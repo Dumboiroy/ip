@@ -24,4 +24,8 @@ public class TaskList {
     public boolean addTask(Task task) {
         return list.add(task);
     }
+
+    public ArrayList<Task> getTaskList() {
+        return list;
+    }
 }
