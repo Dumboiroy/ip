@@ -7,6 +7,7 @@ import com.dumboiroy.seeyes.storage.Storage;
 import com.dumboiroy.seeyes.task.Task;
 import com.dumboiroy.seeyes.task.TaskList;
 import com.dumboiroy.seeyes.util.DateTimeUtils;
+import com.dumboiroy.ui.Ui;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ public class Seeyes {
     private TaskList taskList;
     private Storage storage;
     private Scanner scanner;
+    private Ui ui;
 
     private enum Command {
         LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"), DELETE(
@@ -35,6 +37,17 @@ public class Seeyes {
             }
             throw new InvalidCommandException(
                     "Sorry, I don't understand '" + commandString + "'. Type /help for a list of commands.");
+        }
+    }
+
+    public Seeyes(String filePath) {
+        scanner = new Scanner(System.in);
+        storage = new Storage(filePath);
+        try {
+            taskList = storage.load();
+        } catch (SeeyesException e) {
+            // ui.showLoadingError();
+            // taskList = new TaskList();
         }
     }
 
@@ -205,17 +218,6 @@ public class Seeyes {
         taskList.addTask(task);
         say("Added: " + task);
         printListSize();
-    }
-
-    public Seeyes(String filePath) {
-        scanner = new Scanner(System.in);
-        storage = new Storage(filePath);
-        try {
-            taskList = storage.load();
-        } catch (SeeyesException e) {
-            // ui.showLoadingError();
-            // taskList = new TaskList();
-        }
     }
 
     public void run() {
