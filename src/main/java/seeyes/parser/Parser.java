@@ -20,8 +20,8 @@ import seeyes.util.DateTimeUtils;
 
 public class Parser {
     private enum CommandType {
-        LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"), DELETE(
-                "delete"), SAVE("save"), LOAD("load"), HELP("/help"), BYE("bye");
+        LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"),
+        DELETE("delete"), SAVE("save"), LOAD("load"), HELP("/help"), BYE("bye");
 
         private final String keyword;
 
@@ -60,16 +60,11 @@ public class Parser {
                 return new AddTaskCommand(Task.of(params[0]));
             case DEADLINE:
                 params = parseTaskParams(commandType, getArgs(split, split[0].trim() + " <task name>"));
-                return new AddTaskCommand(Task.of(
-                        params[0],
-                        DateTimeUtils.parse(params[1])));
+                return new AddTaskCommand(Task.of(params[0], DateTimeUtils.parse(params[1])));
             case EVENT:
                 params = parseTaskParams(commandType, getArgs(split, split[0].trim() + " <task name>"));
                 return new AddTaskCommand(
-                        Task.of(
-                                params[0],
-                                DateTimeUtils.parse(params[1]),
-                                DateTimeUtils.parse(params[2])));
+                        Task.of(params[0], DateTimeUtils.parse(params[1]), DateTimeUtils.parse(params[2])));
             case SAVE:
                 return new SaveCommand();
             case LOAD:
@@ -109,18 +104,14 @@ public class Parser {
         case TODO:
             return new String[] { paramString };
         case DEADLINE:
-            params = Arrays.stream(paramString.split("/by"))
-                    .map(String::trim)
-                    .toArray(String[]::new);
+            params = Arrays.stream(paramString.split("/by")).map(String::trim).toArray(String[]::new);
             if (params.length < 2) {
                 throw new InvalidCommandException("please specify a due date with '/by <duedate>'");
             }
             return params;
         case EVENT:
-            params = Arrays.stream(paramString.split("/from"))
-                    .flatMap(x -> Arrays.stream(x.split("/to")))
-                    .map(String::trim)
-                    .toArray(String[]::new);
+            params = Arrays.stream(paramString.split("/from")).flatMap(x -> Arrays.stream(x.split("/to")))
+                    .map(String::trim).toArray(String[]::new);
             if (params.length < 3) {
                 throw new InvalidCommandException(
                         "please specify both a START and END date with '/from <start> /to <end>'");
