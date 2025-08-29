@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.dumboiroy.seeyes.exception.InvalidTaskTypeException;
+import com.dumboiroy.seeyes.exception.SeeyesException;
 import com.dumboiroy.seeyes.task.Task;
 import com.dumboiroy.seeyes.task.TaskList;
 
@@ -18,7 +19,7 @@ public class Storage {
         this.filePath = path;
     }
 
-    public TaskList load() {
+    public TaskList load() throws SeeyesException {
         // load file
         File file = new File(filePath);
 
@@ -33,11 +34,11 @@ public class Storage {
             while ((line = reader.readLine()) != null) {
                 taskList.addTask(Task.fromString(line));
             }
-            System.out.println("List from: " + filePath + " loaded.");
+            // System.out.println("List from: " + filePath + " loaded.");
         } catch (IOException e) {
-            System.out.println("Error while loading file: " + filePath);
+            throw new SeeyesException("Error while loading file: " + filePath);
         } catch (InvalidTaskTypeException e) {
-            System.out.println("Error while parsing line: " + line + "\n" + e.getMessage());
+            throw new SeeyesException("Error while parsing line: " + line + "\n" + e.getMessage());
         }
 
         // return arraylist of tasks
