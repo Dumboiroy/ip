@@ -1,6 +1,5 @@
 package com.dumboiroy.seeyes.storage;
 
-import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,21 +8,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.dumboiroy.seeyes.exception.InvalidTaskTypeException;
+import com.dumboiroy.seeyes.exception.StorageException;
 import com.dumboiroy.seeyes.task.Task;
+import com.dumboiroy.seeyes.task.TaskList;
 
-public class StorageManager {
+public class Storage {
     private final String filePath;
 
-    public StorageManager(String path) {
-        this.filePath = path;
+    public Storage(String filePath, TaskList taskList) {
+        this.filePath = filePath;
     }
 
-    public ArrayList<Task> load() {
+    public TaskList load() throws StorageException {
         // load file
         File file = new File(filePath);
 
         // parse the file and add tasks
-        ArrayList<Task> taskList = new ArrayList<>();
+        TaskList taskList = new TaskList();
         if (!file.exists()) {
             System.out.println("File does not exist.");
             return taskList;
@@ -31,30 +32,30 @@ public class StorageManager {
         String line = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             while ((line = reader.readLine()) != null) {
-                taskList.add(Task.fromString(line));
+                taskList.addTask(Task.fromString(line));
             }
-            System.out.println("List from: " + filePath + " loaded.");
+            // System.out.println("List from: " + filePath + " loaded.");
         } catch (IOException e) {
-            System.out.println("Error while loading file: " + filePath);
+            throw new StorageException("Error while loading file: " + filePath);
         } catch (InvalidTaskTypeException e) {
-            System.out.println("Error while parsing line: " + line + "\n" + e.getMessage());
+            throw new StorageException("Error while parsing line: " + line + "\n" + e.getMessage());
         }
 
         // return arraylist of tasks
         return taskList;
     }
 
-    public void save(ArrayList<Task> taskList) {
+    public String save(TaskList taskList) throws StorageException {
         File file = new File(filePath);
         file.getParentFile().mkdirs();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (Task task : taskList) {
-                writer.write(task.getSaveString());
+            for (int i = 0; i < taskList.size(); i++) {
+                writer.write(taskList.getTaskByIndex(i).getSaveString());
                 writer.newLine();
             }
-            System.out.println("List at  " + filePath + " has been saved.");
+            return "List at " + filePath + " has been saved.";
         } catch (IOException e) {
-            System.out.println("Failed to save file at " + filePath);
+            throw new StorageException("Unable to save list at " + filePath);
         }
     }
 }

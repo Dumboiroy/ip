@@ -56,7 +56,7 @@ public abstract class Task {
     }
 
     public static Task of(String name) {
-        return new ToDoTask(false, name);
+        return new TodoTask(false, name);
     }
 
     public static Task of(String name, LocalDateTime dateDue) {
@@ -72,7 +72,7 @@ public abstract class Task {
         String[] params = taskString.split("\\|");
         switch (type) {
         case TODO:
-            return new ToDoTask(params[1].equals("1"), params[2]);
+            return new TodoTask(params[1].equals("1"), params[2]);
         case DEADLINE:
             return new DeadlineTask(params[1].equals("1"), params[2], DateTimeUtils.parse(params[3]));
         case EVENT:
