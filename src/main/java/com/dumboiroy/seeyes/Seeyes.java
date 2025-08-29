@@ -3,10 +3,12 @@ package com.dumboiroy.seeyes;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
+import com.dumboiroy.seeyes.command.Command;
 import com.dumboiroy.seeyes.command.CommandResult;
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
 import com.dumboiroy.seeyes.exception.InvalidTaskNumberException;
 import com.dumboiroy.seeyes.exception.SeeyesException;
+import com.dumboiroy.seeyes.parser.Parser;
 import com.dumboiroy.seeyes.storage.Storage;
 import com.dumboiroy.seeyes.task.Task;
 import com.dumboiroy.seeyes.task.TaskList;
@@ -19,27 +21,31 @@ public class Seeyes {
     private Storage storage;
     private Scanner scanner;
     private Ui ui;
+    private Parser parser;
 
-    private enum Command {
-        LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"), DELETE(
-                "delete"), SAVE("save"), LOAD("load"), HELP("/help"), BYE("bye");
+    // private enum Command {
+    // LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"),
+    // MARK("mark"), UNMARK("unmark"), DELETE(
+    // "delete"), SAVE("save"), LOAD("load"), HELP("/help"), BYE("bye");
 
-        private final String keyword;
+    // private final String keyword;
 
-        Command(String keyword) {
-            this.keyword = keyword;
-        }
+    // Command(String keyword) {
+    // this.keyword = keyword;
+    // }
 
-        public static Command fromString(String commandString) throws InvalidCommandException {
-            for (Command c : Command.values()) {
-                if (c.keyword.equalsIgnoreCase(commandString)) {
-                    return c;
-                }
-            }
-            throw new InvalidCommandException(
-                    "Sorry, I don't understand '" + commandString + "'. Type /help for a list of commands.");
-        }
-    }
+    // public static Command fromString(String commandString) throws
+    // InvalidCommandException {
+    // for (Command c : Command.values()) {
+    // if (c.keyword.equalsIgnoreCase(commandString)) {
+    // return c;
+    // }
+    // }
+    // throw new InvalidCommandException(
+    // "Sorry, I don't understand '" + commandString + "'. Type /help for a list of
+    // commands.");
+    // }
+    // }
 
     public Seeyes(String filePath) {
         scanner = new Scanner(System.in);
@@ -74,8 +80,8 @@ public class Seeyes {
     }
 
     public void handleUserInput(String input) throws InvalidCommandException, InvalidTaskNumberException {
-        String[] split = input.split(" ", 2);
-        Command command = Command.fromString(split[0].trim());
+        // String[] split = input.split(" ", 2);
+        // Command command = Command.fromString(split[0].trim());
         if (split.length < 2) {
             switch (command) {
             case MARK:
@@ -216,16 +222,26 @@ public class Seeyes {
         printListSize();
     }
 
+    // TODO: what does parseuserinput return?
+    // what should executeCommand accept? type of command + arguments... maybe a
+    // command class with fields?
+    private CommandResult executeCommand(Command command) {
+        // TODO: method to execure commands that accepts: Command command
+        return null;
+    }
+
     public void run() {
         ui.showWelcomeMessage();
-        // ui up to here
+
+        String userInputString;
         while (true) {
-            String userInput = ui.getNextUserCommand();
-            if (userInput.equals("bye")) {
+            userInputString = ui.getNextUserCommand();
+            CommandResult result = executeCommand(Parser.parseUserInput(userInputString));
+            if (userInputString.equals("bye")) {
                 break;
             }
             try {
-                handleUserInput(userInput);
+                handleUserInput(userInputString);
             } catch (InvalidCommandException e) {
                 ui.say(e.getMessage());
             } catch (InvalidTaskNumberException e) {
