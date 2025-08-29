@@ -7,6 +7,7 @@ import com.dumboiroy.seeyes.command.Command;
 import com.dumboiroy.seeyes.command.DeleteCommand;
 import com.dumboiroy.seeyes.command.IncorrectCommand;
 import com.dumboiroy.seeyes.command.MarkCommand;
+import com.dumboiroy.seeyes.command.SaveCommand;
 import com.dumboiroy.seeyes.command.UnmarkCommand;
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
 import com.dumboiroy.seeyes.task.Task;
@@ -66,7 +67,7 @@ public class Parser {
                                 DateTimeUtils.parse(params[1]),
                                 DateTimeUtils.parse(params[2])));
             case SAVE:
-                throw new InvalidCommandException("unimplemented case");
+                return new SaveCommand();
             case LOAD:
                 throw new InvalidCommandException("unimplemented case");
             case HELP:

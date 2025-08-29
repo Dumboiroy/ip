@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.dumboiroy.seeyes.exception.InvalidTaskTypeException;
+import com.dumboiroy.seeyes.exception.SaveException;
 import com.dumboiroy.seeyes.exception.SeeyesException;
 import com.dumboiroy.seeyes.task.Task;
 import com.dumboiroy.seeyes.task.TaskList;
@@ -45,7 +46,7 @@ public class Storage {
         return taskList;
     }
 
-    public void save(TaskList taskList) {
+    public String save(TaskList taskList) throws SaveException {
         File file = new File(filePath);
         file.getParentFile().mkdirs();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
@@ -53,9 +54,9 @@ public class Storage {
                 writer.write(taskList.getTaskByIndex(i).getSaveString());
                 writer.newLine();
             }
-            System.out.println("List at " + filePath + " has been saved.");
+            return "List at " + filePath + " has been saved.";
         } catch (IOException e) {
-            System.out.println("Failed to save file at " + filePath);
+            return "Unable to save list at " + filePath;
         }
     }
 }
