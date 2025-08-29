@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.dumboiroy.seeyes.command.AddTaskCommand;
 import com.dumboiroy.seeyes.command.Command;
 import com.dumboiroy.seeyes.command.DeleteCommand;
+import com.dumboiroy.seeyes.command.HelpCommand;
 import com.dumboiroy.seeyes.command.IncorrectCommand;
 import com.dumboiroy.seeyes.command.LoadCommand;
 import com.dumboiroy.seeyes.command.MarkCommand;
@@ -72,7 +73,7 @@ public class Parser {
             case LOAD:
                 return new LoadCommand();
             case HELP:
-                throw new InvalidCommandException("unimplemented help ");
+                return new HelpCommand();
             case LIST:
                 throw new InvalidCommandException("unimplemented list");
             case BYE:
