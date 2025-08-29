@@ -10,6 +10,7 @@ import java.util.Scanner;
 import com.dumboiroy.seeyes.command.CommandResult;
 import com.dumboiroy.seeyes.exception.NoMoreCommandsException;
 import com.dumboiroy.seeyes.task.Task;
+import com.dumboiroy.seeyes.task.TaskList;
 
 public class Ui {
 
@@ -17,10 +18,11 @@ public class Ui {
     private static final String LS = System.lineSeparator();
     private static final String SAY_LINE_PREFIX = ">> ";
     private static final String PRINT_LINE_PREFIX = "## ";
-    private static final String USER_LINE_PREFIX = "~";
+    private static final String USER_LINE_PREFIX = "";
     private static final String FORMAT_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
     private final Scanner in;
     private final PrintStream out;
+    
 
     public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
@@ -73,8 +75,12 @@ public class Ui {
 
     public void showResult(CommandResult result) {
         final Optional<List<? extends Task>> resultTasks = result.getResultTasks();
+        final Optional<TaskList> taskList = result.getTaskList();
         if (resultTasks.isPresent()) {
             showResultTasks(resultTasks.get());
+        }
+        if (taskList.isPresent()) {
+            showResultTasks(taskList.get().getTaskList());
         }
         say(result.message, DIVIDER);
     }
