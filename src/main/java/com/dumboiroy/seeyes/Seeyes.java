@@ -5,7 +5,8 @@ import java.util.Scanner;
 import com.dumboiroy.seeyes.command.Command;
 import com.dumboiroy.seeyes.command.CommandResult;
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
-import com.dumboiroy.seeyes.exception.SeeyesException;
+import com.dumboiroy.seeyes.exception.NoMoreCommandsException;
+import com.dumboiroy.seeyes.exception.StorageException;
 import com.dumboiroy.seeyes.parser.Parser;
 import com.dumboiroy.seeyes.storage.Storage;
 import com.dumboiroy.seeyes.task.Task;
@@ -27,7 +28,7 @@ public class Seeyes {
         // initial load
         try {
             taskList = storage.load();
-        } catch (SeeyesException e) {
+        } catch (StorageException e) {
             ui.showError(e.getMessage());
             taskList = new TaskList();
         }
@@ -94,6 +95,9 @@ public class Seeyes {
                 }
             } catch (InvalidCommandException e) {
                 ui.showError(e.getMessage());
+            } catch (NoMoreCommandsException e) {
+                ui.showError(e.getMessage());
+                break;
             }
         }
 
