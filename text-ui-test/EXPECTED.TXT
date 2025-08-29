@@ -1,39 +1,47 @@
-List from: ./data/data.txt loaded.
 >> ============================================================
 >> Yo, I'm Seeyes!
 >> How can I help?
 >> ============================================================
-## Enter a command:
->> Sorry, I don't understand 'TEST:invalid_command'. Type /help for a list of commands.
-## Enter a command:
->> Sorry, I don't understand 'hello!!'. Type /help for a list of commands.
-## Enter a command:
->> Sorry, I don't understand 'TEST:load'. Type /help for a list of commands.
-## Enter a command:
-List from: ./data/data.txt loaded.
-## Enter a command:
+>> Enter a command:
+
+
+# TEST:invalid_command
+>> ERROR: Sorry, I don't understand 'hello!!'. Type /help for a list of commands.
+>> Enter a command:
+
+
+# TEST:load
 >> 	1. [T][ ] hello!!
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ## 
->> Here are the tasks in your list:
+>> Load Success.
 >> ============================================================
-## Enter a command:
->> Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
->> Number of tasks in list: 3
-## Enter a command:
->> Ok bro let's get rid of it. REMOVED: [T][X] borrow book
->> Number of tasks in list: 2
-## Enter a command:
->> Ok bro let's get rid of it. REMOVED: [D][ ] return book (by: 31 Dec 2001, 12pm)
->> Number of tasks in list: 1
-## Enter a command:
->> Ok bro let's get rid of it. REMOVED: [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
->> Number of tasks in list: 0
-## Enter a command:
->> Sorry, I don't understand 'TEST:/help'. Type /help for a list of commands.
-## Enter a command:
+>> Enter a command:
+>> 	1. [T][ ] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> End of list.
+>> ============================================================
+>> Enter a command:
+>> Okay, I've gotten rid of: [T][ ] hello!!
+>> ============================================================
+>> Enter a command:
+>> Okay, I've gotten rid of: [T][X] borrow book
+>> ============================================================
+>> Enter a command:
+>> Okay, I've gotten rid of: [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> ============================================================
+>> Enter a command:
+>> Okay, I've gotten rid of: [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+>> ============================================================
+>> Enter a command:
+
+
+# TEST:/help
 >> list: list all events
 >> todo [taskname]
 >> deadline [taskname] /by [duedate]
@@ -44,174 +52,146 @@ List from: ./data/data.txt loaded.
 >> save: save list
 >> load: loads the list from existing save
 >> bye: closes the program
-## Enter a command:
->> Sorry, I don't understand 'TEST:todo'. Type /help for a list of commands.
-## Enter a command:
->> Added: [T][ ] hello!!
 >> ============================================================
->> Number of tasks in list: 1
-## Enter a command:
->> Added: [T][ ] borrow book
+>> Enter a command:
+
+
+# TEST:todo
+>> Successfully added:
+>> [T][ ] hello!!
 >> ============================================================
->> Number of tasks in list: 2
-## Enter a command:
+>> Enter a command:
+>> Successfully added:
+>> [T][ ] borrow book
+>> ============================================================
+>> Enter a command:
 >> 	1. [T][ ] hello!!
 ## 	2. [T][ ] borrow book
 ## 
->> Here are the tasks in your list:
+>> End of list.
 >> ============================================================
-## Enter a command:
->> Sorry, I don't understand 'TEST:deadline'. Type /help for a list of commands.
-## Enter a command:
->> new deadline not added. needs at least a name and a due date.
-## Enter a command:
->> Added: [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> Enter a command:
+
+
+# TEST:deadline
+>> ERROR: please specify a due date with '/by <duedate>'
+>> Enter a command:
+>> Successfully added:
+>> [D][ ] return book (by: 31 Dec 2001, 12pm)
 >> ============================================================
->> Number of tasks in list: 3
-## Enter a command:
->> Sorry, I don't understand 'TEST:event'. Type /help for a list of commands.
-## Enter a command:
->> new event not added. specify a start and end date for this event.
-## Enter a command:
->> new event not added. specify a start and end date for this event.
-## Enter a command:
->> new event not added. specify a start and end date for this event.
-## Enter a command:
->> new event not added. specify a start and end date for this event.
-## Enter a command:
->> Added: [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+>> Enter a command:
+
+
+# TEST:event
+>> ERROR: please specify both a START and END date with '/from <start> /to <end>'
+>> Enter a command:
+>> ERROR: please specify both a START and END date with '/from <start> /to <end>'
+>> Enter a command:
+>> ERROR: please specify both a START and END date with '/from <start> /to <end>'
+>> Enter a command:
+>> ERROR: please specify both a START and END date with '/from <start> /to <end>'
+>> Enter a command:
+>> Successfully added:
+>> [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 >> ============================================================
->> Number of tasks in list: 4
-## Enter a command:
+>> Enter a command:
 >> 	1. [T][ ] hello!!
 ## 	2. [T][ ] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ## 
->> Here are the tasks in your list:
+>> End of list.
 >> ============================================================
-## Enter a command:
->> Sorry, I don't understand 'TEST:mark_unmark'. Type /help for a list of commands.
-## Enter a command:
->> Poggers. Let's check this off:
+>> Enter a command:
+
+
+# TEST:mark_unmark
+>> Nice. Let's check this off:
 >> [T][X] hello!!
 >> Keep it up!
-## Enter a command:
->> Poggers. Let's check this off:
+>> ============================================================
+>> Enter a command:
+>> Nice. Let's check this off:
 >> [T][X] borrow book
 >> Keep it up!
-## Enter a command:
->> invalid task number: 12
+>> ============================================================
+>> Enter a command:
+>> ERROR: Task number 12 does not exist. Check tasklist with 'list' to see what tasks you have.
+>> Enter a command:
+>> ERROR: 'asd' is not a number. Please specify a task number.
+>> Enter a command:
+>> ERROR: '' is not a number. Please specify a task number.
+>> Enter a command:
 >> 	1. [T][X] hello!!
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ## 
->> Here are the tasks in your list:
+>> End of list.
 >> ============================================================
-## Enter a command:
->> 'asd' is not a number
->> 	1. [T][X] hello!!
-## 	2. [T][X] borrow book
-## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
-## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
->> Here are the tasks in your list:
->> ============================================================
-## Enter a command:
->> '      ' is not a number
->> 	1. [T][X] hello!!
-## 	2. [T][X] borrow book
-## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
-## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
->> Here are the tasks in your list:
->> ============================================================
-## Enter a command:
->> 	1. [T][X] hello!!
-## 	2. [T][X] borrow book
-## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
-## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
->> Here are the tasks in your list:
->> ============================================================
-## Enter a command:
->> Shag. Ok, I've unmarked this task:
+>> Enter a command:
+>> Bummer. Alright, I've unchecked:
 >> [T][ ] hello!!
->> Keep your head up king.
-## Enter a command:
->> invalid task number: 12
+>> Keep your head up!
+>> ============================================================
+>> Enter a command:
+>> ERROR: Task number 12 does not exist. Check tasklist with 'list' to see what tasks you have.
+>> Enter a command:
+>> ERROR: 'asd' is not a number. Please specify a task number.
+>> Enter a command:
+>> ERROR: USAGE: unmark <task number>
+>> Enter a command:
 >> 	1. [T][ ] hello!!
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ## 
->> Here are the tasks in your list:
+>> End of list.
 >> ============================================================
-## Enter a command:
->> 'asd' is not a number
+>> Enter a command:
+
+
+# TEST:save_load
+>> List at ./data/data.txt has been saved.
+>> ============================================================
+>> Enter a command:
+>> ERROR: Task number 12 does not exist. Check tasklist with 'list' to see what tasks you have.
+>> Enter a command:
+>> Okay, I've gotten rid of: [T][ ] hello!!
+>> ============================================================
+>> Enter a command:
+>> Okay, I've gotten rid of: [T][X] borrow book
+>> ============================================================
+>> Enter a command:
+>> Okay, I've gotten rid of: [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> ============================================================
+>> Enter a command:
+>> Okay, I've gotten rid of: [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+>> ============================================================
+>> Enter a command:
+>> ERROR: Task number 1 does not exist. Check tasklist with 'list' to see what tasks you have.
+>> Enter a command:
+>> 
+>> End of list.
+>> ============================================================
+>> Enter a command:
 >> 	1. [T][ ] hello!!
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ## 
->> Here are the tasks in your list:
+>> Load Success.
 >> ============================================================
-## Enter a command:
->> USAGE: mark/unmark/delete [task number]
+>> Enter a command:
 >> 	1. [T][ ] hello!!
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
 ## 
->> Here are the tasks in your list:
+>> End of list.
 >> ============================================================
-## Enter a command:
->> 	1. [T][ ] hello!!
-## 	2. [T][X] borrow book
-## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
-## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
->> Here are the tasks in your list:
+>> Enter a command:
+>> See you around!
 >> ============================================================
-## Enter a command:
->> Sorry, I don't understand 'TEST:save_load'. Type /help for a list of commands.
-## Enter a command:
-List at ./data/data.txt has been saved.
-## Enter a command:
->> invalid task number: 12
->> 	1. [T][ ] hello!!
-## 	2. [T][X] borrow book
-## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
-## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
->> Here are the tasks in your list:
->> ============================================================
-## Enter a command:
->> Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
->> Number of tasks in list: 3
-## Enter a command:
->> Ok bro let's get rid of it. REMOVED: [T][X] borrow book
->> Number of tasks in list: 2
-## Enter a command:
->> Ok bro let's get rid of it. REMOVED: [D][ ] return book (by: 31 Dec 2001, 12pm)
->> Number of tasks in list: 1
-## Enter a command:
->> Ok bro let's get rid of it. REMOVED: [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
->> Number of tasks in list: 0
-## Enter a command:
->> invalid task number: 1
-## Enter a command:
-## Enter a command:
-List from: ./data/data.txt loaded.
-## Enter a command:
->> 	1. [T][ ] hello!!
-## 	2. [T][X] borrow book
-## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
-## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
->> Here are the tasks in your list:
->> ============================================================
-## Enter a command:
->> See you around bro!
+>> Program exited successfully.
 >> ============================================================
