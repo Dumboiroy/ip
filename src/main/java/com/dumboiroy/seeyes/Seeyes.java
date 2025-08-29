@@ -18,31 +18,6 @@ public class Seeyes {
     private Storage storage;
     private Scanner scanner;
     private Ui ui;
-    private Parser parser;
-
-    // private enum Command {
-    // LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"),
-    // MARK("mark"), UNMARK("unmark"), DELETE(
-    // "delete"), SAVE("save"), LOAD("load"), HELP("/help"), BYE("bye");
-
-    // private final String keyword;
-
-    // Command(String keyword) {
-    // this.keyword = keyword;
-    // }
-
-    // public static Command fromString(String commandString) throws
-    // InvalidCommandException {
-    // for (Command c : Command.values()) {
-    // if (c.keyword.equalsIgnoreCase(commandString)) {
-    // return c;
-    // }
-    // }
-    // throw new InvalidCommandException(
-    // "Sorry, I don't understand '" + commandString + "'. Type /help for a list of
-    // commands.");
-    // }
-    // }
 
     public Seeyes(String filePath) {
         scanner = new Scanner(System.in);
@@ -98,11 +73,7 @@ public class Seeyes {
         printListSize();
     }
 
-    // TODO: what does parseuserinput return?
-    // what should executeCommand accept? type of command + arguments... maybe a
-    // command class with fields?
     private CommandResult executeCommand(Command command) {
-        // TODO: method to execure commands that accepts: Command command
         return command.execute();
     }
 
