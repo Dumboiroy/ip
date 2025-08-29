@@ -1,6 +1,7 @@
 package com.dumboiroy.seeyes.parser;
 
 import com.dumboiroy.seeyes.command.Command;
+import com.dumboiroy.seeyes.command.DeleteCommand;
 import com.dumboiroy.seeyes.command.MarkCommand;
 import com.dumboiroy.seeyes.command.UnmarkCommand;
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
@@ -39,10 +40,7 @@ public class Parser {
         case UNMARK:
             return new UnmarkCommand(parseTaskIndex(split, split[0].trim() + "<task number>"));
         case DELETE:
-            throw new RuntimeException("unimplemented case");
-
-        // TODO:
-        // return new DeleteCommand(parseTaskIndex(split, userInputString));
+            return new DeleteCommand(parseTaskIndex(split, userInputString));
         case TODO:
             throw new RuntimeException("unimplemented case");
         // TODO:
