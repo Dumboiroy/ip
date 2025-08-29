@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.dumboiroy.seeyes.command.AddTaskCommand;
 import com.dumboiroy.seeyes.command.Command;
 import com.dumboiroy.seeyes.command.DeleteCommand;
+import com.dumboiroy.seeyes.command.ExitCommand;
 import com.dumboiroy.seeyes.command.HelpCommand;
 import com.dumboiroy.seeyes.command.IncorrectCommand;
 import com.dumboiroy.seeyes.command.ListCommand;
@@ -78,9 +79,9 @@ public class Parser {
             case LIST:
                 return new ListCommand();
             case BYE:
-                throw new InvalidCommandException("unimplemented bye");
+                return new ExitCommand();
             default:
-                return new IncorrectCommand("shouldn't be here.");
+                return new IncorrectCommand("shouldn't reach here.");
             }
         } catch (CommandFailedException e) {
             throw new CommandFailedException(e.getMessage());

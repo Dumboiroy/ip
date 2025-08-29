@@ -33,7 +33,7 @@ public class Ui {
 
     private boolean shouldIgnore(String rawInputLine) {
         if (isCommentLine(rawInputLine)) {
-            out.print(rawInputLine + LS);
+            out.print("\n" + rawInputLine + LS);
         }
         return rawInputLine.trim().isEmpty() || isCommentLine(rawInputLine);
     }
@@ -107,7 +107,7 @@ public class Ui {
 
     public void showFarewellMessage() {
         say(
-                "See you around bro!",
+                "Program exited successfully.",
                 DIVIDER);
     }
 }
