@@ -34,37 +34,43 @@ public class Parser {
         // depending on command, get args
         switch (commandType) {
         case MARK:
-            return new MarkCommand(parseTaskIndex(split, userInputString));
+            return new MarkCommand(parseTaskIndex(split, "mark <task number>"));
         case UNMARK:
-            // TODO:
-            return new UnmarkCommand(parseTaskIndex(split, userInputString));
+            throw new RuntimeException("unimplemented case");
+
+        // TODO:
+        // return new UnmarkCommand(parseTaskIndex(split, userInputString));
         case DELETE:
-            // TODO:
-            return new DeleteCommand(parseTaskIndex(split, userInputString));
+            throw new RuntimeException("unimplemented case");
+
+        // TODO:
+        // return new DeleteCommand(parseTaskIndex(split, userInputString));
         case TODO:
-            // TODO:
-            break;
+            throw new RuntimeException("unimplemented case");
+        // TODO:
         case DEADLINE:
-            // TODO:
-            break;
+            throw new RuntimeException("unimplemented case");
+        // TODO:
+
         case EVENT:
-            // TODO:
-            break;
+            throw new RuntimeException("unimplemented case");
+        // TODO:
         case SAVE:
-            // TODO:
-            break;
+            throw new RuntimeException("unimplemented case");
+        // TODO:
         case LOAD:
-            // TODO:
-            break;
+            throw new RuntimeException("unimplemented case");
+        // TODO:
         case HELP:
-            // TODO:
-            break;
+            throw new RuntimeException("unimplemented case");
+        // TODO:
         case LIST:
-            // TODO:
-            break;
+            throw new RuntimeException("unimplemented case");
+        // TODO:
         case BYE:
-            // TODO:
-            break;
+            throw new RuntimeException("unimplemented case");
+        // TODO:
+
         }
 
         // return full command
