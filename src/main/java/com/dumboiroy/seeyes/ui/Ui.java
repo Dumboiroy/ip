@@ -15,6 +15,7 @@ public class Ui {
     private static final String LS = System.lineSeparator();
     private static final String SAY_LINE_PREFIX = ">> ";
     private static final String PRINT_LINE_PREFIX = "## ";
+    private static final String USER_LINE_PREFIX = "~";
     private static final String FORMAT_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
     private final Scanner in;
     private final PrintStream out;
@@ -37,7 +38,7 @@ public class Ui {
     }
 
     public String getNextUserCommand() {
-        out.print(PRINT_LINE_PREFIX + "Enter a command:\n");
+        out.print(PRINT_LINE_PREFIX + "Enter a command:\n" + USER_LINE_PREFIX);
         String rawInputLine = in.nextLine();
         while (shouldIgnore(rawInputLine)) {
             rawInputLine = in.nextLine();

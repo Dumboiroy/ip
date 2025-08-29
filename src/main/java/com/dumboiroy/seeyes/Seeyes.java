@@ -200,7 +200,7 @@ public class Seeyes {
             result = new CommandResult("list is empty! add your first item with 'todo [item]'.");
             return;
         } else {
-            result = new CommandResult("Here are the tasks in your list:", taskList.getTaskList());
+            result = new CommandResult("You have " + taskList.size() + " items in your list.", taskList.getTaskList());
         }
         ui.showResult(result);
     }
