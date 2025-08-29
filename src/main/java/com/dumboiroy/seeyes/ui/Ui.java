@@ -1,12 +1,12 @@
-package com.dumboiroy.ui;
+package com.dumboiroy.seeyes.ui;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import com.dumboiroy.seeyes.command.CommandResult;
 import com.dumboiroy.seeyes.task.Task;
 
 public class Ui {
@@ -37,7 +37,7 @@ public class Ui {
     }
 
     public String getNextUserCommand() {
-        out.print(SAY_LINE_PREFIX + "Enter a command:\n");
+        out.print(PRINT_LINE_PREFIX + "Enter a command:\n");
         String rawInputLine = in.nextLine();
         while (shouldIgnore(rawInputLine)) {
             rawInputLine = in.nextLine();
@@ -66,7 +66,7 @@ public class Ui {
         if (resultTasks.isPresent()) {
             showResultTasks(resultTasks.get());
         }
-        show(result.message, DIVIDER);
+        say(result.message, DIVIDER);
     }
 
     private void showResultTasks(List<? extends Task> tasks) {
@@ -99,10 +99,5 @@ public class Ui {
         say(
                 "See you around bro!",
                 DIVIDER);
-    }
-
-    public static void main(String[] args) {
-        Ui ui = Ui.getUi();
-        ui.say("Hello", "Message 1", "bye");
     }
 }
