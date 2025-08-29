@@ -15,8 +15,8 @@ import com.dumboiroy.seeyes.task.TaskList;
 public class Storage {
     private final String filePath;
 
-    public Storage(String path) {
-        this.filePath = path;
+    public Storage(String filePath, TaskList taskList) {
+        this.filePath = filePath;
     }
 
     public TaskList load() throws StorageException {

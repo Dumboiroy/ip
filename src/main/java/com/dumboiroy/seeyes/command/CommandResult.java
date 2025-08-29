@@ -4,14 +4,20 @@ import java.util.List;
 import java.util.Optional;
 
 import com.dumboiroy.seeyes.task.Task;
+import com.dumboiroy.seeyes.task.TaskList;
 
 public class CommandResult {
     public String message;
+    private TaskList taskList;
     private List<? extends Task> resultTasks;
 
     public CommandResult(String message) {
         this.message = message;
-        resultTasks = null;
+    }
+
+    public CommandResult(String message, TaskList taskList) {
+        this.message = message;
+        this.taskList = taskList;
     }
 
     public CommandResult(String message, List<? extends Task> resultTasks) {
@@ -22,4 +28,9 @@ public class CommandResult {
     public Optional<List<? extends Task>> getResultTasks() {
         return Optional.ofNullable(resultTasks);
     }
+
+    public Optional<TaskList> getTaskList() {
+        return Optional.ofNullable(taskList);
+    }
+
 }

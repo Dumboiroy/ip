@@ -14,7 +14,6 @@ import com.dumboiroy.seeyes.task.TaskList;
 import com.dumboiroy.seeyes.ui.Ui;
 
 public class Seeyes {
-
     private TaskList taskList;
     private Storage storage;
     private Scanner scanner;
@@ -22,12 +21,12 @@ public class Seeyes {
 
     public Seeyes(String filePath) {
         scanner = new Scanner(System.in);
-        storage = new Storage(filePath);
+        storage = new Storage(filePath, taskList);
         ui = Ui.getUi();
 
         // initial load
         try {
-            taskList = storage.load();
+            setTaskList(storage.load());
         } catch (StorageException e) {
             ui.showError(e.getMessage());
             taskList = new TaskList();
@@ -51,6 +50,10 @@ public class Seeyes {
                 "event [taskname] /from [startdate] /to [enddate]", "mark [task number]: mark a task",
                 "unmark [task number]: unmark a task", "delete [task number]: delete a task", "save: save list",
                 "load: loads the list from existing save", "bye: closes the program");
+    }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
     }
 
     public void printList() {
@@ -88,6 +91,9 @@ public class Seeyes {
                 userInputString = ui.getNextUserCommand();
                 CommandResult result = executeCommand(
                         Parser.parseUserInput(userInputString).setData(taskList, storage));
+                if (result.getTaskList().isPresent()) {
+                    taskList = result.getTaskList().get();
+                }
                 ui.showResult(result);
 
                 if (userInputString.equals("bye")) {
