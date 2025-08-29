@@ -46,11 +46,14 @@ public class Seeyes {
     }
 
     // public void printCommands() {
-    // ui.print("list: list all events", "todo [taskname]", "deadline [taskname] /by
+    // ui.print("list: list all events", "todo [taskname]", "deadline [taskname]
+    // /by
     // [duedate]",
-    // "event [taskname] /from [startdate] /to [enddate]", "mark [task number]: mark
+    // "event [taskname] /from [startdate] /to [enddate]", "mark [task number]:
+    // mark
     // a task",
-    // "unmark [task number]: unmark a task", "delete [task number]: delete a task",
+    // "unmark [task number]: unmark a task", "delete [task number]: delete a
+    // task",
     // "save: save list",
     // "load: loads the list from existing save", "bye: closes the program");
     // }

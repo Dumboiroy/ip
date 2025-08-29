@@ -13,9 +13,8 @@ public class UnmarkCommand extends Command {
     public CommandResult execute() throws InvalidCommandException {
         try {
             taskList.getTaskByIndex(indexToMark).markAsNotDone();
-            return new CommandResult(
-                    "Bummer. Alright, I've unchecked:\n" + taskList.getTaskByIndex(indexToMark)
-                            + "\nKeep your head up!");
+            return new CommandResult("Bummer. Alright, I've unchecked:\n" + taskList.getTaskByIndex(indexToMark)
+                    + "\nKeep your head up!");
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidCommandException("Task number " + (indexToMark + 1)
                     + " does not exist. Check tasklist with 'list' to see what tasks you have.");

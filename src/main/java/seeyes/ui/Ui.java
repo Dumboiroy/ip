@@ -103,16 +103,10 @@ public class Ui {
     }
 
     public void showWelcomeMessage() {
-        say(
-                DIVIDER,
-                "Yo, I'm Seeyes!",
-                "How can I help?",
-                DIVIDER);
+        say(DIVIDER, "Yo, I'm Seeyes!", "How can I help?", DIVIDER);
     }
 
     public void showFarewellMessage() {
-        say(
-                "Program exited successfully.",
-                DIVIDER);
+        say("Program exited successfully.", DIVIDER);
     }
 }
