@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 public class Seeyes {
     private static final String divider = "============================================================";
-    public TaskList taskList;
-    public Storage storage;
+    private TaskList taskList;
+    private Storage storage;
     private Scanner scanner;
 
     private enum Command {
@@ -65,7 +65,6 @@ public class Seeyes {
         print("save: save list");
         print("load: loads the list from existing save");
         print("bye: closes the program");
-
     }
 
     public void handleUserInput(String input) throws InvalidCommandException, InvalidTaskNumberException {
@@ -224,6 +223,7 @@ public class Seeyes {
         say("Yo, I'm Seeyes!");
         say("How can I help?");
         printDivider();
+        // ui up to here
         while (true) {
             String userInput = scanner.nextLine();
             if (userInput.equals("bye")) {
