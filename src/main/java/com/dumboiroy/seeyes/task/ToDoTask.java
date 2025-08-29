@@ -1,7 +1,7 @@
 package com.dumboiroy.seeyes.task;
 
-public class ToDoTask extends Task {
-    protected ToDoTask(boolean isDone, String name) {
+public class TodoTask extends Task {
+    protected TodoTask(boolean isDone, String name) {
         super(isDone, name);
     }
 

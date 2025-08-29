@@ -1,10 +1,15 @@
 package com.dumboiroy.seeyes.parser;
 
+import java.util.Arrays;
+
+import com.dumboiroy.seeyes.command.AddTaskCommand;
 import com.dumboiroy.seeyes.command.Command;
 import com.dumboiroy.seeyes.command.DeleteCommand;
 import com.dumboiroy.seeyes.command.MarkCommand;
 import com.dumboiroy.seeyes.command.UnmarkCommand;
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
+import com.dumboiroy.seeyes.task.Task;
+import com.dumboiroy.seeyes.util.DateTimeUtils;
 
 public class Parser {
     private enum CommandType {
@@ -34,23 +39,30 @@ public class Parser {
         CommandType commandType = CommandType.fromString(split[0].trim());
 
         // depending on command, get args
+        String[] params;
         switch (commandType) {
         case MARK:
-            return new MarkCommand(parseTaskIndex(split, split[0].trim() + "<task number>"));
+            return new MarkCommand(parseTaskIndex(getArgs(split, split[0].trim() + " <task number>")));
         case UNMARK:
-            return new UnmarkCommand(parseTaskIndex(split, split[0].trim() + "<task number>"));
-        case DELETE:
-            return new DeleteCommand(parseTaskIndex(split, userInputString));
-        case TODO:
-            throw new RuntimeException("unimplemented case");
-        // TODO:
-        case DEADLINE:
-            throw new RuntimeException("unimplemented case");
-        // TODO:
 
+            return new UnmarkCommand(parseTaskIndex(getArgs(split, split[0].trim() + " <task number>")));
+        case DELETE:
+            return new DeleteCommand(parseTaskIndex(getArgs(split, split[0].trim() + " <task number>")));
+        case TODO:
+            params = parseTaskParams(commandType, getArgs(split, split[0].trim() + " <task name>"));
+            return new AddTaskCommand(Task.of(params[0]));
+        case DEADLINE:
+            params = parseTaskParams(commandType, getArgs(split, split[0].trim() + " <task name>"));
+            return new AddTaskCommand(Task.of(
+                    params[0],
+                    DateTimeUtils.parse(params[1])));
         case EVENT:
-            throw new RuntimeException("unimplemented case");
-        // TODO:
+            params = parseTaskParams(commandType, getArgs(split, split[0].trim() + " <task name>"));
+            return new AddTaskCommand(
+                    Task.of(
+                            params[0],
+                            DateTimeUtils.parse(params[1]),
+                            DateTimeUtils.parse(params[2])));
         case SAVE:
             throw new RuntimeException("unimplemented case");
         // TODO:
@@ -73,14 +85,41 @@ public class Parser {
         return null;
     }
 
-    private static int parseTaskIndex(String[] split, String usage) throws InvalidCommandException {
+    private static String getArgs(String[] split, String usage) throws InvalidCommandException {
         if (split.length < 2) {
             throw new InvalidCommandException("USAGE: " + usage);
         }
+        return split[1].trim();
+    }
+
+    private static int parseTaskIndex(String indexString) throws InvalidCommandException {
         try {
-            return Integer.parseInt(split[1].trim()) - 1;
+            return Integer.parseInt(indexString) - 1;
         } catch (NumberFormatException e) {
-            throw new InvalidCommandException("'" + split[1] + "' is not a number. Please specify a task number.");
+            throw new InvalidCommandException("'" + indexString + "' is not a number. Please specify a task number.");
+        }
+    }
+
+    private static String[] parseTaskParams(CommandType taskType, String paramString) throws InvalidCommandException {
+        switch (taskType) {
+        case TODO:
+            return new String[] { paramString };
+        case DEADLINE:
+            return Arrays.stream(paramString.split("/by"))
+                    .map(String::trim)
+                    .toArray(String[]::new);
+        // String[] nameDateSplit = paramString.split("/by");
+        // return new String[] { nameDateSplit[0].trim(), nameDateSplit[1].trim() };
+        case EVENT:
+            return Arrays.stream(paramString.split("/from"))
+                    .flatMap(x -> Arrays.stream(x.split("/to")))
+                    .map(String::trim)
+                    .toArray(String[]::new);
+        // String[] nameSplit = paramString.split("/from")
+
+        default:
+            // shouldn't reach here
+            throw new InvalidCommandException("Invalid Task Type");
         }
     }
 
