@@ -1,9 +1,39 @@
-============================================================
-Sy: Yo, I'm Seeyes!
-Sy: How can I help?
-============================================================
-Sy: Sorry, I don't understand 'hello!!'. Type /help for a list of commands.
-============================================================
+List from: ./data/data.txt loaded.
+>> ============================================================
+>> Yo, I'm Seeyes!
+>> How can I help?
+>> ============================================================
+## Enter a command:
+>> Sorry, I don't understand 'TEST:invalid_command'. Type /help for a list of commands.
+## Enter a command:
+>> Sorry, I don't understand 'hello!!'. Type /help for a list of commands.
+## Enter a command:
+>> Sorry, I don't understand 'TEST:load'. Type /help for a list of commands.
+## Enter a command:
+List from: ./data/data.txt loaded.
+## Enter a command:
+>> 	1. [T][ ] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
+>> Number of tasks in list: 3
+## Enter a command:
+>> Ok bro let's get rid of it. REMOVED: [T][X] borrow book
+>> Number of tasks in list: 2
+## Enter a command:
+>> Ok bro let's get rid of it. REMOVED: [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> Number of tasks in list: 1
+## Enter a command:
+>> Ok bro let's get rid of it. REMOVED: [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+>> Number of tasks in list: 0
+## Enter a command:
+>> Sorry, I don't understand 'TEST:/help'. Type /help for a list of commands.
+## Enter a command:
 >> list: list all events
 >> todo [taskname]
 >> deadline [taskname] /by [duedate]
@@ -14,126 +44,174 @@ Sy: Sorry, I don't understand 'hello!!'. Type /help for a list of commands.
 >> save: save list
 >> load: loads the list from existing save
 >> bye: closes the program
-============================================================
-Sy: Added: [T][ ] hello!!
+## Enter a command:
+>> Sorry, I don't understand 'TEST:todo'. Type /help for a list of commands.
+## Enter a command:
+>> Added: [T][ ] hello!!
+>> ============================================================
 >> Number of tasks in list: 1
-============================================================
-Sy: Added: [T][ ] borrow book
+## Enter a command:
+>> Added: [T][ ] borrow book
+>> ============================================================
 >> Number of tasks in list: 2
-============================================================
-Sy: Here are the tasks in your list:
->> 1. [T][ ] hello!!
->> 2. [T][ ] borrow book
-============================================================
-Sy: new deadline not added. needs at least a name and a due date.
-============================================================
-Sy: Added: [D][ ] return book (by: 31 Dec 2001, 12pm)
+## Enter a command:
+>> 	1. [T][ ] hello!!
+## 	2. [T][ ] borrow book
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> Sorry, I don't understand 'TEST:deadline'. Type /help for a list of commands.
+## Enter a command:
+>> new deadline not added. needs at least a name and a due date.
+## Enter a command:
+>> Added: [D][ ] return book (by: 31 Dec 2001, 12pm)
+>> ============================================================
 >> Number of tasks in list: 3
-============================================================
-Sy: new event not added. specify a start and end date for this event.
-============================================================
-Sy: new event not added. specify a start and end date for this event.
-============================================================
-Sy: new event not added. specify a start and end date for this event.
-============================================================
-Sy: new event not added. specify a start and end date for this event.
-============================================================
-Sy: Added: [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## Enter a command:
+>> Sorry, I don't understand 'TEST:event'. Type /help for a list of commands.
+## Enter a command:
+>> new event not added. specify a start and end date for this event.
+## Enter a command:
+>> new event not added. specify a start and end date for this event.
+## Enter a command:
+>> new event not added. specify a start and end date for this event.
+## Enter a command:
+>> new event not added. specify a start and end date for this event.
+## Enter a command:
+>> Added: [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+>> ============================================================
 >> Number of tasks in list: 4
-============================================================
-Sy: Here are the tasks in your list:
->> 1. [T][ ] hello!!
->> 2. [T][ ] borrow book
->> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
->> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
-Sy: Poggers. Let's check this off:
-[T][X] hello!!
-Keep it up!
-============================================================
-Sy: Poggers. Let's check this off:
-[T][X] borrow book
-Keep it up!
-============================================================
-Sy: invalid task number: 12
-Sy: Here are the tasks in your list:
->> 1. [T][X] hello!!
->> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
->> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
-Sy: 'asd' is not a number
-Sy: Here are the tasks in your list:
->> 1. [T][X] hello!!
->> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
->> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
-Sy: '      ' is not a number
-Sy: Here are the tasks in your list:
->> 1. [T][X] hello!!
->> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
->> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
-Sy: Here are the tasks in your list:
->> 1. [T][X] hello!!
->> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
->> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
-Sy: Shag. Ok, I've unmarked this task:
- [T][ ] hello!!
-Keep your head up king.
-============================================================
-Sy: invalid task number: 12
-Sy: Here are the tasks in your list:
->> 1. [T][ ] hello!!
->> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
->> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
-Sy: 'asd' is not a number
-Sy: Here are the tasks in your list:
->> 1. [T][ ] hello!!
->> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
->> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
-Sy: USAGE: mark/unmark/delete [task number]
-Sy: Here are the tasks in your list:
->> 1. [T][ ] hello!!
->> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
->> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
-Sy: Here are the tasks in your list:
->> 1. [T][ ] hello!!
->> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
->> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
+## Enter a command:
+>> 	1. [T][ ] hello!!
+## 	2. [T][ ] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> Sorry, I don't understand 'TEST:mark_unmark'. Type /help for a list of commands.
+## Enter a command:
+>> Poggers. Let's check this off:
+>> [T][X] hello!!
+>> Keep it up!
+## Enter a command:
+>> Poggers. Let's check this off:
+>> [T][X] borrow book
+>> Keep it up!
+## Enter a command:
+>> invalid task number: 12
+>> 	1. [T][X] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> 'asd' is not a number
+>> 	1. [T][X] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> '      ' is not a number
+>> 	1. [T][X] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> 	1. [T][X] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> Shag. Ok, I've unmarked this task:
+>> [T][ ] hello!!
+>> Keep your head up king.
+## Enter a command:
+>> invalid task number: 12
+>> 	1. [T][ ] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> 'asd' is not a number
+>> 	1. [T][ ] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> USAGE: mark/unmark/delete [task number]
+>> 	1. [T][ ] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> 	1. [T][ ] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> Sorry, I don't understand 'TEST:save_load'. Type /help for a list of commands.
+## Enter a command:
 List at ./data/data.txt has been saved.
-============================================================
-Sy: Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
+## Enter a command:
+>> invalid task number: 12
+>> 	1. [T][ ] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> Ok bro let's get rid of it. REMOVED: [T][ ] hello!!
 >> Number of tasks in list: 3
-============================================================
-Sy: Ok bro let's get rid of it. REMOVED: [T][X] borrow book
+## Enter a command:
+>> Ok bro let's get rid of it. REMOVED: [T][X] borrow book
 >> Number of tasks in list: 2
-============================================================
-Sy: Ok bro let's get rid of it. REMOVED: [D][ ] return book (by: 31 Dec 2001, 12pm)
+## Enter a command:
+>> Ok bro let's get rid of it. REMOVED: [D][ ] return book (by: 31 Dec 2001, 12pm)
 >> Number of tasks in list: 1
-============================================================
-Sy: Here are the tasks in your list:
->> 1. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
+## Enter a command:
+>> Ok bro let's get rid of it. REMOVED: [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+>> Number of tasks in list: 0
+## Enter a command:
+>> invalid task number: 1
+## Enter a command:
+## Enter a command:
 List from: ./data/data.txt loaded.
-============================================================
-Sy: Here are the tasks in your list:
->> 1. [T][ ] hello!!
->> 2. [T][X] borrow book
->> 3. [D][ ] return book (by: 31 Dec 2001, 12pm)
->> 4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-============================================================
-Sy: See you around bro!
-============================================================
+## Enter a command:
+>> 	1. [T][ ] hello!!
+## 	2. [T][X] borrow book
+## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
+## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
+## 
+>> Here are the tasks in your list:
+>> ============================================================
+## Enter a command:
+>> See you around bro!
+>> ============================================================
