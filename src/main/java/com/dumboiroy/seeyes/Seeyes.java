@@ -24,6 +24,7 @@ public class Seeyes {
         storage = new Storage(filePath);
         ui = Ui.getUi();
 
+        // initial load
         try {
             taskList = storage.load();
         } catch (SeeyesException e) {
@@ -84,7 +85,8 @@ public class Seeyes {
         while (true) {
             try {
                 userInputString = ui.getNextUserCommand();
-                CommandResult result = executeCommand(Parser.parseUserInput(userInputString).setData(taskList));
+                CommandResult result = executeCommand(
+                        Parser.parseUserInput(userInputString).setData(taskList, storage));
                 ui.showResult(result);
 
                 if (userInputString.equals("bye")) {
@@ -93,15 +95,6 @@ public class Seeyes {
             } catch (InvalidCommandException e) {
                 ui.showError(e.getMessage());
             }
-            // try {
-            // handleUserInput(userInputString);
-            // } catch (InvalidCommandException e) {
-            // ui.say(e.getMessage());
-            // } catch (InvalidTaskNumberException e) {
-            // ui.say(e.getMessage());
-            // printList();
-            // }
-
         }
 
         // Terminate
