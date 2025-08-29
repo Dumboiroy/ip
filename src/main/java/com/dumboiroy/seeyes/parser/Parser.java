@@ -9,6 +9,7 @@ import com.dumboiroy.seeyes.command.IncorrectCommand;
 import com.dumboiroy.seeyes.command.MarkCommand;
 import com.dumboiroy.seeyes.command.SaveCommand;
 import com.dumboiroy.seeyes.command.UnmarkCommand;
+import com.dumboiroy.seeyes.exception.CommandFailedException;
 import com.dumboiroy.seeyes.exception.InvalidCommandException;
 import com.dumboiroy.seeyes.task.Task;
 import com.dumboiroy.seeyes.util.DateTimeUtils;
@@ -47,7 +48,6 @@ public class Parser {
             case MARK:
                 return new MarkCommand(parseTaskIndex(getArgs(split, split[0].trim() + " <task number>")));
             case UNMARK:
-
                 return new UnmarkCommand(parseTaskIndex(getArgs(split, split[0].trim() + " <task number>")));
             case DELETE:
                 return new DeleteCommand(parseTaskIndex(getArgs(split, split[0].trim() + " <task number>")));
@@ -69,19 +69,18 @@ public class Parser {
             case SAVE:
                 return new SaveCommand();
             case LOAD:
-                throw new InvalidCommandException("unimplemented case");
+                throw new InvalidCommandException("unimplemented load");
             case HELP:
-                throw new InvalidCommandException("unimplemented case");
+                throw new InvalidCommandException("unimplemented help ");
             case LIST:
-                throw new InvalidCommandException("unimplemented case");
+                throw new InvalidCommandException("unimplemented list");
             case BYE:
-                throw new InvalidCommandException("unimplemented case");
+                throw new InvalidCommandException("unimplemented bye");
             default:
                 return new IncorrectCommand("shouldn't be here.");
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw e;
-            // return new IncorrectCommand("error");
+        } catch (CommandFailedException e) {
+            throw new CommandFailedException(e.getMessage());
         }
     }
 
@@ -113,19 +112,16 @@ public class Parser {
                 throw new InvalidCommandException("please specify a due date with '/by <duedate>'");
             }
             return params;
-        // String[] nameDateSplit = paramString.split("/by");
-        // return new String[] { nameDateSplit[0].trim(), nameDateSplit[1].trim() };
         case EVENT:
             params = Arrays.stream(paramString.split("/from"))
                     .flatMap(x -> Arrays.stream(x.split("/to")))
                     .map(String::trim)
                     .toArray(String[]::new);
-            if (params.length < 2) {
-                throw new InvalidCommandException("please specify a start and end date with '/from <start> /to <end>'");
+            if (params.length < 3) {
+                throw new InvalidCommandException(
+                        "please specify both a START and END date with '/from <start> /to <end>'");
             }
             return params;
-        // String[] nameSplit = paramString.split("/from")
-
         default:
             // shouldn't reach here
             throw new InvalidCommandException("Invalid Task Type");

@@ -8,8 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.dumboiroy.seeyes.exception.InvalidTaskTypeException;
-import com.dumboiroy.seeyes.exception.SaveException;
-import com.dumboiroy.seeyes.exception.SeeyesException;
+import com.dumboiroy.seeyes.exception.StorageException;
 import com.dumboiroy.seeyes.task.Task;
 import com.dumboiroy.seeyes.task.TaskList;
 
@@ -20,7 +19,7 @@ public class Storage {
         this.filePath = path;
     }
 
-    public TaskList load() throws SeeyesException {
+    public TaskList load() throws StorageException {
         // load file
         File file = new File(filePath);
 
@@ -37,16 +36,16 @@ public class Storage {
             }
             // System.out.println("List from: " + filePath + " loaded.");
         } catch (IOException e) {
-            throw new SeeyesException("Error while loading file: " + filePath);
+            throw new StorageException("Error while loading file: " + filePath);
         } catch (InvalidTaskTypeException e) {
-            throw new SeeyesException("Error while parsing line: " + line + "\n" + e.getMessage());
+            throw new StorageException("Error while parsing line: " + line + "\n" + e.getMessage());
         }
 
         // return arraylist of tasks
         return taskList;
     }
 
-    public String save(TaskList taskList) throws SaveException {
+    public String save(TaskList taskList) throws StorageException {
         File file = new File(filePath);
         file.getParentFile().mkdirs();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
@@ -56,7 +55,7 @@ public class Storage {
             }
             return "List at " + filePath + " has been saved.";
         } catch (IOException e) {
-            return "Unable to save list at " + filePath;
+            throw new StorageException("Unable to save list at " + filePath);
         }
     }
 }

@@ -3,10 +3,12 @@ package com.dumboiroy.seeyes.ui;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Scanner;
 
 import com.dumboiroy.seeyes.command.CommandResult;
+import com.dumboiroy.seeyes.exception.NoMoreCommandsException;
 import com.dumboiroy.seeyes.task.Task;
 
 public class Ui {
@@ -30,6 +32,9 @@ public class Ui {
     }
 
     private boolean shouldIgnore(String rawInputLine) {
+        if (isCommentLine(rawInputLine)) {
+            out.print(rawInputLine + LS);
+        }
         return rawInputLine.trim().isEmpty() || isCommentLine(rawInputLine);
     }
 
@@ -37,13 +42,17 @@ public class Ui {
         return rawInputLine.trim().matches("#.*");
     }
 
-    public String getNextUserCommand() {
-        out.print(PRINT_LINE_PREFIX + "Enter a command:\n" + USER_LINE_PREFIX);
-        String rawInputLine = in.nextLine();
-        while (shouldIgnore(rawInputLine)) {
-            rawInputLine = in.nextLine();
+    public String getNextUserCommand() throws NoMoreCommandsException {
+        try {
+            out.print(PRINT_LINE_PREFIX + "Enter a command:\n" + USER_LINE_PREFIX);
+            String rawInputLine = in.nextLine();
+            while (shouldIgnore(rawInputLine)) {
+                rawInputLine = in.nextLine();
+            }
+            return rawInputLine;
+        } catch (NoSuchElementException e) {
+            throw new NoMoreCommandsException("No more commands.");
         }
-        return rawInputLine;
     }
 
     public void say(String... message) {
