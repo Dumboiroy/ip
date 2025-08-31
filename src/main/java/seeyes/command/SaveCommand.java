@@ -9,9 +9,10 @@ import seeyes.exception.StorageException;
 public class SaveCommand extends Command {
     /**
      * Executes the save command.
-     * 
+     *
      * @return the result of the command execution
-     * @throws CommandFailedException if saving fails
+     * @throws CommandFailedException
+     *             if saving fails
      */
     @Override
     public CommandResult execute() throws CommandFailedException {

@@ -23,10 +23,12 @@ public abstract class Task {
 
         /**
          * Converts a string to a TaskType.
-         * 
-         * @param taskString the string to convert
+         *
+         * @param taskString
+         *            the string to convert
          * @return the corresponding TaskType
-         * @throws InvalidTaskTypeException if the task type is invalid
+         * @throws InvalidTaskTypeException
+         *             if the task type is invalid
          */
         public static TaskType fromString(String taskString) throws InvalidTaskTypeException {
             for (TaskType t : TaskType.values()) {
@@ -40,8 +42,9 @@ public abstract class Task {
 
     /**
      * Creates a new task with the given name.
-     * 
-     * @param name the name of the task
+     *
+     * @param name
+     *            the name of the task
      */
     protected Task(String name) {
         this.name = name;
@@ -50,9 +53,11 @@ public abstract class Task {
 
     /**
      * Creates a new task with the given completion status and name.
-     * 
-     * @param isDone whether the task is done
-     * @param name the name of the task
+     *
+     * @param isDone
+     *            whether the task is done
+     * @param name
+     *            the name of the task
      */
     protected Task(boolean isDone, String name) {
         this.name = name;
@@ -61,7 +66,7 @@ public abstract class Task {
 
     /**
      * Gets the string representation for saving to file.
-     * 
+     *
      * @return the save string
      */
     public String getSaveString() {
@@ -84,7 +89,7 @@ public abstract class Task {
 
     /**
      * Gets the string representation of the task.
-     * 
+     *
      * @return the string representation
      */
     @Override
@@ -94,8 +99,9 @@ public abstract class Task {
 
     /**
      * Creates a todo task with the given name.
-     * 
-     * @param name the name of the task
+     *
+     * @param name
+     *            the name of the task
      * @return a new todo task
      */
     public static Task of(String name) {
@@ -104,9 +110,11 @@ public abstract class Task {
 
     /**
      * Creates a deadline task with the given name and due date.
-     * 
-     * @param name the name of the task
-     * @param dateDue the due date
+     *
+     * @param name
+     *            the name of the task
+     * @param dateDue
+     *            the due date
      * @return a new deadline task
      */
     public static Task of(String name, LocalDateTime dateDue) {
@@ -115,10 +123,13 @@ public abstract class Task {
 
     /**
      * Creates an event task with the given name, start time, and end time.
-     * 
-     * @param name the name of the task
-     * @param start the start time
-     * @param end the end time
+     *
+     * @param name
+     *            the name of the task
+     * @param start
+     *            the start time
+     * @param end
+     *            the end time
      * @return a new event task
      */
     public static Task of(String name, LocalDateTime start, LocalDateTime end) {
@@ -127,8 +138,9 @@ public abstract class Task {
 
     /**
      * Creates a task from a saved string representation.
-     * 
-     * @param taskString the string representation from file
+     *
+     * @param taskString
+     *            the string representation from file
      * @return the reconstructed task
      */
     public static Task fromString(String taskString) {

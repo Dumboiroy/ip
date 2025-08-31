@@ -16,9 +16,11 @@ public abstract class Command {
 
     /**
      * Sets the task list and storage for this command.
-     * 
-     * @param taskList the task list to operate on
-     * @param storage the storage instance for persistence
+     *
+     * @param taskList
+     *            the task list to operate on
+     * @param storage
+     *            the storage instance for persistence
      * @return this command instance for method chaining
      */
     public Command setData(TaskList taskList, Storage storage) {
@@ -29,7 +31,7 @@ public abstract class Command {
 
     /**
      * Executes the command and returns the result.
-     * 
+     *
      * @return the result of executing the command
      */
     public abstract CommandResult execute();

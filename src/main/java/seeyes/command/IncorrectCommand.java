@@ -8,8 +8,9 @@ public class IncorrectCommand extends Command {
 
     /**
      * Creates an incorrect command with an error message.
-     * 
-     * @param errorMessage the error message to display
+     *
+     * @param errorMessage
+     *            the error message to display
      */
     public IncorrectCommand(String errorMessage) {
         this.errorMessage = errorMessage;
@@ -17,7 +18,7 @@ public class IncorrectCommand extends Command {
 
     /**
      * Executes the incorrect command.
-     * 
+     *
      * @return the result of the command execution
      */
     @Override

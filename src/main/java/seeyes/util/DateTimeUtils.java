@@ -12,10 +12,12 @@ import seeyes.exception.InvalidCommandException;
 public class DateTimeUtils {
     /**
      * Parses a date-time string into a LocalDateTime object.
-     * 
-     * @param dateTimeString the date-time string to parse
+     *
+     * @param dateTimeString
+     *            the date-time string to parse
      * @return the parsed LocalDateTime
-     * @throws InvalidCommandException if parsing fails
+     * @throws InvalidCommandException
+     *             if parsing fails
      */
     public static LocalDateTime parse(String dateTimeString) throws InvalidCommandException {
         try {
@@ -27,8 +29,9 @@ public class DateTimeUtils {
 
     /**
      * Converts a LocalDateTime to a human-readable string.
-     * 
-     * @param dateTime the LocalDateTime to convert
+     *
+     * @param dateTime
+     *            the LocalDateTime to convert
      * @return the formatted string
      */
     public static String dateTimeToString(LocalDateTime dateTime) {
@@ -37,8 +40,9 @@ public class DateTimeUtils {
 
     /**
      * Converts a LocalDateTime to a string for saving to file.
-     * 
-     * @param dateTime the LocalDateTime to convert
+     *
+     * @param dateTime
+     *            the LocalDateTime to convert
      * @return the formatted string for saving
      */
     public static String dateTimeToSaveString(LocalDateTime dateTime) {

@@ -9,9 +9,10 @@ import seeyes.exception.StorageException;
 public class LoadCommand extends Command {
     /**
      * Executes the load command.
-     * 
+     *
      * @return the result of the command execution
-     * @throws CommandFailedException if loading fails
+     * @throws CommandFailedException
+     *             if loading fails
      */
     @Override
     public CommandResult execute() throws CommandFailedException {

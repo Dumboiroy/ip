@@ -11,14 +11,15 @@ import seeyes.task.TaskList;
  */
 public class CommandResult {
     /** The message to display to the user. */
-    public String message;
+    private String message;
     private TaskList taskList;
     private List<? extends Task> resultTasks;
 
     /**
      * Creates a command result with just a message.
-     * 
-     * @param message the message to display
+     *
+     * @param message
+     *            the message to display
      */
     public CommandResult(String message) {
         this.message = message;
@@ -26,9 +27,11 @@ public class CommandResult {
 
     /**
      * Creates a command result with a message and task list.
-     * 
-     * @param message the message to display
-     * @param taskList the updated task list
+     *
+     * @param message
+     *            the message to display
+     * @param taskList
+     *            the updated task list
      */
     public CommandResult(String message, TaskList taskList) {
         this.message = message;
@@ -37,9 +40,11 @@ public class CommandResult {
 
     /**
      * Creates a command result with a message and result tasks.
-     * 
-     * @param message the message to display
-     * @param resultTasks the tasks to display
+     *
+     * @param message
+     *            the message to display
+     * @param resultTasks
+     *            the tasks to display
      */
     public CommandResult(String message, List<? extends Task> resultTasks) {
         this.message = message;
@@ -48,7 +53,7 @@ public class CommandResult {
 
     /**
      * Gets the result tasks if present.
-     * 
+     *
      * @return optional containing result tasks
      */
     public Optional<List<? extends Task>> getResultTasks() {
@@ -57,11 +62,20 @@ public class CommandResult {
 
     /**
      * Gets the task list if present.
-     * 
+     *
      * @return optional containing task list
      */
     public Optional<TaskList> getTaskList() {
         return Optional.ofNullable(taskList);
+    }
+
+    /**
+     * Gets the message of the command result.
+     *
+     * @return String containing command result message
+     */
+    public String getMessage() {
+        return message;
     }
 
 }

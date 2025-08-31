@@ -20,9 +20,11 @@ public class Storage {
 
     /**
      * Creates a storage instance with the specified file path.
-     * 
-     * @param filePath the path to the storage file
-     * @param taskList the task list (not used in current implementation)
+     *
+     * @param filePath
+     *            the path to the storage file
+     * @param taskList
+     *            the task list (not used in current implementation)
      */
     public Storage(String filePath, TaskList taskList) {
         this.filePath = filePath;
@@ -30,9 +32,10 @@ public class Storage {
 
     /**
      * Loads tasks from the storage file.
-     * 
+     *
      * @return the loaded task list
-     * @throws StorageException if loading fails
+     * @throws StorageException
+     *             if loading fails
      */
     public TaskList load() throws StorageException {
         // load file
@@ -62,10 +65,12 @@ public class Storage {
 
     /**
      * Saves the task list to the storage file.
-     * 
-     * @param taskList the task list to save
+     *
+     * @param taskList
+     *            the task list to save
      * @return a success message
-     * @throws StorageException if saving fails
+     * @throws StorageException
+     *             if saving fails
      */
     public String save(TaskList taskList) throws StorageException {
         File file = new File(filePath);
