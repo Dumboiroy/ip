@@ -13,12 +13,20 @@ import seeyes.task.Task;
 import seeyes.task.TaskList;
 import seeyes.ui.Ui;
 
+/**
+ * Main class for the Seeyes task management application.
+ */
 public class Seeyes {
     private TaskList taskList;
     private Storage storage;
     private Scanner scanner;
     private Ui ui;
 
+    /**
+     * Creates a new Seeyes application instance.
+     * 
+     * @param filePath the path to the data file
+     */
     public Seeyes(String filePath) {
         scanner = new Scanner(System.in);
         storage = new Storage(filePath, taskList);
@@ -41,6 +49,9 @@ public class Seeyes {
     // System.out.println(">> " + str);
     // }
 
+    /**
+     * Prints the current size of the task list.
+     */
     public void printListSize() {
         ui.say("Number of tasks in list: " + taskList.size());
     }
@@ -58,10 +69,18 @@ public class Seeyes {
     // "load: loads the list from existing save", "bye: closes the program");
     // }
 
+    /**
+     * Sets the task list.
+     * 
+     * @param taskList the task list to set
+     */
     public void setTaskList(TaskList taskList) {
         this.taskList = taskList;
     }
 
+    /**
+     * Prints the current task list.
+     */
     public void printList() {
         CommandResult result;
         if (taskList.size() == 0) {
@@ -73,6 +92,11 @@ public class Seeyes {
         ui.showResult(result);
     }
 
+    /**
+     * Adds a task to the list and displays the result.
+     * 
+     * @param task the task to add
+     */
     public void addToList(Task task) {
         CommandResult result;
         if (taskList.addTask(task)) {
@@ -84,10 +108,19 @@ public class Seeyes {
         printListSize();
     }
 
+    /**
+     * Executes a command and returns the result.
+     * 
+     * @param command the command to execute
+     * @return the result of the command execution
+     */
     private CommandResult executeCommand(Command command) {
         return command.execute();
     }
 
+    /**
+     * Runs the main application loop.
+     */
     public void run() {
         ui.showWelcomeMessage();
 
@@ -118,11 +151,19 @@ public class Seeyes {
         exit();
     }
 
+    /**
+     * Exits the application.
+     */
     private void exit() {
         ui.showFarewellMessage();
         System.exit(0);
     }
 
+    /**
+     * Main method to start the application.
+     * 
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         new Seeyes("./data/data.txt").run();
     }

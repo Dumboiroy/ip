@@ -1,6 +1,14 @@
 package seeyes.command;
 
+/**
+ * Command to display help information.
+ */
 public class HelpCommand extends Command {
+    /**
+     * Executes the help command.
+     * 
+     * @return the result of the command execution
+     */
     @Override
     public CommandResult execute() {
         return new CommandResult("list: list all events" + "\n" + "todo [taskname]" + "\n"
