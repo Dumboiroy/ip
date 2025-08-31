@@ -2,6 +2,8 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'checkstyle'                    // Code style checking
+    id 'jacoco'                        // Code coverage
 }
 
 repositories {
@@ -28,14 +30,19 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("seeyes.Seeyes")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "seeyes"
     archiveClassifier = null
 }
 
 run{
     standardInput = System.in
+}
+
+// Checkstyle configuration
+checkstyle {
+    toolVersion = '11.0.0'
 }
