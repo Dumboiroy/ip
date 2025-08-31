@@ -1,6 +1,7 @@
 package seeyes.task;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a list of tasks.
@@ -22,6 +23,15 @@ public class TaskList {
      */
     public int size() {
         return list.size();
+    }
+
+    /**
+     * Gets the underlying list of tasks.
+     *
+     * @return the list of tasks
+     */
+    public ArrayList<Task> getTaskList() {
+        return list;
     }
 
     /**
@@ -58,11 +68,14 @@ public class TaskList {
     }
 
     /**
-     * Gets the underlying list of tasks.
+     * Returns a list of tasks whose names contain the specified query string.
      *
-     * @return the list of tasks
+     * @param queryString
+     *            the string to search for in each task's name
+     * @return a list of matching tasks
      */
-    public ArrayList<Task> getTaskList() {
-        return list;
+    public List<Task> queryName(String queryString) {
+        return list.stream().filter(task -> task.filterName(queryString)).toList();
     }
+
 }

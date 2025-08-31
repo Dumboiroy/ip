@@ -6,6 +6,7 @@ import seeyes.command.AddTaskCommand;
 import seeyes.command.Command;
 import seeyes.command.DeleteCommand;
 import seeyes.command.ExitCommand;
+import seeyes.command.FindCommand;
 import seeyes.command.HelpCommand;
 import seeyes.command.IncorrectCommand;
 import seeyes.command.ListCommand;
@@ -23,7 +24,7 @@ import seeyes.util.DateTimeUtils;
  */
 public class Parser {
     private enum CommandType {
-        LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"),
+        LIST("list"), FIND("find"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"),
         DELETE("delete"), SAVE("save"), LOAD("load"), HELP("/help"), BYE("bye");
 
         private final String keyword;
@@ -94,6 +95,9 @@ public class Parser {
                 return new HelpCommand();
             case LIST:
                 return new ListCommand();
+            case FIND:
+                params = parseTaskParams(commandType, getArgs(split, split[0].trim() + " <task name>"));
+                return new FindCommand(params[0]);
             case BYE:
                 return new ExitCommand();
             default:
@@ -154,6 +158,7 @@ public class Parser {
         String[] params;
         switch (taskType) {
         case TODO:
+        case FIND:
             return new String[] { paramString };
         case DEADLINE:
             params = Arrays.stream(paramString.split("/by")).map(String::trim).toArray(String[]::new);
