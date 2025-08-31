@@ -42,6 +42,10 @@ public abstract class Task {
         return String.valueOf(isDone ? 1 : 0) + "|" + name + "|";
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void markAsDone() {
         isDone = true;
     }

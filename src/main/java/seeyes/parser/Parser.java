@@ -6,6 +6,7 @@ import seeyes.command.AddTaskCommand;
 import seeyes.command.Command;
 import seeyes.command.DeleteCommand;
 import seeyes.command.ExitCommand;
+import seeyes.command.FindCommand;
 import seeyes.command.HelpCommand;
 import seeyes.command.IncorrectCommand;
 import seeyes.command.ListCommand;
@@ -21,7 +22,7 @@ import seeyes.util.DateTimeUtils;
 public class Parser {
     private enum CommandType {
         LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"),
-        DELETE("delete"), SAVE("save"), LOAD("load"), HELP("/help"), BYE("bye");
+        DELETE("delete"), SAVE("save"), LOAD("load"), HELP("/help"), FIND("find"), BYE("bye");
 
         private final String keyword;
 
@@ -73,6 +74,8 @@ public class Parser {
                 return new HelpCommand();
             case LIST:
                 return new ListCommand();
+            case FIND:
+                return new FindCommand(getArgs(split, split[0].trim() + " <keyword>"));
             case BYE:
                 return new ExitCommand();
             default:

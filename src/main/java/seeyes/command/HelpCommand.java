@@ -6,7 +6,7 @@ public class HelpCommand extends Command {
         return new CommandResult("list: list all events" + "\n" + "todo [taskname]" + "\n"
                 + "deadline [taskname] /by [duedate]" + "\n" + "event [taskname] /from [startdate] /to [enddate]" + "\n"
                 + "mark [task number]: mark a task" + "\n" + "unmark [task number]: unmark a task" + "\n"
-                + "delete [task number]: delete a task" + "\n" + "save: save list" + "\n"
-                + "load: loads the list from existing save" + "\n" + "bye: closes the program");
+                + "delete [task number]: delete a task" + "\n" + "find [keyword]: find tasks containing keyword" + "\n"
+                + "save: save list" + "\n" + "load: loads the list from existing save" + "\n" + "bye: closes the program");
     }
 }
