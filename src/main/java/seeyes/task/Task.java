@@ -81,6 +81,5 @@ public abstract class Task {
         default:
             throw new InvalidTaskTypeException("Invalid task type " + taskString.substring(0, 2) + ".");
         }
-
     }
 }

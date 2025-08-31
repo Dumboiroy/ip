@@ -46,3 +46,26 @@ run{
 checkstyle {
     toolVersion = '11.0.0'
 }
+
+
+// Task to create test directory structure mirroring main
+task createTestStructure {
+    doLast {
+        def mainJavaDir = file('src/main/java')
+        def testJavaDir = file('src/test/java')
+        
+        if (mainJavaDir.exists()) {
+            mainJavaDir.eachDirRecurse { dir ->
+                def relativePath = mainJavaDir.toPath().relativize(dir.toPath())
+                def testDir = new File(testJavaDir, relativePath.toString())
+                if (!testDir.exists()) {
+                    testDir.mkdirs()
+                    println "Created: ${testDir.path}"
+                }
+            }
+            println "Test directory structure created successfully!"
+        } else {
+            println "Main source directory not found!"
+        }
+    }
+}
