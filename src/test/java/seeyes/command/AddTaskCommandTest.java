@@ -33,7 +33,7 @@ public class AddTaskCommandTest {
         CommandResult result = addTaskCommand.execute();
 
         // Assert
-        assertTrue(result.message.contains("Successfully added:"));
+        assertTrue(result.message.contains("Added:"));
         assertTrue(result.message.contains("Buy groceries"));
         assertTrue(result.message.contains("[T]"));
         assertEquals(1, taskList.size()); // Task should be added to list
@@ -52,7 +52,7 @@ public class AddTaskCommandTest {
         CommandResult result = addTaskCommand.execute();
 
         // Assert
-        assertTrue(result.message.contains("Successfully added:"));
+        assertTrue(result.message.contains("Added:"));
         assertTrue(result.message.contains("Submit assignment"));
         assertTrue(result.message.contains("[D]"));
         assertEquals(1, taskList.size()); // Task should be added to list
@@ -73,7 +73,7 @@ public class AddTaskCommandTest {
         CommandResult result = addTaskCommand.execute();
 
         // Assert
-        assertTrue(result.message.contains("Successfully added:"));
+        assertTrue(result.message.contains("Added:"));
         assertTrue(result.message.contains("Project Meeting"));
         assertTrue(result.message.contains("[E]"));
         assertEquals(1, taskList.size()); // Task should be added to list

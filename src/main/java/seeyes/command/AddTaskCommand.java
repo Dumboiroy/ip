@@ -11,10 +11,6 @@ public class AddTaskCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        if (taskList.addTask(task)) {
-            return new CommandResult("Successfully added:\n" + task);
-        } else {
-            return new CommandResult("Unable to add task.");
-        }
+        return taskList.addTaskWithResult(task);
     }
 }

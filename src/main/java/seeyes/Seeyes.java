@@ -33,53 +33,21 @@ public class Seeyes {
         }
     }
 
-    // public static void say(String str) {
-    // System.out.println("Sy: " + str);
-    // }
-
-    // public static void print(String str) {
-    // System.out.println(">> " + str);
-    // }
-
     public void printListSize() {
         ui.say("Number of tasks in list: " + taskList.size());
     }
-
-    // public void printCommands() {
-    // ui.print("list: list all events", "todo [taskname]", "deadline [taskname]
-    // /by
-    // [duedate]",
-    // "event [taskname] /from [startdate] /to [enddate]", "mark [task number]:
-    // mark
-    // a task",
-    // "unmark [task number]: unmark a task", "delete [task number]: delete a
-    // task",
-    // "save: save list",
-    // "load: loads the list from existing save", "bye: closes the program");
-    // }
 
     public void setTaskList(TaskList taskList) {
         this.taskList = taskList;
     }
 
     public void printList() {
-        CommandResult result;
-        if (taskList.size() == 0) {
-            result = new CommandResult("list is empty! add your first item with 'todo [item]'.");
-            return;
-        } else {
-            result = new CommandResult("You have " + taskList.size() + " items in your list.", taskList.getTaskList());
-        }
+        CommandResult result = taskList.createListCommandResult();
         ui.showResult(result);
     }
 
     public void addToList(Task task) {
-        CommandResult result;
-        if (taskList.addTask(task)) {
-            result = new CommandResult("Added: " + task.toString());
-        } else {
-            result = new CommandResult("Failed to add: " + task.toString());
-        }
+        CommandResult result = taskList.addTaskWithResult(task);
         ui.showResult(result);
         printListSize();
     }
