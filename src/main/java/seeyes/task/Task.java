@@ -88,16 +88,6 @@ public abstract class Task {
     }
 
     /**
-     * Gets the string representation of the task.
-     *
-     * @return the string representation
-     */
-    @Override
-    public String toString() {
-        return "[" + (isDone ? "X" : " ") + "] " + name;
-    }
-
-    /**
      * Creates a todo task with the given name.
      *
      * @param name
@@ -157,5 +147,26 @@ public abstract class Task {
         default:
             throw new InvalidTaskTypeException("Invalid task type " + taskString.substring(0, 2) + ".");
         }
+    }
+
+    /**
+     * Checks if the task's name contains the specified query string.
+     *
+     * @param queryString
+     *            the string to search for in the task's name
+     * @return true if the task's name contains the query string, false otherwise
+     */
+    public boolean filterName(String queryString) {
+        return name.contains(queryString);
+    }
+
+    /**
+     * Gets the string representation of the task.
+     *
+     * @return the string representation
+     */
+    @Override
+    public String toString() {
+        return "[" + (isDone ? "X" : " ") + "] " + name;
     }
 }
