@@ -2,6 +2,10 @@ package seeyes.task;
 
 import java.util.ArrayList;
 
+/**
+ * Manages a list of tasks for the Seeyes application.
+ * Provides methods to add, remove, and access tasks in the list.
+ */
 public class TaskList {
     private ArrayList<Task> list;
 

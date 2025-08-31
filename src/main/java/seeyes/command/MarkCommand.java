@@ -2,6 +2,10 @@ package seeyes.command;
 
 import seeyes.exception.InvalidCommandException;
 
+/**
+ * Command to mark a task as completed.
+ * Marks the task at the specified index as done.
+ */
 public class MarkCommand extends Command {
     private int indexToMark;
 

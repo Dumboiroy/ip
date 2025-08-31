@@ -2,6 +2,10 @@ package seeyes.command;
 
 import seeyes.exception.InvalidCommandException;
 
+/**
+ * Command to unmark a task as not completed.
+ * Marks the task at the specified index as not done.
+ */
 public class UnmarkCommand extends Command {
     private int indexToMark;
 

@@ -18,6 +18,11 @@ import seeyes.exception.InvalidCommandException;
 import seeyes.task.Task;
 import seeyes.util.DateTimeUtils;
 
+/**
+ * Parses user input strings into executable commands.
+ * Handles various command types and their parameters, converting them into
+ * appropriate Command objects for execution.
+ */
 public class Parser {
     private enum CommandType {
         LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"),
@@ -40,6 +45,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a user input string and returns the corresponding command.
+     * Identifies the command type and extracts any required parameters,
+     * then creates the appropriate Command object.
+     *
+     * @param userInputString the user's input string
+     * @return the parsed Command object
+     * @throws InvalidCommandException if the input cannot be parsed or is invalid
+     */
     public static Command parseUserInput(String userInputString) throws InvalidCommandException {
         // get command
         String[] split = userInputString.split(" ", 2);

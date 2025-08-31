@@ -13,12 +13,24 @@ import seeyes.task.Task;
 import seeyes.task.TaskList;
 import seeyes.ui.Ui;
 
+/**
+ * Main class for the Seeyes task management application.
+ * Seeyes is a chatbot that helps users manage their tasks with support for
+ * todo items, deadlines, and events.
+ */
 public class Seeyes {
     private TaskList taskList;
     private Storage storage;
     private Scanner scanner;
     private Ui ui;
 
+    /**
+     * Constructs a new Seeyes instance with the specified data file path.
+     * Initializes the scanner, storage, and UI components, then attempts to load
+     * existing tasks from the data file.
+     *
+     * @param filePath the path to the data file for storing tasks
+     */
     public Seeyes(String filePath) {
         scanner = new Scanner(System.in);
         storage = new Storage(filePath, taskList);
@@ -41,6 +53,9 @@ public class Seeyes {
     // System.out.println(">> " + str);
     // }
 
+    /**
+     * Prints the current number of tasks in the task list.
+     */
     public void printListSize() {
         ui.say("Number of tasks in list: " + taskList.size());
     }
@@ -58,10 +73,19 @@ public class Seeyes {
     // "load: loads the list from existing save", "bye: closes the program");
     // }
 
+    /**
+     * Sets the task list for this Seeyes instance.
+     *
+     * @param taskList the task list to set
+     */
     public void setTaskList(TaskList taskList) {
         this.taskList = taskList;
     }
 
+    /**
+     * Displays all tasks in the current task list.
+     * Shows a message indicating the list is empty if there are no tasks.
+     */
     public void printList() {
         CommandResult result;
         if (taskList.size() == 0) {
@@ -73,6 +97,12 @@ public class Seeyes {
         ui.showResult(result);
     }
 
+    /**
+     * Adds a task to the task list and displays the result.
+     * Also prints the updated list size after adding the task.
+     *
+     * @param task the task to add to the list
+     */
     public void addToList(Task task) {
         CommandResult result;
         if (taskList.addTask(task)) {
@@ -88,6 +118,11 @@ public class Seeyes {
         return command.execute();
     }
 
+    /**
+     * Starts the main application loop.
+     * Shows welcome message, processes user commands until "bye" is entered,
+     * then performs cleanup and exits.
+     */
     public void run() {
         ui.showWelcomeMessage();
 

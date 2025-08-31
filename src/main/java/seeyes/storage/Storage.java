@@ -12,6 +12,10 @@ import seeyes.exception.StorageException;
 import seeyes.task.Task;
 import seeyes.task.TaskList;
 
+/**
+ * Handles loading and saving task lists to and from persistent storage.
+ * Uses a file-based storage system to persist tasks between application runs.
+ */
 public class Storage {
     private final String filePath;
 
@@ -19,6 +23,13 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from the storage file.
+     * Creates a new task list from the tasks stored in the file.
+     *
+     * @return the loaded task list
+     * @throws StorageException if there are issues reading the file or parsing tasks
+     */
     public TaskList load() throws StorageException {
         // load file
         File file = new File(filePath);
@@ -45,6 +56,14 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves the task list to the storage file.
+     * Writes all tasks in the task list to the file in a format that can be loaded later.
+     *
+     * @param taskList the task list to save
+     * @return a success message indicating the file was saved
+     * @throws StorageException if there are issues writing to the file
+     */
     public String save(TaskList taskList) throws StorageException {
         File file = new File(filePath);
         file.getParentFile().mkdirs();

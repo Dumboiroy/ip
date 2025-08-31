@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 
 import seeyes.util.DateTimeUtils;
 
+/**
+ * Represents an event task with a start and end time.
+ * This task type includes both a start time and end time for the event.
+ */
 public class EventTask extends Task {
     private LocalDateTime start;
     private LocalDateTime end;

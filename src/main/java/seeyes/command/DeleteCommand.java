@@ -2,6 +2,10 @@ package seeyes.command;
 
 import seeyes.exception.InvalidCommandException;
 
+/**
+ * Command to delete a task from the task list.
+ * Removes the task at the specified index from the task list.
+ */
 public class DeleteCommand extends Command {
     private int indexToMark;
 

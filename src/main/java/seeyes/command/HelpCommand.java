@@ -1,5 +1,9 @@
 package seeyes.command;
 
+/**
+ * Command to display help information.
+ * Shows available commands and their usage when executed.
+ */
 public class HelpCommand extends Command {
     @Override
     public CommandResult execute() {

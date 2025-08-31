@@ -2,6 +2,10 @@ package seeyes.command;
 
 import seeyes.task.Task;
 
+/**
+ * Command to add a task to the task list.
+ * Takes a task object and adds it to the current task list.
+ */
 public class AddTaskCommand extends Command {
     private Task task;
 

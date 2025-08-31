@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 
 import seeyes.util.DateTimeUtils;
 
+/**
+ * Represents a task with a deadline.
+ * This task type includes a due date/time by which the task should be completed.
+ */
 public class DeadlineTask extends Task {
     private LocalDateTime dateDue;
 

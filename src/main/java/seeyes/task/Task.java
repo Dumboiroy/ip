@@ -5,6 +5,11 @@ import java.time.LocalDateTime;
 import seeyes.exception.InvalidTaskTypeException;
 import seeyes.util.DateTimeUtils;
 
+/**
+ * Abstract base class representing a task in the Seeyes application.
+ * Tasks can be marked as done or not done, and have different types
+ * (todo, deadline, event) with specific implementations.
+ */
 public abstract class Task {
     private String name;
     private boolean isDone;
@@ -67,6 +72,14 @@ public abstract class Task {
         return new EventTask(false, name, start, end);
     }
 
+    /**
+     * Creates a Task from a string representation used for persistence.
+     * Parses the task type and parameters to create the appropriate Task subclass.
+     *
+     * @param taskString the string representation of the task (format: TYPE|done|name|...)
+     * @return the constructed Task object
+     * @throws InvalidTaskTypeException if the task type is not recognized
+     */
     public static Task fromString(String taskString) {
         TaskType type = TaskType.fromString(taskString);
         String[] params = taskString.split("\\|");
