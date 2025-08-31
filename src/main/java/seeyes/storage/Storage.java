@@ -12,13 +12,28 @@ import seeyes.exception.StorageException;
 import seeyes.task.Task;
 import seeyes.task.TaskList;
 
+/**
+ * Handles loading and saving of tasks to file storage.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Creates a storage instance with the specified file path.
+     * 
+     * @param filePath the path to the storage file
+     * @param taskList the task list (not used in current implementation)
+     */
     public Storage(String filePath, TaskList taskList) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from the storage file.
+     * 
+     * @return the loaded task list
+     * @throws StorageException if loading fails
+     */
     public TaskList load() throws StorageException {
         // load file
         File file = new File(filePath);
@@ -45,6 +60,13 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves the task list to the storage file.
+     * 
+     * @param taskList the task list to save
+     * @return a success message
+     * @throws StorageException if saving fails
+     */
     public String save(TaskList taskList) throws StorageException {
         File file = new File(filePath);
         file.getParentFile().mkdirs();

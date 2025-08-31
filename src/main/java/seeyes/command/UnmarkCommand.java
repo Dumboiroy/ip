@@ -2,13 +2,27 @@ package seeyes.command;
 
 import seeyes.exception.InvalidCommandException;
 
+/**
+ * Command to unmark a task as not done.
+ */
 public class UnmarkCommand extends Command {
     private int indexToMark;
 
+    /**
+     * Creates an unmark command.
+     * 
+     * @param indexToMark the index of the task to unmark
+     */
     public UnmarkCommand(int indexToMark) {
         this.indexToMark = indexToMark;
     }
 
+    /**
+     * Executes the unmark command.
+     * 
+     * @return the result of the command execution
+     * @throws InvalidCommandException if the task index is invalid
+     */
     @Override
     public CommandResult execute() throws InvalidCommandException {
         try {

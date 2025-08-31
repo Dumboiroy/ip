@@ -18,6 +18,9 @@ import seeyes.exception.InvalidCommandException;
 import seeyes.task.Task;
 import seeyes.util.DateTimeUtils;
 
+/**
+ * Parses user input into commands.
+ */
 public class Parser {
     private enum CommandType {
         LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"),
@@ -29,6 +32,13 @@ public class Parser {
             this.keyword = keyword;
         }
 
+        /**
+         * Extracts a CommandType from a given command string.
+         * 
+         * @param commandString the command string
+         * @return the corresponding CommandType
+         * @throws InvalidCommandException if the command is not recognized
+         */
         public static CommandType fromString(String commandString) throws InvalidCommandException {
             for (CommandType c : CommandType.values()) {
                 if (c.keyword.equalsIgnoreCase(commandString)) {
@@ -40,6 +50,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses user input string into a command object.
+     * 
+     * @param userInputString the user input to parse
+     * @return the parsed command
+     * @throws InvalidCommandException if the input is invalid
+     */
     public static Command parseUserInput(String userInputString) throws InvalidCommandException {
         // get command
         String[] split = userInputString.split(" ", 2);
@@ -83,6 +100,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Extracts arguments from split command.
+     * 
+     * @param split the split command array
+     * @param usage the usage string for error messages
+     * @return the arguments string
+     * @throws InvalidCommandException if no arguments are provided
+     */
     private static String getArgs(String[] split, String usage) throws InvalidCommandException {
         if (split.length < 2) {
             throw new InvalidCommandException("USAGE: " + usage);
@@ -90,6 +115,13 @@ public class Parser {
         return split[1].trim();
     }
 
+    /**
+     * Parses a task index from string.
+     * 
+     * @param indexString the index string to parse
+     * @return the zero-based index
+     * @throws InvalidCommandException if the string is not a valid number
+     */
     private static int parseTaskIndex(String indexString) throws InvalidCommandException {
         try {
             return Integer.parseInt(indexString) - 1;
@@ -98,6 +130,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses parameters for task creation commands.
+     * 
+     * @param taskType the type of task
+     * @param paramString the parameter string to parse
+     * @return array of parsed parameters
+     * @throws InvalidCommandException if parameters are invalid
+     */
     private static String[] parseTaskParams(CommandType taskType, String paramString) throws InvalidCommandException {
         String[] params;
         switch (taskType) {
