@@ -74,12 +74,8 @@ public class Ui {
 
     public void showResult(CommandResult result) {
         final Optional<List<? extends Task>> resultTasks = result.getResultTasks();
-        final Optional<TaskList> taskList = result.getTaskList();
         if (resultTasks.isPresent()) {
             showResultTasks(resultTasks.get());
-        }
-        if (taskList.isPresent()) {
-            showResultTasks(taskList.get().getTaskList());
         }
         say(result.message, DIVIDER);
     }

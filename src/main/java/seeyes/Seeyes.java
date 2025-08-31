@@ -66,7 +66,6 @@ public class Seeyes {
         CommandResult result;
         if (taskList.size() == 0) {
             result = new CommandResult("list is empty! add your first item with 'todo [item]'.");
-            return;
         } else {
             result = new CommandResult("You have " + taskList.size() + " items in your list.", taskList.getTaskList());
         }
@@ -97,9 +96,6 @@ public class Seeyes {
                 userInputString = ui.getNextUserCommand();
                 CommandResult result = executeCommand(
                         Parser.parseUserInput(userInputString).setData(taskList, storage));
-                if (result.getTaskList().isPresent()) {
-                    taskList = result.getTaskList().get();
-                }
                 ui.showResult(result);
 
                 if (userInputString.equals("bye")) {
