@@ -12,10 +12,13 @@ public class DeadlineTask extends Task {
 
     /**
      * Creates a deadline task.
-     * 
-     * @param isDone whether the task is done
-     * @param name the name of the task
-     * @param dateDue the due date
+     *
+     * @param isDone
+     *            whether the task is done
+     * @param name
+     *            the name of the task
+     * @param dateDue
+     *            the due date
      */
     protected DeadlineTask(boolean isDone, String name, LocalDateTime dateDue) {
         super(isDone, name);
@@ -24,7 +27,7 @@ public class DeadlineTask extends Task {
 
     /**
      * Gets the string representation for saving to file.
-     * 
+     *
      * @return the save string
      */
     @Override
@@ -34,7 +37,7 @@ public class DeadlineTask extends Task {
 
     /**
      * Gets the string representation of the deadline task.
-     * 
+     *
      * @return the string representation
      */
     @Override

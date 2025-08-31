@@ -10,8 +10,9 @@ public class AddTaskCommand extends Command {
 
     /**
      * Creates an add task command.
-     * 
-     * @param task the task to add
+     *
+     * @param task
+     *            the task to add
      */
     public AddTaskCommand(Task task) {
         this.task = task;
@@ -19,7 +20,7 @@ public class AddTaskCommand extends Command {
 
     /**
      * Executes the add task command.
-     * 
+     *
      * @return the result of the command execution
      */
     @Override

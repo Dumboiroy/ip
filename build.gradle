@@ -53,7 +53,7 @@ task createTestStructure {
     doLast {
         def mainJavaDir = file('src/main/java')
         def testJavaDir = file('src/test/java')
-        
+
         if (mainJavaDir.exists()) {
             mainJavaDir.eachDirRecurse { dir ->
                 def relativePath = mainJavaDir.toPath().relativize(dir.toPath())

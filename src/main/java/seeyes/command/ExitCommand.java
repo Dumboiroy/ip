@@ -6,7 +6,7 @@ package seeyes.command;
 public class ExitCommand extends Command {
     /**
      * Executes the exit command.
-     * 
+     *
      * @return the result of the command execution
      */
     @Override

@@ -15,7 +15,7 @@
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
+##
 >> Load Success.
 >> ============================================================
 >> Enter a command:
@@ -23,7 +23,7 @@
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
+##
 >> End of list.
 >> ============================================================
 >> Enter a command:
@@ -67,7 +67,7 @@
 >> Enter a command:
 >> 	1. [T][ ] hello!!
 ## 	2. [T][ ] borrow book
-## 
+##
 >> End of list.
 >> ============================================================
 >> Enter a command:
@@ -99,7 +99,7 @@
 ## 	2. [T][ ] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
+##
 >> End of list.
 >> ============================================================
 >> Enter a command:
@@ -126,7 +126,7 @@
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
+##
 >> End of list.
 >> ============================================================
 >> Enter a command:
@@ -145,7 +145,7 @@
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
+##
 >> End of list.
 >> ============================================================
 >> Enter a command:
@@ -171,7 +171,7 @@
 >> Enter a command:
 >> ERROR: Task number 1 does not exist. Check tasklist with 'list' to see what tasks you have.
 >> Enter a command:
->> 
+>>
 >> End of list.
 >> ============================================================
 >> Enter a command:
@@ -179,7 +179,7 @@
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
+##
 >> Load Success.
 >> ============================================================
 >> Enter a command:
@@ -187,7 +187,7 @@
 ## 	2. [T][X] borrow book
 ## 	3. [D][ ] return book (by: 31 Dec 2001, 12pm)
 ## 	4. [E][ ] project meeting (from: 31 Dec 2001, 12pm to: 31 Dec 2001, 4pm)
-## 
+##
 >> End of list.
 >> ============================================================
 >> Enter a command:

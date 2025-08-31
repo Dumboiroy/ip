@@ -6,7 +6,7 @@ package seeyes.command;
 public class ListCommand extends Command {
     /**
      * Executes the list command.
-     * 
+     *
      * @return the result of the command execution
      */
     @Override

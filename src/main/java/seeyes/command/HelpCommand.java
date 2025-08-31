@@ -6,7 +6,7 @@ package seeyes.command;
 public class HelpCommand extends Command {
     /**
      * Executes the help command.
-     * 
+     *
      * @return the result of the command execution
      */
     @Override

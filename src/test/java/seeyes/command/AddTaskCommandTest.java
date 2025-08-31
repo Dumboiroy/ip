@@ -33,9 +33,9 @@ public class AddTaskCommandTest {
         CommandResult result = addTaskCommand.execute();
 
         // Assert
-        assertTrue(result.message.contains("Successfully added:"));
-        assertTrue(result.message.contains("Buy groceries"));
-        assertTrue(result.message.contains("[T]"));
+        assertTrue(result.getMessage().contains("Successfully added:"));
+        assertTrue(result.getMessage().contains("Buy groceries"));
+        assertTrue(result.getMessage().contains("[T]"));
         assertEquals(1, taskList.size()); // Task should be added to list
         assertEquals(todoTask, taskList.getTaskByIndex(0)); // Verify the exact
                                                             // task was added
@@ -52,9 +52,9 @@ public class AddTaskCommandTest {
         CommandResult result = addTaskCommand.execute();
 
         // Assert
-        assertTrue(result.message.contains("Successfully added:"));
-        assertTrue(result.message.contains("Submit assignment"));
-        assertTrue(result.message.contains("[D]"));
+        assertTrue(result.getMessage().contains("Successfully added:"));
+        assertTrue(result.getMessage().contains("Submit assignment"));
+        assertTrue(result.getMessage().contains("[D]"));
         assertEquals(1, taskList.size()); // Task should be added to list
         assertEquals(deadlineTask, taskList.getTaskByIndex(0)); // Verify the
                                                                 // exact task
@@ -73,9 +73,9 @@ public class AddTaskCommandTest {
         CommandResult result = addTaskCommand.execute();
 
         // Assert
-        assertTrue(result.message.contains("Successfully added:"));
-        assertTrue(result.message.contains("Project Meeting"));
-        assertTrue(result.message.contains("[E]"));
+        assertTrue(result.getMessage().contains("Successfully added:"));
+        assertTrue(result.getMessage().contains("Project Meeting"));
+        assertTrue(result.getMessage().contains("[E]"));
         assertEquals(1, taskList.size()); // Task should be added to list
         assertEquals(eventTask, taskList.getTaskByIndex(0)); // Verify the
                                                              // exact task

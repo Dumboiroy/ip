@@ -10,8 +10,9 @@ public class UnmarkCommand extends Command {
 
     /**
      * Creates an unmark command.
-     * 
-     * @param indexToMark the index of the task to unmark
+     *
+     * @param indexToMark
+     *            the index of the task to unmark
      */
     public UnmarkCommand(int indexToMark) {
         this.indexToMark = indexToMark;
@@ -19,9 +20,10 @@ public class UnmarkCommand extends Command {
 
     /**
      * Executes the unmark command.
-     * 
+     *
      * @return the result of the command execution
-     * @throws InvalidCommandException if the task index is invalid
+     * @throws InvalidCommandException
+     *             if the task index is invalid
      */
     @Override
     public CommandResult execute() throws InvalidCommandException {

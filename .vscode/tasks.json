@@ -18,6 +18,14 @@
         "cwd": "${workspaceFolder}/text-ui-test"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "checkstyle",
+      "type": "shell",
+      "command": "./gradlew checkstyleMain",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
     }
   ]
 }

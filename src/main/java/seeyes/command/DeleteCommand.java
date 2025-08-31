@@ -10,8 +10,9 @@ public class DeleteCommand extends Command {
 
     /**
      * Creates a delete command.
-     * 
-     * @param indexToMark the index of the task to delete
+     *
+     * @param indexToMark
+     *            the index of the task to delete
      */
     public DeleteCommand(int indexToMark) {
         this.indexToMark = indexToMark;
@@ -19,7 +20,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Executes the delete command.
-     * 
+     *
      * @return the result of the command execution
      */
     @Override

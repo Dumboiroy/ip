@@ -4,5 +4,11 @@
   "[java]": {
     "editor.insertSpaces": true
   },
-  "search.useIgnoreFiles": false
+  "search.useIgnoreFiles": false,
+  "java.checkstyle.configuration": "${workspaceFolder}/config/checkstyle/checkstyle.xml",
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  }
 }

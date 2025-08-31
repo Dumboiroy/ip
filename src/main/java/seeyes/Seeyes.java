@@ -24,8 +24,9 @@ public class Seeyes {
 
     /**
      * Creates a new Seeyes application instance.
-     * 
-     * @param filePath the path to the data file
+     *
+     * @param filePath
+     *            the path to the data file
      */
     public Seeyes(String filePath) {
         scanner = new Scanner(System.in);
@@ -71,8 +72,9 @@ public class Seeyes {
 
     /**
      * Sets the task list.
-     * 
-     * @param taskList the task list to set
+     *
+     * @param taskList
+     *            the task list to set
      */
     public void setTaskList(TaskList taskList) {
         this.taskList = taskList;
@@ -94,8 +96,9 @@ public class Seeyes {
 
     /**
      * Adds a task to the list and displays the result.
-     * 
-     * @param task the task to add
+     *
+     * @param task
+     *            the task to add
      */
     public void addToList(Task task) {
         CommandResult result;
@@ -110,8 +113,9 @@ public class Seeyes {
 
     /**
      * Executes a command and returns the result.
-     * 
-     * @param command the command to execute
+     *
+     * @param command
+     *            the command to execute
      * @return the result of the command execution
      */
     private CommandResult executeCommand(Command command) {
@@ -161,8 +165,9 @@ public class Seeyes {
 
     /**
      * Main method to start the application.
-     * 
-     * @param args command line arguments
+     *
+     * @param args
+     *            command line arguments
      */
     public static void main(String[] args) {
         new Seeyes("./data/data.txt").run();

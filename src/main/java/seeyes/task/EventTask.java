@@ -13,11 +13,15 @@ public class EventTask extends Task {
 
     /**
      * Creates an event task.
-     * 
-     * @param isDone whether the task is done
-     * @param name the name of the task
-     * @param start the start time
-     * @param end the end time
+     *
+     * @param isDone
+     *            whether the task is done
+     * @param name
+     *            the name of the task
+     * @param start
+     *            the start time
+     * @param end
+     *            the end time
      */
     protected EventTask(boolean isDone, String name, LocalDateTime start, LocalDateTime end) {
         super(isDone, name);
@@ -27,7 +31,7 @@ public class EventTask extends Task {
 
     /**
      * Gets the string representation for saving to file.
-     * 
+     *
      * @return the save string
      */
     @Override
@@ -38,7 +42,7 @@ public class EventTask extends Task {
 
     /**
      * Gets the string representation of the event task.
-     * 
+     *
      * @return the string representation
      */
     @Override

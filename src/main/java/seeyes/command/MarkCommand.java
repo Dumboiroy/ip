@@ -10,8 +10,9 @@ public class MarkCommand extends Command {
 
     /**
      * Creates a mark command.
-     * 
-     * @param indexToMark the index of the task to mark
+     *
+     * @param indexToMark
+     *            the index of the task to mark
      */
     public MarkCommand(int indexToMark) {
         this.indexToMark = indexToMark;
@@ -19,7 +20,7 @@ public class MarkCommand extends Command {
 
     /**
      * Executes the mark command.
-     * 
+     *
      * @return the result of the command execution
      */
     @Override
