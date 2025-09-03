@@ -112,34 +112,21 @@ public class Seeyes {
     }
 
     /**
-     * Executes a command and returns the result.
-     *
-     * @param command
-     *            the command to execute
-     * @return the result of the command execution
-     */
-    private CommandResult executeCommand(Command command) {
-        return command.execute();
-    }
-
-    /**
      * Runs the main application loop.
      */
     public void run() {
         ui.showWelcomeMessage();
 
-        String userInputString;
         while (true) {
             try {
-                userInputString = ui.getNextUserCommand();
-                CommandResult result = executeCommand(
-                        Parser.parseUserInput(userInputString).setData(taskList, storage));
+                Command command = Parser.parseUserInput(ui.getNextUserCommand()).setData(taskList, storage);
+                CommandResult result = command.execute();
                 if (result.getTaskList().isPresent()) {
                     taskList = result.getTaskList().get();
                 }
                 ui.showResult(result);
 
-                if (userInputString.equals("bye")) {
+                if (command.isExit()) {
                     break;
                 }
             } catch (InvalidCommandException e) {

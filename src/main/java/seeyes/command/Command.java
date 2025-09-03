@@ -14,6 +14,10 @@ public abstract class Command {
     protected Storage storage;
     protected List<? extends Task> resultTasks;
 
+    public boolean isExit() {
+        return false;
+    }
+
     /**
      * Sets the task list and storage for this command.
      *

@@ -4,6 +4,11 @@ package seeyes.command;
  * Command to exit the application.
  */
 public class ExitCommand extends Command {
+    @Override
+    public boolean isExit() {
+        return true;
+    }
+
     /**
      * Executes the exit command.
      *
