@@ -37,14 +37,14 @@ public class AddTaskCommandTest {
         assertTrue(result.getMessage().contains("Buy groceries"));
         assertTrue(result.getMessage().contains("[T]"));
         assertEquals(1, taskList.size()); // Task should be added to list
-        assertEquals(todoTask, taskList.getTaskByIndex(0)); // Verify the exact
-                                                            // task was added
+        assertEquals(todoTask, taskList.getTaskByIndex(0)); // Verify the exact task was added
     }
 
     @Test
     public void execute_addValidDeadlineTask_success() {
         // Arrange
-        Task deadlineTask = Task.of("Submit assignment", java.time.LocalDateTime.of(2024, 12, 31, 23, 59));
+        Task deadlineTask = Task.of("Submit assignment",
+                java.time.LocalDateTime.of(2024, 12, 31, 23, 59));
         addTaskCommand = new AddTaskCommand(deadlineTask);
         addTaskCommand.setData(taskList, storage);
 
@@ -56,15 +56,14 @@ public class AddTaskCommandTest {
         assertTrue(result.getMessage().contains("Submit assignment"));
         assertTrue(result.getMessage().contains("[D]"));
         assertEquals(1, taskList.size()); // Task should be added to list
-        assertEquals(deadlineTask, taskList.getTaskByIndex(0)); // Verify the
-                                                                // exact task
-                                                                // was added
+        assertEquals(deadlineTask, taskList.getTaskByIndex(0)); // Verify the exact task was added
     }
 
     @Test
     public void execute_addValidEventTask_success() {
         // Arrange
-        Task eventTask = Task.of("Project Meeting", java.time.LocalDateTime.of(2024, 12, 31, 23, 59),
+        Task eventTask = Task.of("Project Meeting",
+                java.time.LocalDateTime.of(2024, 12, 31, 23, 59),
                 java.time.LocalDateTime.of(2025, 1, 1, 00, 59));
         addTaskCommand = new AddTaskCommand(eventTask);
         addTaskCommand.setData(taskList, storage);
@@ -77,8 +76,6 @@ public class AddTaskCommandTest {
         assertTrue(result.getMessage().contains("Project Meeting"));
         assertTrue(result.getMessage().contains("[E]"));
         assertEquals(1, taskList.size()); // Task should be added to list
-        assertEquals(eventTask, taskList.getTaskByIndex(0)); // Verify the
-                                                             // exact task
-                                                             // was added
+        assertEquals(eventTask, taskList.getTaskByIndex(0)); // Verify the exact task was added
     }
 }

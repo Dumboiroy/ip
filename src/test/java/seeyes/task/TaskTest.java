@@ -14,8 +14,10 @@ public class TaskTest {
         // Test invalid task type "XX"
         String taskString = "XX|0|Invalid task";
 
-        InvalidTaskTypeException exception = assertThrows(InvalidTaskTypeException.class,
-                () -> Task.fromString(taskString));
+        InvalidTaskTypeException exception = assertThrows(
+                InvalidTaskTypeException.class, (
+
+                ) -> Task.fromString(taskString));
 
         // Verify the exception message contains the invalid task type
         assertTrue(exception.getMessage().contains("XX"));
@@ -24,8 +26,10 @@ public class TaskTest {
         // Test another invalid task type "ZZ"
         String taskString2 = "ZZ|1|Another invalid task";
 
-        InvalidTaskTypeException exception2 = assertThrows(InvalidTaskTypeException.class,
-                () -> Task.fromString(taskString2));
+        InvalidTaskTypeException exception2 = assertThrows(
+                InvalidTaskTypeException.class, (
+
+                ) -> Task.fromString(taskString2));
 
         assertTrue(exception2.getMessage().contains("ZZ"));
         assertTrue(exception2.getMessage().contains("does not exist"));
@@ -69,7 +73,6 @@ public class TaskTest {
         Task task5 = Task.fromString(taskString5);
 
         assertTrue(task5 instanceof TodoTask);
-        assertFalse(task5.toString().contains("[X]")); // Should be false for
-                                                       // non-1 values
+        assertFalse(task5.toString().contains("[X]")); // Should be false for non-1 values
     }
 }

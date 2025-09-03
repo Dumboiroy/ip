@@ -3,7 +3,7 @@
     <profile kind="CodeFormatterProfile" name="SE-EDU" version="12">
         <setting id="org.eclipse.jdt.core.formatter.indent_switchstatements_compare_to_switch" value="false"/>
         <setting id="org.eclipse.jdt.core.formatter.indent_switchstatements_compare_to_cases" value="true"/>
-        <setting id="org.eclipse.jdt.core.formatter.lineSplit" value="120"/>
+        <setting id="org.eclipse.jdt.core.formatter.lineSplit" value="80"/>
         <!-- Use spaces, not tabs -->
         <setting id="org.eclipse.jdt.core.formatter.tabulation.char" value="space"/>
         <!-- Tab size = 4 spaces -->
@@ -36,5 +36,8 @@
         <setting id="org.eclipse.jdt.core.formatter.comment.clear_blank_lines_in_javadoc_comment" value="false"/>
         <setting id="org.eclipse.jdt.core.formatter.comment.align_tags_names_descriptions" value="false"/>
         <setting id="org.eclipse.jdt.core.formatter.comment.align_tags_descriptions_grouped" value="false"/>
+        <setting id="org.eclipse.jdt.core.formatter.comment.clear_blank_lines_in_block_comment" value="false"/>
+        <setting id="org.eclipse.jdt.core.formatter.use_on_off_tags" value="false"/>
+        <setting id="org.eclipse.jdt.core.formatter.insert_new_line_before_while_in_do_statement" value="do not insert"/>
     </profile>
 </profiles>
