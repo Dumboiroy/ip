@@ -126,6 +126,7 @@ public class Seeyes {
                 }
                 ui.showResult(result);
 
+                // Solution below inspired by https://github.com/donkoo24/ip/blob/master/src/main/java/lux/Lux.java
                 if (command.isExit()) {
                     break;
                 }
