@@ -226,6 +226,8 @@ public class Ui {
         say("Program exited successfully.", DIVIDER);
     }
 
+    // Code below integrates the UI with the original Seeyes CLI implementation.
+
     /**
      * Formats the result of a command execution as a string for GUI display. This method handles both task lists and
      * individual task results from the CommandResult.
