@@ -42,33 +42,12 @@ public class Seeyes {
         }
     }
 
-    // public static void say(String str) {
-    // System.out.println("Sy: " + str);
-    // }
-
-    // public static void print(String str) {
-    // System.out.println(">> " + str);
-    // }
-
     /**
      * Prints the current size of the task list.
      */
     public void printListSize() {
         ui.say("Number of tasks in list: " + taskList.size());
     }
-
-    // public void printCommands() {
-    // ui.print("list: list all events", "todo [taskname]", "deadline [taskname]
-    // /by
-    // [duedate]",
-    // "event [taskname] /from [startdate] /to [enddate]", "mark [task number]:
-    // mark
-    // a task",
-    // "unmark [task number]: unmark a task", "delete [task number]: delete a
-    // task",
-    // "save: save list",
-    // "load: loads the list from existing save", "bye: closes the program");
-    // }
 
     /**
      * Sets the task list.
@@ -86,10 +65,13 @@ public class Seeyes {
     public void printList() {
         CommandResult result;
         if (taskList.size() == 0) {
-            result = new CommandResult("list is empty! add your first item with 'todo [item]'.");
+            result = new CommandResult(
+                    "list is empty! add your first item with 'todo [item]'.");
             return;
         } else {
-            result = new CommandResult("You have " + taskList.size() + " items in your list.", taskList.getTaskList());
+            result = new CommandResult(
+                    "You have " + taskList.size() + " items in your list.",
+                    taskList.getTaskList());
         }
         ui.showResult(result);
     }
@@ -119,7 +101,8 @@ public class Seeyes {
 
         while (true) {
             try {
-                Command command = Parser.parseUserInput(ui.getNextUserCommand()).setData(taskList, storage);
+                Command command = Parser.parseUserInput(ui.getNextUserCommand())
+                        .setData(taskList, storage);
                 CommandResult result = command.execute();
                 if (result.getTaskList().isPresent()) {
                     taskList = result.getTaskList().get();
@@ -149,6 +132,13 @@ public class Seeyes {
     private void exit() {
         ui.showFarewellMessage();
         System.exit(0);
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Seeyes heard: " + input;
     }
 
     /**

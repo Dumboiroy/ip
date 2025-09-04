@@ -46,7 +46,8 @@ test {
 }
 
 application {
-    mainClass.set("seeyes.Seeyes")
+    // mainClass.set("seeyes.Seeyes")
+    mainClass.set("seeyes.Launcher")
 }
 
 shadowJar {
