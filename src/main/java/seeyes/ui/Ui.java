@@ -117,7 +117,8 @@ public class Ui {
      */
     public void say(String... message) {
         for (String m : message) {
-            out.println(SAY_LINE_PREFIX + m.replace("\n", LS + SAY_LINE_PREFIX));
+            out.println(
+                    SAY_LINE_PREFIX + m.replace("\n", LS + SAY_LINE_PREFIX));
         }
     }
 
@@ -131,7 +132,8 @@ public class Ui {
      */
     public void print(String... message) {
         for (String m : message) {
-            out.println(SAY_LINE_PREFIX + m.replace("\n", LS + PRINT_LINE_PREFIX));
+            out.println(
+                    SAY_LINE_PREFIX + m.replace("\n", LS + PRINT_LINE_PREFIX));
         }
     }
 
@@ -154,7 +156,8 @@ public class Ui {
      *            the CommandResult containing the execution result and any associated tasks
      */
     public void showResult(CommandResult result) {
-        final Optional<List<? extends Task>> resultTasks = result.getResultTasks();
+        final Optional<List<? extends Task>> resultTasks = result
+                .getResultTasks();
         final Optional<TaskList> taskList = result.getTaskList();
         if (resultTasks.isPresent()) {
             showResultTasks(resultTasks.get());
@@ -186,7 +189,8 @@ public class Ui {
         final StringBuilder formatted = new StringBuilder();
         int displayIndex = 1;
         for (String item : list) {
-            formatted.append(getIndexedListItem(displayIndex, item)).append("\n");
+            formatted.append(getIndexedListItem(displayIndex, item))
+                    .append("\n");
             displayIndex++;
         }
         print(formatted.toString());
@@ -202,7 +206,8 @@ public class Ui {
      *            the content of the list item
      * @return a formatted string ready for display
      */
-    private static String getIndexedListItem(int visibleIndex, String listItem) {
+    private static String getIndexedListItem(int visibleIndex,
+            String listItem) {
         return String.format(FORMAT_INDEXED_LIST_ITEM, visibleIndex, listItem);
     }
 
@@ -219,5 +224,76 @@ public class Ui {
      */
     public void showFarewellMessage() {
         say("Program exited successfully.", DIVIDER);
+    }
+
+    /**
+     * Formats the result of a command execution as a string for GUI display. This method handles both task lists and
+     * individual task results from the CommandResult.
+     *
+     * @param result
+     *            the CommandResult containing the execution result and any associated tasks
+     * @return formatted string ready for GUI display
+     */
+    public String formatResult(CommandResult result) {
+        StringBuilder formattedResult = new StringBuilder();
+
+        final Optional<List<? extends Task>> resultTasks = result
+                .getResultTasks();
+        final Optional<TaskList> taskList = result.getTaskList();
+
+        if (resultTasks.isPresent()) {
+            formattedResult.append(formatTaskList(resultTasks.get()))
+                    .append("\n");
+        }
+        if (taskList.isPresent()) {
+            formattedResult.append(formatTaskList(taskList.get().getTaskList()))
+                    .append("\n");
+        }
+
+        formattedResult.append(result.getMessage());
+        return formattedResult.toString();
+    }
+
+    /**
+     * Formats a list of tasks as an indexed string for GUI display.
+     *
+     * @param tasks
+     *            the list of tasks to format
+     * @return formatted string with indexed tasks
+     */
+    public String formatTaskList(List<? extends Task> tasks) {
+        if (tasks.isEmpty()) {
+            return "No tasks to display.";
+        }
+
+        StringBuilder formatted = new StringBuilder();
+        int displayIndex = 1;
+        for (Task task : tasks) {
+            formatted.append(
+                    String.format("%d. %s", displayIndex, task.toString()));
+            if (displayIndex < tasks.size()) {
+                formatted.append("\n");
+            }
+            displayIndex++;
+        }
+        return formatted.toString();
+    }
+
+    /**
+     * Returns the welcome message as a string for GUI display.
+     *
+     * @return welcome message string
+     */
+    public String getWelcomeMessage() {
+        return "Yo, I'm Seeyes!\nHow can I help?";
+    }
+
+    /**
+     * Returns the farewell message as a string for GUI display.
+     *
+     * @return farewell message string
+     */
+    public String getFarewellMessage() {
+        return "Program exited successfully.";
     }
 }

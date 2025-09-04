@@ -36,6 +36,10 @@ public class MainWindow extends AnchorPane {
     /** Injects the Seeyes instance */
     public void setSeeyes(Seeyes s) {
         seeyes = s;
+        // Show welcome message when Seeyes is injected
+        String welcomeMessage = seeyes.getUi().getWelcomeMessage();
+        dialogContainer.getChildren()
+                .add(DialogBox.getSeeyesDialog(welcomeMessage, seeyesImage));
     }
 
     /**
