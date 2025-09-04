@@ -138,7 +138,38 @@ public class Seeyes {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        return "Seeyes heard: " + input;
+        try {
+            Command command = Parser.parseUserInput(input).setData(taskList,
+                    storage);
+            CommandResult result = command.execute();
+
+            // Update taskList if command modified it
+            if (result.getTaskList().isPresent()) {
+                taskList = result.getTaskList().get();
+            }
+
+            // Handle exit command
+            if (command.isExit()) {
+                return ui.getFarewellMessage();
+            }
+
+            // Use UI formatting for the result
+            return ui.formatResult(result);
+
+        } catch (InvalidCommandException e) {
+            return "Error: " + e.getMessage();
+        } catch (Exception e) {
+            return "An unexpected error occurred: " + e.getMessage();
+        }
+    }
+
+    /**
+     * Gets the UI instance.
+     *
+     * @return the UI instance
+     */
+    public Ui getUi() {
+        return ui;
     }
 
     /**
