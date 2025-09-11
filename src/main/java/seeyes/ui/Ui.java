@@ -212,13 +212,6 @@ public class Ui {
     }
 
     /**
-     * Displays the welcome message when the application starts. Shows the application name and a greeting to the user.
-     */
-    public void showWelcomeMessage() {
-        say(DIVIDER, "Yo, I'm Seeyes!", "How can I help?", DIVIDER);
-    }
-
-    /**
      * Displays the farewell message when the application exits. Shows a confirmation that the program has exited
      * successfully.
      */
@@ -288,14 +281,5 @@ public class Ui {
      */
     public String getWelcomeMessage() {
         return "Yo, I'm Seeyes!\nHow can I help?";
-    }
-
-    /**
-     * Returns the farewell message as a string for GUI display.
-     *
-     * @return farewell message string
-     */
-    public String getFarewellMessage() {
-        return "Program exited successfully.";
     }
 }
