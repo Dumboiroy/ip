@@ -54,5 +54,12 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getSeeyesDialog(response, seeyesImage));
         userInput.clear();
+        checkExit(input);
+    }
+
+    private void checkExit(String input) {
+        if (input.trim().equals("bye")) {
+            seeyes.exit();
+        }
     }
 }
