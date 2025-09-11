@@ -2,6 +2,8 @@ package seeyes;
 
 import java.util.Scanner;
 
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 import seeyes.command.Command;
 import seeyes.command.CommandResult;
 import seeyes.exception.InvalidCommandException;
@@ -97,8 +99,6 @@ public class Seeyes {
      * Runs the main application loop.
      */
     public void run() {
-        ui.showWelcomeMessage();
-
         while (true) {
             try {
                 Command command = Parser.parseUserInput(ui.getNextUserCommand())
@@ -129,9 +129,16 @@ public class Seeyes {
     /**
      * Exits the application.
      */
-    private void exit() {
+    public void exit() {
         ui.showFarewellMessage();
-        System.exit(0);
+        waitThenExecute(1, () -> System.exit(0));
+    }
+
+    public void waitThenExecute(int seconds, Runnable action) {
+        PauseTransition exitDelay = new PauseTransition(
+                Duration.seconds(seconds));
+        exitDelay.setOnFinished(e -> action.run());
+        exitDelay.play();
     }
 
     /**
@@ -146,11 +153,6 @@ public class Seeyes {
             // Update taskList if command modified it
             if (result.getTaskList().isPresent()) {
                 taskList = result.getTaskList().get();
-            }
-
-            // Handle exit command
-            if (command.isExit()) {
-                return ui.getFarewellMessage();
             }
 
             // Use UI formatting for the result
@@ -170,15 +172,5 @@ public class Seeyes {
      */
     public Ui getUi() {
         return ui;
-    }
-
-    /**
-     * Main method to start the application.
-     *
-     * @param args
-     *            command line arguments
-     */
-    public static void main(String[] args) {
-        new Seeyes("./data/data.txt").run();
     }
 }
