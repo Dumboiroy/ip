@@ -82,15 +82,36 @@ public class Storage {
         file.getParentFile().mkdirs();
         try (BufferedWriter writer = new BufferedWriter(
                 new FileWriter(filePath))) {
-            for (int i = 0; i < taskList.size(); i++) {
-                Task task = taskList.getTaskByIndex(i);
-                assert task != null : "Task should not be null";
-                writer.write(task.getSaveString());
-                writer.newLine();
-            }
+            writeTasklistToFile(writer, taskList);
             return "List at " + filePath + " has been saved.";
         } catch (IOException e) {
             throw new StorageException("Unable to save list at " + filePath);
         }
+    }
+
+    public void writeTasklistToFile(BufferedWriter writer, TaskList taskList)
+            throws IOException {
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = taskList.getTaskByIndex(i);
+            assert task != null : "Task should not be null";
+            writeTaskToFile(writer, task);
+        }
+    }
+
+    /**
+     * Writes a single task to the provided BufferedWriter. The task is written in its save string format, followed by a
+     * newline.
+     *
+     * @param writer
+     *            the BufferedWriter to write the task to
+     * @param task
+     *            the Task to write
+     * @throws IOException
+     *             if an I/O error occurs during writing
+     */
+    private void writeTaskToFile(BufferedWriter writer, Task task)
+            throws IOException {
+        writer.write(task.getSaveString());
+        writer.newLine();
     }
 }
