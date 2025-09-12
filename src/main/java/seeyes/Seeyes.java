@@ -144,7 +144,7 @@ public class Seeyes {
      * @param seconds
      *            Number of seconds to wait
      * @param action
-     *            The Runnable to execute after the delay
+     *            The Runnable ()->() to execute after the delay
      */
     public void waitThenExecute(int seconds, Runnable action) {
         PauseTransition exitDelay = new PauseTransition(
