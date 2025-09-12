@@ -53,7 +53,7 @@ public class Storage {
         String line = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             while ((line = reader.readLine()) != null) {
-                taskList.addTask(Task.fromString(line));
+                taskList.addTask(Task.getTaskFromString(line));
             }
             // System.out.println("List from: " + filePath + " loaded.");
         } catch (IOException e) {

@@ -135,7 +135,7 @@ public abstract class Task {
      *            the string representation from file
      * @return the reconstructed task
      */
-    public static Task fromString(String taskString) {
+    public static Task getTaskFromString(String taskString) {
         TaskType type = TaskType.fromString(taskString);
         String[] params = taskString.split("\\|");
         switch (type) {
