@@ -9,5 +9,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
-  "java.format.settings.url": ".vscode/eclipse-java-formatter.xml"
+  "java.format.settings.url": ".vscode/eclipse-java-formatter.xml",
+  "java.project.sourcePaths": ["src/main/java"]
 }
