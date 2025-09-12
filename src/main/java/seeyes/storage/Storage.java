@@ -27,6 +27,8 @@ public class Storage {
      *            the task list (not used in current implementation)
      */
     public Storage(String filePath, TaskList taskList) {
+        assert filePath != null : "filePath should not be null";
+        assert !filePath.isEmpty() : "filePath should not be empty";
         this.filePath = filePath;
     }
 
@@ -38,6 +40,7 @@ public class Storage {
      *             if loading fails
      */
     public TaskList load() throws StorageException {
+        assert filePath != null : "filePath should not be null when loading";
         // load file
         File file = new File(filePath);
 
@@ -56,7 +59,8 @@ public class Storage {
         } catch (IOException e) {
             throw new StorageException("Error while loading file: " + filePath);
         } catch (InvalidTaskTypeException e) {
-            throw new StorageException("Error while parsing line: " + line + "\n" + e.getMessage());
+            throw new StorageException("Error while parsing line: " + line
+                    + "\n" + e.getMessage());
         }
 
         // return arraylist of tasks
@@ -73,11 +77,15 @@ public class Storage {
      *             if saving fails
      */
     public String save(TaskList taskList) throws StorageException {
+        assert taskList != null : "taskList should not be null when saving";
         File file = new File(filePath);
         file.getParentFile().mkdirs();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter writer = new BufferedWriter(
+                new FileWriter(filePath))) {
             for (int i = 0; i < taskList.size(); i++) {
-                writer.write(taskList.getTaskByIndex(i).getSaveString());
+                Task task = taskList.getTaskByIndex(i);
+                assert task != null : "Task should not be null";
+                writer.write(task.getSaveString());
                 writer.newLine();
             }
             return "List at " + filePath + " has been saved.";

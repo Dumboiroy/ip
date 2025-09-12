@@ -30,13 +30,15 @@ public abstract class Task {
          * @throws InvalidTaskTypeException
          *             if the task type is invalid
          */
-        public static TaskType fromString(String taskString) throws InvalidTaskTypeException {
+        public static TaskType fromString(String taskString)
+                throws InvalidTaskTypeException {
             for (TaskType t : TaskType.values()) {
                 if (t.key.equalsIgnoreCase(taskString.split("\\|", 2)[0])) {
                     return t;
                 }
             }
-            throw new InvalidTaskTypeException("The task type " + taskString.split("\\|", 2)[0] + " does not exist.");
+            throw new InvalidTaskTypeException("The task type "
+                    + taskString.split("\\|", 2)[0] + " does not exist.");
         }
     }
 
@@ -138,14 +140,20 @@ public abstract class Task {
         String[] params = taskString.split("\\|");
         switch (type) {
         case TODO:
+            assert params.length == 3 : "Todo should have 3 params: type, isDone, name.";
             return new TodoTask(params[1].equals("1"), params[2]);
         case DEADLINE:
-            return new DeadlineTask(params[1].equals("1"), params[2], DateTimeUtils.parse(params[3]));
+            assert params.length == 4 : "Deadline should have 4 params: type, isDone, name, deadline.";
+            return new DeadlineTask(params[1].equals("1"), params[2],
+                    DateTimeUtils.parse(params[3]));
         case EVENT:
-            return new EventTask(params[1].equals("1"), params[2], DateTimeUtils.parse(params[3]),
+            assert params.length == 5 : "Event should have 4 params: type, isDone, name, start, end.";
+            return new EventTask(params[1].equals("1"), params[2],
+                    DateTimeUtils.parse(params[3]),
                     DateTimeUtils.parse(params[4]));
         default:
-            throw new InvalidTaskTypeException("Invalid task type " + taskString.substring(0, 2) + ".");
+            throw new InvalidTaskTypeException(
+                    "Invalid task type " + taskString.substring(0, 2) + ".");
         }
     }
 
