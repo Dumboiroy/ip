@@ -33,11 +33,3 @@ jobs:
 
       - name: Build and check with Gradle
         run: ./gradlew clean test check shadowJar jacocoTestReport
-
-      - name: Install dos2unix on Linux
-        if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y dos2unix
-
-      - name: Install dos2unix on macOS
-        if: runner.os == 'macOS'
-        run: brew install dos2unix
