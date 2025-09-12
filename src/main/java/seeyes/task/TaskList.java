@@ -75,7 +75,13 @@ public class TaskList {
      * @return a list of matching tasks
      */
     public List<Task> queryName(String queryString) {
-        return list.stream().filter(task -> task.filterName(queryString)).toList();
+        return list.stream().filter(task -> task.filterName(queryString))
+                .toList();
+    }
+
+    public List<Task> getSortedDeadlineTasks() {
+        return list.stream().filter(task -> task instanceof DeadlineTask)
+                .sorted().toList();
     }
 
 }
