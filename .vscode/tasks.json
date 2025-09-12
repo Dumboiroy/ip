@@ -27,6 +27,15 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": ["$gradle"]
+    },
+    {
+      "label": "gradle run",
+      "type": "shell",
+      "command": "./gradlew run",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gradle"]
     }
   ]
 }
