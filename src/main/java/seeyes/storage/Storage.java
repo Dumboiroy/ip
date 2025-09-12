@@ -89,6 +89,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes a full tasklist to the provided BufferedWriter.
+     *
+     * @param writer
+     * @param taskList
+     * @throws IOException
+     */
     public void writeTasklistToFile(BufferedWriter writer, TaskList taskList)
             throws IOException {
         for (int i = 0; i < taskList.size(); i++) {
