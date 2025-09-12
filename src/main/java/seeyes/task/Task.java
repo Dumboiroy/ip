@@ -67,6 +67,15 @@ public abstract class Task {
     }
 
     /**
+     * Returns the name of the task.
+     * 
+     * @return String
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
      * Gets the string representation for saving to file.
      *
      * @return the save string
