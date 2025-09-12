@@ -1,6 +1,7 @@
-package seeyes;
+package seeyes.ui;
 
 import javafx.application.Application;
+import seeyes.Main;
 
 /**
  * A launcher class to workaround classpath issues.
