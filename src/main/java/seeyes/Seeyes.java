@@ -134,6 +134,14 @@ public class Seeyes {
         waitThenExecute(1, () -> System.exit(0));
     }
 
+    /**
+     * Waits for the specified number of seconds, then executes the given action.
+     *
+     * @param seconds
+     *            Number of seconds to wait
+     * @param action
+     *            The Runnable ()->() to execute after the delay
+     */
     public void waitThenExecute(int seconds, Runnable action) {
         PauseTransition exitDelay = new PauseTransition(
                 Duration.seconds(seconds));
