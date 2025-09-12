@@ -10,6 +10,7 @@ import seeyes.command.FindCommand;
 import seeyes.command.HelpCommand;
 import seeyes.command.IncorrectCommand;
 import seeyes.command.ListCommand;
+import seeyes.command.ListDeadlinesCommand;
 import seeyes.command.LoadCommand;
 import seeyes.command.MarkCommand;
 import seeyes.command.SaveCommand;
@@ -24,7 +25,8 @@ import seeyes.util.DateTimeUtils;
  */
 public class Parser {
     private enum CommandType {
-        LIST("list"), FIND("find"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"),
+        LIST("list"), LISTDEADLINES("deadlines"), FIND("find"), TODO("todo"),
+        DEADLINE("deadline"), EVENT("event"), MARK("mark"), UNMARK("unmark"),
         DELETE("delete"), SAVE("save"), LOAD("load"), HELP("/help"), BYE("bye");
 
         private final String keyword;
@@ -42,14 +44,15 @@ public class Parser {
          * @throws InvalidCommandException
          *             if the command is not recognized
          */
-        public static CommandType fromString(String commandString) throws InvalidCommandException {
+        public static CommandType fromString(String commandString)
+                throws InvalidCommandException {
             for (CommandType c : CommandType.values()) {
                 if (c.keyword.equalsIgnoreCase(commandString)) {
                     return c;
                 }
             }
-            throw new InvalidCommandException(
-                    "Sorry, I don't understand '" + commandString + "'. Type /help for a list of commands.");
+            throw new InvalidCommandException("Sorry, I don't understand '"
+                    + commandString + "'. Type /help for a list of commands.");
         }
     }
 
@@ -62,7 +65,8 @@ public class Parser {
      * @throws InvalidCommandException
      *             if the input is invalid
      */
-    public static Command parseUserInput(String userInputString) throws InvalidCommandException {
+    public static Command parseUserInput(String userInputString)
+            throws InvalidCommandException {
         // get command
         String[] split = userInputString.split(" ", 2);
         CommandType commandType = CommandType.fromString(split[0].trim());
@@ -72,21 +76,29 @@ public class Parser {
             String[] params;
             switch (commandType) {
             case MARK:
-                return new MarkCommand(parseTaskIndex(getArgs(split, split[0].trim() + " <task number>")));
+                return new MarkCommand(parseTaskIndex(
+                        getArgs(split, split[0].trim() + " <task number>")));
             case UNMARK:
-                return new UnmarkCommand(parseTaskIndex(getArgs(split, split[0].trim() + " <task number>")));
+                return new UnmarkCommand(parseTaskIndex(
+                        getArgs(split, split[0].trim() + " <task number>")));
             case DELETE:
-                return new DeleteCommand(parseTaskIndex(getArgs(split, split[0].trim() + " <task number>")));
+                return new DeleteCommand(parseTaskIndex(
+                        getArgs(split, split[0].trim() + " <task number>")));
             case TODO:
-                params = parseTaskParams(commandType, getArgs(split, split[0].trim() + " <task name>"));
+                params = parseTaskParams(commandType,
+                        getArgs(split, split[0].trim() + " <task name>"));
                 return new AddTaskCommand(Task.of(params[0]));
             case DEADLINE:
-                params = parseTaskParams(commandType, getArgs(split, split[0].trim() + " <task name>"));
-                return new AddTaskCommand(Task.of(params[0], DateTimeUtils.parse(params[1])));
-            case EVENT:
-                params = parseTaskParams(commandType, getArgs(split, split[0].trim() + " <task name>"));
+                params = parseTaskParams(commandType,
+                        getArgs(split, split[0].trim() + " <task name>"));
                 return new AddTaskCommand(
-                        Task.of(params[0], DateTimeUtils.parse(params[1]), DateTimeUtils.parse(params[2])));
+                        Task.of(params[0], DateTimeUtils.parse(params[1])));
+            case EVENT:
+                params = parseTaskParams(commandType,
+                        getArgs(split, split[0].trim() + " <task name>"));
+                return new AddTaskCommand(
+                        Task.of(params[0], DateTimeUtils.parse(params[1]),
+                                DateTimeUtils.parse(params[2])));
             case SAVE:
                 return new SaveCommand();
             case LOAD:
@@ -95,8 +107,11 @@ public class Parser {
                 return new HelpCommand();
             case LIST:
                 return new ListCommand();
+            case LISTDEADLINES:
+                return new ListDeadlinesCommand();
             case FIND:
-                params = parseTaskParams(commandType, getArgs(split, split[0].trim() + " <task name>"));
+                params = parseTaskParams(commandType,
+                        getArgs(split, split[0].trim() + " <task name>"));
                 return new FindCommand(params[0]);
             case BYE:
                 return new ExitCommand();
@@ -119,7 +134,8 @@ public class Parser {
      * @throws InvalidCommandException
      *             if no arguments are provided
      */
-    private static String getArgs(String[] split, String usage) throws InvalidCommandException {
+    private static String getArgs(String[] split, String usage)
+            throws InvalidCommandException {
         if (split.length < 2) {
             throw new InvalidCommandException("USAGE: " + usage);
         }
@@ -135,11 +151,13 @@ public class Parser {
      * @throws InvalidCommandException
      *             if the string is not a valid number
      */
-    private static int parseTaskIndex(String indexString) throws InvalidCommandException {
+    private static int parseTaskIndex(String indexString)
+            throws InvalidCommandException {
         try {
             return Integer.parseInt(indexString) - 1;
         } catch (NumberFormatException e) {
-            throw new InvalidCommandException("'" + indexString + "' is not a number. Please specify a task number.");
+            throw new InvalidCommandException("'" + indexString
+                    + "' is not a number. Please specify a task number.");
         }
     }
 
@@ -154,20 +172,24 @@ public class Parser {
      * @throws InvalidCommandException
      *             if parameters are invalid
      */
-    private static String[] parseTaskParams(CommandType taskType, String paramString) throws InvalidCommandException {
+    private static String[] parseTaskParams(CommandType taskType,
+            String paramString) throws InvalidCommandException {
         String[] params;
         switch (taskType) {
         case TODO:
         case FIND:
             return new String[] { paramString };
         case DEADLINE:
-            params = Arrays.stream(paramString.split("/by")).map(String::trim).toArray(String[]::new);
+            params = Arrays.stream(paramString.split("/by")).map(String::trim)
+                    .toArray(String[]::new);
             if (params.length < 2) {
-                throw new InvalidCommandException("please specify a due date with '/by <duedate>'");
+                throw new InvalidCommandException(
+                        "please specify a due date with '/by <duedate>'");
             }
             return params;
         case EVENT:
-            params = Arrays.stream(paramString.split("/from")).flatMap(x -> Arrays.stream(x.split("/to")))
+            params = Arrays.stream(paramString.split("/from"))
+                    .flatMap(x -> Arrays.stream(x.split("/to")))
                     .map(String::trim).toArray(String[]::new);
             if (params.length < 3) {
                 throw new InvalidCommandException(

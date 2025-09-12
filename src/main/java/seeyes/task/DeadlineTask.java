@@ -7,7 +7,7 @@ import seeyes.util.DateTimeUtils;
 /**
  * Represents a task with a deadline.
  */
-public class DeadlineTask extends Task {
+public class DeadlineTask extends Task implements Comparable<DeadlineTask> {
     private LocalDateTime dateDue;
 
     /**
@@ -32,7 +32,8 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String getSaveString() {
-        return "DL|" + super.getSaveString() + DateTimeUtils.dateTimeToSaveString(dateDue) + "|";
+        return "DL|" + super.getSaveString()
+                + DateTimeUtils.dateTimeToSaveString(dateDue) + "|";
     }
 
     /**
@@ -42,6 +43,12 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + DateTimeUtils.dateTimeToString(dateDue) + ")";
+        return "[D]" + super.toString() + " (by: "
+                + DateTimeUtils.dateTimeToString(dateDue) + ")";
+    }
+
+    @Override
+    public int compareTo(DeadlineTask other) {
+        return this.dateDue.compareTo(other.dateDue);
     }
 }
