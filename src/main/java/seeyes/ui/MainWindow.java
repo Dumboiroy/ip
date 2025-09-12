@@ -1,4 +1,4 @@
-package seeyes;
+package seeyes.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import seeyes.Seeyes;
 
 /**
  * Controller for the main GUI.
@@ -50,6 +51,8 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = seeyes.getResponse(input);
+        assert input instanceof String : "input should be a string";
+        assert response instanceof String : "response should be a string";
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getSeeyesDialog(response, seeyesImage));
