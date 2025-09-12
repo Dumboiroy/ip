@@ -42,6 +42,7 @@ public class Seeyes {
             ui.showError(e.getMessage());
             taskList = new TaskList();
         }
+        assert taskList instanceof TaskList : "taskList should be an instance of taskList";
     }
 
     /**
@@ -58,6 +59,7 @@ public class Seeyes {
      *            the task list to set
      */
     public void setTaskList(TaskList taskList) {
+        assert taskList instanceof TaskList : "taskList should be a TaskList instance.";
         this.taskList = taskList;
     }
 
@@ -65,6 +67,7 @@ public class Seeyes {
      * Prints the current task list.
      */
     public void printList() {
+        assert taskList instanceof TaskList : "taskList should be a TaskList instance.";
         CommandResult result;
         if (taskList.size() == 0) {
             result = new CommandResult(
@@ -85,6 +88,7 @@ public class Seeyes {
      *            the task to add
      */
     public void addToList(Task task) {
+        assert task instanceof Task : "Task should be a Task class instance.";
         CommandResult result;
         if (taskList.addTask(task)) {
             result = new CommandResult("Added: " + task.toString());
@@ -159,6 +163,7 @@ public class Seeyes {
             CommandResult result = command.execute();
 
             // Update taskList if command modified it
+            assert result instanceof CommandResult : "result should be a CommandResult";
             if (result.getTaskList().isPresent()) {
                 taskList = result.getTaskList().get();
             }

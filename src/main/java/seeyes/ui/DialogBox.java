@@ -1,4 +1,4 @@
-package seeyes;
+package seeyes.ui;
 
 import java.io.IOException;
 import java.util.Collections;
