@@ -77,7 +77,12 @@ public class DialogBox extends HBox {
      * @return a DialogBox representing the user's message
      */
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        // Style for user messages - darker green
+        db.dialog.setStyle(
+                "-fx-background-color: #A5D6A7; -fx-padding: 12; -fx-border-radius: 18;"
+                        + "-fx-background-radius: 18; -fx-text-fill: #1B5E20; -fx-font-size: 14;");
+        return db;
     }
 
     /**
@@ -91,6 +96,10 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getSeeyesDialog(String text, Image img) {
         var db = new DialogBox(text, img);
+        // Style for Seeyes messages - lighter green
+        db.dialog.setStyle(
+                "-fx-background-color: #C8E6C9; -fx-padding: 12; -fx-border-radius: 18;"
+                        + " -fx-background-radius: 18; -fx-text-fill: #2E7D32; -fx-font-size: 14;");
         db.flip();
         return db;
     }
