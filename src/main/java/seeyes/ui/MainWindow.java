@@ -25,9 +25,9 @@ public class MainWindow extends AnchorPane {
     private Seeyes seeyes;
 
     private Image userImage = new Image(
-            this.getClass().getResourceAsStream("/images/DaUser.png"));
+            this.getClass().getResourceAsStream("/images/User.jpeg"));
     private Image seeyesImage = new Image(
-            this.getClass().getResourceAsStream("/images/DaSeeyes.png"));
+            this.getClass().getResourceAsStream("/images/Seeyes.jpeg"));
 
     @FXML
     public void initialize() {
