@@ -34,6 +34,9 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setResizable(true);
+            stage.setMinWidth(300);
+            stage.setMinHeight(400);
             fxmlLoader.<MainWindow>getController().setSeeyes(seeyes); // inject the Seeyes instance
             stage.show();
         } catch (IOException e) {
