@@ -55,7 +55,6 @@ public class Storage {
             while ((line = reader.readLine()) != null) {
                 taskList.addTask(Task.getTaskFromString(line));
             }
-            // System.out.println("List from: " + filePath + " loaded.");
         } catch (IOException e) {
             throw new StorageException("Error while loading file: " + filePath);
         } catch (InvalidTaskTypeException e) {
