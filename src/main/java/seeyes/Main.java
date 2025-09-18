@@ -10,12 +10,22 @@ import javafx.stage.Stage;
 import seeyes.ui.MainWindow;
 
 /**
- * TODO: javadocs
+ * The entry point for the Seeyes application. This class launches the JavaFX UI and injects the Seeyes instance into
+ * the main window.
  */
 public class Main extends Application {
 
+    /**
+     * The Seeyes instance used by the application.
+     */
     private Seeyes seeyes = new Seeyes("./data/data.txt");
 
+    /**
+     * Starts the JavaFX application and sets up the main window.
+     *
+     * @param stage
+     *            the primary stage for this application
+     */
     @Override
     public void start(Stage stage) {
         try {

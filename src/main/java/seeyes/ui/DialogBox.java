@@ -15,20 +15,30 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 /**
- * TODO: javadocs
+ * Represents a dialog box consisting of a label and an image. Used for displaying user and Seeyes messages in the chat
+ * UI.
  */
 public class DialogBox extends HBox {
 
+    /**
+     * The label containing the dialog text.
+     */
     @FXML
     private Label dialog;
+    /**
+     * The image view displaying the user's or Seeyes's avatar.
+     */
     @FXML
     private ImageView displayPicture;
 
     /**
-     * TODO: Javadocs
+     * Constructs a DialogBox with the specified text and image. Loads the FXML layout and sets the dialog text and
+     * image.
      *
      * @param text
+     *            the text to display in the dialog
      * @param img
+     *            the image to display as the avatar
      */
     public DialogBox(String text, Image img) {
         try {
@@ -45,6 +55,9 @@ public class DialogBox extends HBox {
         displayPicture.setImage(img);
     }
 
+    /**
+     * Flips the dialog box such that the image is on the left and text on the right. Used for Seeyes messages.
+     */
     private void flip() {
         ObservableList<Node> tmp = FXCollections
                 .observableArrayList(this.getChildren());
@@ -54,10 +67,28 @@ public class DialogBox extends HBox {
 
     }
 
+    /**
+     * Returns a DialogBox for user messages.
+     *
+     * @param text
+     *            the user's message
+     * @param img
+     *            the user's avatar image
+     * @return a DialogBox representing the user's message
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns a DialogBox for Seeyes messages, with the image on the left.
+     *
+     * @param text
+     *            the Seeyes message
+     * @param img
+     *            the Seeyes avatar image
+     * @return a DialogBox representing the Seeyes message
+     */
     public static DialogBox getSeeyesDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
