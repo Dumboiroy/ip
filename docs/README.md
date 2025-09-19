@@ -38,5 +38,3 @@ type `list` again to see that it's marked!
 You can see a sorted list of your deadlines by typing `deadlines`
 
 The app will show you a sorted list of your deadlines so you can see the more urgent tasks first.
-
-## Feature:
