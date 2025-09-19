@@ -129,7 +129,7 @@ public class Parser {
     private static void checkEmptyName(String[] params)
             throws InvalidCommandException {
         if (params[0] == "") {
-            throw new InvalidCommandException("TODO task can't have no name.");
+            throw new InvalidCommandException("task can't have no name.");
         }
     }
 
