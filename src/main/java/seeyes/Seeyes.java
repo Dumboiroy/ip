@@ -4,6 +4,7 @@ import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 import seeyes.command.Command;
 import seeyes.command.CommandResult;
+import seeyes.exception.CommandFailedException;
 import seeyes.exception.InvalidCommandException;
 import seeyes.exception.StorageException;
 import seeyes.parser.Parser;
@@ -55,6 +56,7 @@ public class Seeyes {
      */
     public void exit() {
         ui.showFarewellMessage();
+        storage.save(taskList); // Autosave on exit
         waitThenExecute(1, () -> System.exit(0));
     }
 
@@ -92,7 +94,9 @@ public class Seeyes {
             return ui.formatResult(result);
 
         } catch (InvalidCommandException e) {
-            return "Error: " + e.getMessage();
+            return "Invalid Command: " + e.getMessage();
+        } catch (CommandFailedException e) {
+            return "Command Failed: " + e.getMessage();
         } catch (Exception e) {
             return "An unexpected error occurred: " + e.getMessage();
         }

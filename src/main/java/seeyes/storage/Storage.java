@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import seeyes.exception.InvalidTaskTypeException;
 import seeyes.exception.StorageException;
@@ -47,10 +48,13 @@ public class Storage {
         // parse the file and add tasks
         TaskList taskList = new TaskList();
         if (!file.exists()) {
-            System.out.println("File does not exist.");
+            Logger.getLogger(Storage.class.getName()).info(
+                    "File does not exist. Creating a new file to save data at "
+                            + filePath);
             return taskList;
         }
         String line = null;
+        // FileWriter(filePath) creates new file if it does not exist.
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             while ((line = reader.readLine()) != null) {
                 taskList.addTask(Task.getTaskFromString(line));

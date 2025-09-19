@@ -66,7 +66,7 @@ public class Parser {
      *             if the input is invalid
      */
     public static Command parseUserInput(String userInputString)
-            throws InvalidCommandException {
+            throws InvalidCommandException, CommandFailedException {
         // get command
         String[] split = userInputString.split(" ", 2);
         CommandType commandType = CommandType.fromString(split[0].trim());
@@ -87,15 +87,18 @@ public class Parser {
             case TODO:
                 params = parseTaskParams(commandType,
                         getArgs(split, split[0].trim() + " <task name>"));
+                checkEmptyName(params);
                 return new AddTaskCommand(Task.of(params[0]));
             case DEADLINE:
                 params = parseTaskParams(commandType,
                         getArgs(split, split[0].trim() + " <task name>"));
+                checkEmptyName(params);
                 return new AddTaskCommand(
                         Task.of(params[0], DateTimeUtils.parse(params[1])));
             case EVENT:
                 params = parseTaskParams(commandType,
                         getArgs(split, split[0].trim() + " <task name>"));
+                checkEmptyName(params);
                 return new AddTaskCommand(
                         Task.of(params[0], DateTimeUtils.parse(params[1]),
                                 DateTimeUtils.parse(params[2])));
@@ -120,6 +123,13 @@ public class Parser {
             }
         } catch (CommandFailedException e) {
             throw new CommandFailedException(e.getMessage());
+        }
+    }
+
+    private static void checkEmptyName(String[] params)
+            throws InvalidCommandException {
+        if (params[0] == "") {
+            throw new InvalidCommandException("TODO task can't have no name.");
         }
     }
 
@@ -176,8 +186,9 @@ public class Parser {
             String paramString) throws InvalidCommandException {
         String[] params;
         switch (taskType) {
-        case TODO:
         case FIND:
+            return new String[] { paramString };
+        case TODO:
             return new String[] { paramString };
         case DEADLINE:
             params = Arrays.stream(paramString.split("/by")).map(String::trim)
