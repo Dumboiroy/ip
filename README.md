@@ -2,6 +2,10 @@
 
 This is a project created from a template that was a project for a greenfield Java project. It's named after the Computer Science course in NUS. Given below are instructions on how to use it.
 
+# User Guide
+
+[![View the Seeyes App Online](https://img.shields.io/badge/Seeyes%20App-Open%20in%20Browser-43d19c?style=for-the-badge)](https://dumboiroy.github.io/ip/)
+
 ## Setting up in Intellij
 
 Prerequisites: JDK 17, update Intellij to the most recent version.
