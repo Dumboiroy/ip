@@ -55,6 +55,7 @@ public class Seeyes {
      */
     public void exit() {
         ui.showFarewellMessage();
+        storage.save(taskList); // Autosave on exit
         waitThenExecute(1, () -> System.exit(0));
     }
 
